@@ -1,4 +1,4 @@
-# NSCLC Multimodal Organ Diffusion Pipeline
+# Multimodal Graph Reasoning for Implicit Metastasis Pathway Inference and Survival Prediction
 
 > **For the full methodology and results, see [1. REPORT.md](1.%20REPORT.md).**
 
