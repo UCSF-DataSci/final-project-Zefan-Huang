@@ -1,19 +1,4 @@
-"""
-作用：
-- 实现 project.md 6.2：在 NSCLC Radiogenomics CT 上推理器官 mask。
-- 实现 project.md 6.3：基于器官 mask 导出 organ imaging tokens。
-- 产出每例器官分割结果，并给出每个器官的 missing_img_organ 标记（不可见/不可用）。
-
-输入：
-- output/preprocessed/ct_norm/*.npz（来自 imaging_preprocessing.py）
-- output/experiments/organ_seg/<run_tag>/model/organ_seg_unet.pt（来自 6.1_seg_model.py）
-
-输出：
-- <output_root>/<run_tag>/infer/masks/<patient_id>.npz
-- <output_root>/<run_tag>/infer/organ_mask_manifest.csv
-- <output_root>/<run_tag>/infer/organ_mask_long.csv
-- <output_root>/<run_tag>/infer/organ_imaging_tokens.csv
-"""
+"""Infer organ masks and organ imaging tokens on Radiogenomics CT volumes."""
 import argparse
 import csv
 import json
@@ -40,7 +25,7 @@ except Exception:
 
 if nn is None:
     class _NNPlaceholder:
-        """Why: torch 缺失时保持模块可导入，运行主流程时再统一给依赖提示。"""
+        """Placeholder namespace used when torch is unavailable."""
 
         Module = object
 
@@ -62,12 +47,7 @@ DEFAULT_ORGAN_NAME_MAP = {
 
 
 def check_dependencies():
-    """Why: 推理和 token 导出依赖多个第三方库，需提前统一检查。
-
-    Content: 检查 numpy/scipy/torch 是否可用。
-    Input: 无。
-    Output: 缺失依赖名称列表。
-    """
+    """English documentation for function `check_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -79,23 +59,13 @@ def check_dependencies():
 
 
 def ensure_output_dirs(output_root, mask_dir):
-    """Why: 推理会写 mask 和统计表，需要先创建目录。
-
-    Content: 创建输出根目录和 mask 子目录。
-    Input: output_root、mask_dir。
-    Output: 目录创建完成。
-    """
+    """English documentation for function `ensure_output_dirs`."""
     output_root.mkdir(parents=True, exist_ok=True)
     mask_dir.mkdir(parents=True, exist_ok=True)
 
 
 def resolve_model_path(model_path_arg, output_root, run_tag, allow_legacy_model_fallback):
-    """Why: Stage 6.2 必须和 6.1 训练产物绑定，避免误用旧模型导致结果漂移。
-
-    Content: 若传入 model_path 就直接用；否则优先找 run_tag 模型；可选启用 legacy 回退。
-    Input: model_path_arg、output_root、run_tag、allow_legacy_model_fallback。
-    Output: 解析后的模型路径。
-    """
+    """English documentation for function `resolve_model_path`."""
     if model_path_arg:
         return Path(model_path_arg)
 
@@ -115,12 +85,7 @@ def resolve_model_path(model_path_arg, output_root, run_tag, allow_legacy_model_
 
 
 def resolve_infer_paths(output_root, run_tag):
-    """Why: 不同推理实验需要隔离目录，避免覆盖前一次结果。
-
-    Content: 根据 output_root/run_tag 生成 infer 输出路径。
-    Input: output_root、run_tag。
-    Output: 包含 infer_root/mask_dir/manifest_csv/long_csv/token_csv 的字典。
-    """
+    """English documentation for function `resolve_infer_paths`."""
     infer_root = Path(output_root) / run_tag / "infer"
     return {
         "infer_root": infer_root,
@@ -132,33 +97,18 @@ def resolve_infer_paths(output_root, run_tag):
 
 
 def parse_patient_id_from_ct_npz(path):
-    """Why: 输出文件与统计表都需要稳定的 patient_id。
-
-    Content: 使用 ct_norm 文件名 stem 作为 patient_id。
-    Input: path（ct npz 路径）。
-    Output: patient_id 字符串。
-    """
+    """English documentation for function `parse_patient_id_from_ct_npz`."""
     return path.stem
 
 
 def get_ct_npz_paths(ct_dir):
-    """Why: 需要批量推理全部 Radiogenomics CT。
-
-    Content: 扫描 ct_dir 下全部 .npz 文件并排序。
-    Input: ct_dir。
-    Output: 排序后的路径列表。
-    """
+    """English documentation for function `get_ct_npz_paths`."""
     paths = sorted(ct_dir.glob("*.npz"))
     return paths
 
 
 def build_default_organ_map(num_classes):
-    """Why: 下游表格需要可读器官名，不能只有数字 id。
-
-    Content: 按 CT-ORG 默认编码生成 organ_id->organ_name。
-    Input: num_classes（含背景类）。
-    Output: organ_id -> organ_name 字典（不含背景0）。
-    """
+    """English documentation for function `build_default_organ_map`."""
     organ_map = {}
     for organ_id in range(1, num_classes):
         organ_map[organ_id] = DEFAULT_ORGAN_NAME_MAP.get(organ_id, f"organ_{organ_id}")
@@ -166,12 +116,7 @@ def build_default_organ_map(num_classes):
 
 
 def write_csv(path, fieldnames, rows):
-    """Why: 结果需要稳定表结构，便于后续 token 化与融合。
-
-    Content: 按字段顺序写 CSV。
-    Input: path、fieldnames、rows。
-    Output: CSV 写入完成。
-    """
+    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -179,12 +124,7 @@ def write_csv(path, fieldnames, rows):
 
 
 class DoubleConv(nn.Module):
-    """Why: 与训练时 U-Net 结构保持一致，才能正确加载权重。
-
-    Content: 两层卷积+BN+ReLU。
-    Input: 2D feature map。
-    Output: 同分辨率增强特征。
-    """
+    """English documentation for class `DoubleConv`."""
 
     def __init__(self, in_channels, out_channels):
         super().__init__()
@@ -202,12 +142,7 @@ class DoubleConv(nn.Module):
 
 
 class SmallUNet(nn.Module):
-    """Why: 推理网络必须和 6.1_seg_model.py 训练网络同构。
-
-    Content: 轻量 2D U-Net，输出多类别分割 logits，并可选返回 token feature map。
-    Input: x [B,C,H,W]。
-    Output: logits [B,K,H,W]，可选 token_map [B,T,h,w]。
-    """
+    """English documentation for class `SmallUNet`."""
 
     def __init__(self, in_channels, num_classes, base_channels, token_dim):
         super().__init__()
@@ -227,7 +162,7 @@ class SmallUNet(nn.Module):
         self.dec1 = DoubleConv(c1 + c1, c1)
         self.head = nn.Conv2d(c1, num_classes, kernel_size=1)
 
-        # Keep this layer for state_dict compatibility with the training model.
+
         self.token_head = nn.Conv2d(c3, token_dim, kernel_size=1)
 
     def forward(self, x, return_token_map=False):
@@ -249,12 +184,7 @@ class SmallUNet(nn.Module):
 
 
 def parse_organ_map_from_ckpt(ckpt, num_classes):
-    """Why: 6.2/6.3 输出器官名应和训练阶段一致。
-
-    Content: 先读 checkpoint 的 organ_name_map，缺失时回退默认映射。
-    Input: ckpt、num_classes。
-    Output: organ_id->organ_name 字典。
-    """
+    """English documentation for function `parse_organ_map_from_ckpt`."""
     raw_map = ckpt.get("organ_name_map", {}) if isinstance(ckpt, dict) else {}
     parsed = {}
     for k, v in raw_map.items():
@@ -271,12 +201,7 @@ def parse_organ_map_from_ckpt(ckpt, num_classes):
 
 
 def load_model(model_path, device):
-    """Why: 6.2 的核心是把 6.1 训练出的模型用于 NSCLC CT 推理。
-
-    Content: 读取 checkpoint，构建模型并加载权重。
-    Input: model_path、device。
-    Output: 已加载模型与 checkpoint 元信息字典。
-    """
+    """English documentation for function `load_model`."""
     ckpt = torch.load(str(model_path), map_location=device)
     if isinstance(ckpt, dict) and "model_state_dict" in ckpt:
         state_dict = ckpt["model_state_dict"]
@@ -339,12 +264,7 @@ def load_model(model_path, device):
 
 
 def build_context_stack(volume, z, num_context_slices, slice_stride):
-    """Why: 2.5D 模型推理需要中心切片及其邻近上下文通道。
-
-    Content: 按对称窗口收集邻近切片并在边界做夹取。
-    Input: volume、z、num_context_slices、slice_stride。
-    Output: [C,H,W] 的 float32 数组。
-    """
+    """English documentation for function `build_context_stack`."""
     depth = int(volume.shape[0])
     channels = []
     for offset in range(-num_context_slices, num_context_slices + 1):
@@ -355,12 +275,7 @@ def build_context_stack(volume, z, num_context_slices, slice_stride):
 
 
 def resize_slice_for_model(image_chw, image_size):
-    """Why: 训练输入是固定尺寸，推理也要统一尺寸。
-
-    Content: 将多通道切片线性插值到 image_size x image_size。
-    Input: image_chw、image_size。
-    Output: resized_image_chw。
-    """
+    """English documentation for function `resize_slice_for_model`."""
     h = image_chw.shape[1]
     w = image_chw.shape[2]
     zoom_h = image_size / h
@@ -371,12 +286,7 @@ def resize_slice_for_model(image_chw, image_size):
 
 
 def resize_mask_back(mask_2d, target_h, target_w):
-    """Why: 模型输出是固定尺寸，必须回到原始 CT 尺寸对齐。
-
-    Content: 最近邻缩放预测 mask 到目标高宽。
-    Input: mask_2d、target_h、target_w。
-    Output: 对齐后的整型 mask。
-    """
+    """English documentation for function `resize_mask_back`."""
     zoom_h = target_h / mask_2d.shape[0]
     zoom_w = target_w / mask_2d.shape[1]
     resized = ndimage.zoom(mask_2d, zoom=(zoom_h, zoom_w), order=0)
@@ -400,12 +310,7 @@ def infer_volume_multilabel_mask_and_token_stats(
     slice_stride,
     organ_map,
 ):
-    """Why: 6.2/6.3 需要同一次推理同时得到 3D mask 和 learned organ token 统计量。
-
-    Content: 对每个轴向切片做 2.5D 分割，回到原 CT 尺寸后按器官区域累计 token_map 求和。
-    Input: model、ct_volume、image_size、batch_slices、device、num_context_slices、slice_stride、organ_map。
-    Output: (pred_mask_3d, token_sum_by_organ_id, token_voxel_count_by_organ_id)。
-    """
+    """English documentation for function `infer_volume_multilabel_mask_and_token_stats`."""
     depth = ct_volume.shape[0]
     h = ct_volume.shape[1]
     w = ct_volume.shape[2]
@@ -461,12 +366,7 @@ def infer_volume_multilabel_mask_and_token_stats(
 
 
 def build_missing_flags(pred_mask, organ_map, min_organ_voxels):
-    """Why: project.md 6.2 要求 missing_img_organ，用于后续缺失模态处理。
-
-    Content: 按器官统计体素数，低于阈值记为 missing。
-    Input: pred_mask、organ_map、min_organ_voxels。
-    Output: (missing_dict, voxel_dict)。
-    """
+    """English documentation for function `build_missing_flags`."""
     missing = {}
     voxels = {}
     for organ_id, organ_name in organ_map.items():
@@ -477,12 +377,7 @@ def build_missing_flags(pred_mask, organ_map, min_organ_voxels):
 
 
 def save_patient_mask_npz(path, pred_mask, organ_map, source_ct_npz):
-    """Why: 下游 token 抽取会重复使用器官 mask，需持久化。
-
-    Content: 保存多类别 mask 和器官映射元信息到压缩 npz。
-    Input: path、pred_mask、organ_map、source_ct_npz。
-    Output: 文件写入完成。
-    """
+    """English documentation for function `save_patient_mask_npz`."""
     organ_ids = np.asarray(list(organ_map.keys()), dtype=np.int16)
     organ_names = np.asarray([organ_map[i] for i in organ_ids], dtype=object)
     np.savez_compressed(
@@ -495,12 +390,7 @@ def save_patient_mask_npz(path, pred_mask, organ_map, source_ct_npz):
 
 
 def l2_normalize_token(token):
-    """Why: learned organ token 需要做尺度标准化，便于后续融合与比较。
-
-    Content: 对一维 token 向量做 L2 归一化。
-    Input: token。
-    Output: float32 一维向量。
-    """
+    """English documentation for function `l2_normalize_token`."""
     arr = np.asarray(token, dtype=np.float32)
     norm = float(np.linalg.norm(arr))
     if norm <= 0.0:
@@ -516,12 +406,7 @@ def extract_organ_tokens_for_case(
     token_sums,
     token_voxel_counts,
 ):
-    """Why: 6.3 需要每例每器官 token，且要兼容器官缺失。
-
-    Content: 对每个器官使用推理阶段累计的 token_map 求和结果生成 L2 归一化 token。
-    Input: patient_id、organ_map、mask_npz_path、min_organ_voxels、token_sums、token_voxel_counts。
-    Output: organ token 行列表。
-    """
+    """English documentation for function `extract_organ_tokens_for_case`."""
     rows = []
     for organ_id, organ_name in organ_map.items():
         organ_id = int(organ_id)
@@ -550,14 +435,9 @@ def extract_organ_tokens_for_case(
 
 
 def parse_args():
-    """Why: 让你一次脚本就能在调试/全量两种模式间切换。
-
-    Content: 解析 6.2/6.3 推理需要的参数。
-    Input: 命令行参数。
-    Output: 参数对象。
-    """
+    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
-        description="Infer organ masks and organ tokens on NSCLC Radiogenomics CT (project.md 6.2/6.3).",
+        description="Infer organ masks and organ tokens on NSCLC Radiogenomics CT (docs/project.md 6.2/6.3).",
         allow_abbrev=False,
     )
     parser.add_argument("--ct-dir", type=str, default=str(DEFAULT_CT_DIR))
@@ -591,12 +471,7 @@ def parse_args():
 
 
 def main():
-    """Why: 一条命令执行 project.md 6.2/6.3 全流程。
-
-    Content: 加载模型、批量推理 CT、保存 mask、输出 missing_img_organ 清单并导出器官 token。
-    Input: 命令行参数。
-    Output: 6.2/6.3 所需 mask 与 CSV 结果文件。
-    """
+    """English documentation for function `main`."""
     args = parse_args()
     missing = check_dependencies()
     if missing:

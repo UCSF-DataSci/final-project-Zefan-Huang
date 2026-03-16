@@ -1,24 +1,4 @@
-"""
-作用：
-- 实现 project.md Stage 12.2：Explanation outputs（latent diffusion）。
-- 读取 Stage 11.2 的解释张量与 Stage 12.1 的 primary outputs，导出正式说明材料。
-- 明确声明：organ/path outputs 是模型诱导的 latent diffusion explanation，
-  仅用于解释 OS/recurrence 预测，不代表器官级 ground-truth supervision。
-
-输入：
-- output/stage11/11.2_graph_reasoning/graph_reasoning_pack.npz
-- output/stage12/12.1_primary_outputs_refit_all_seed2024/pred/primary_output_pack.npz（优先）
-- output/stage12/12.1_primary_outputs/pred/primary_output_pack.npz（回退）
-
-输出：
-- output/stage12/12.2_explanation_outputs/explanation_pack.npz
-- output/stage12/12.2_explanation_outputs/organ_susceptibility.csv
-- output/stage12/12.2_explanation_outputs/edge_diffusion_long.csv
-- output/stage12/12.2_explanation_outputs/patient_explanation_manifest.csv
-- output/stage12/12.2_explanation_outputs/patient_explanations.json
-- output/stage12/12.2_explanation_outputs/topk_paths.json
-- output/stage12/12.2_explanation_outputs/explanation_summary.json
-"""
+"""Export latent diffusion explanation outputs and supporting reports for Stage 12.2."""
 import argparse
 import csv
 import json

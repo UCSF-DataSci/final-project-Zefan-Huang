@@ -1,17 +1,4 @@
-"""
-这个文件用于实现 project.md 的 Stage 5（tumor mask provider）：
-- 不训练任何模型。
-- 读取 TCIA case 目录内的 CT DICOM + DICOM-SEG。
-- 解码指定肿瘤 segment，严格对齐到 CT 体数据网格。
-- 输出 mask_tumor.nii.gz 和 metadata.json。
-
-输入：
-- 一个 TCIA case 目录（递归包含 CT series 和 SEG 文件）
-
-输出：
-- <output_dir>/mask_tumor.nii.gz
-- <output_dir>/metadata.json
-"""
+"""Decode and export tumor masks from DICOM SEG aligned to CT volumes for Stage 5."""
 
 import argparse
 import csv
@@ -55,12 +42,7 @@ TUMOR_KEYWORDS = ("tumor", "tumour", "lesion", "gtv", "target", "mass", "nodule"
 
 
 def check_required_dependencies():
-    """Why: Stage 5 依赖基础医学影像库，先统一检查可避免中途失败。
-
-    Content: 检查 numpy/pydicom/nibabel/scipy 是否可导入。
-    Input: 无。
-    Output: 缺失依赖列表。
-    """
+    """English documentation for function `check_required_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -74,22 +56,12 @@ def check_required_dependencies():
 
 
 def ensure_output_dir(output_dir):
-    """Why: 输出 NIfTI 和 metadata 前需要确保目录存在。
-
-    Content: 创建输出目录（已存在时不报错）。
-    Input: output_dir 路径。
-    Output: 目录可写。
-    """
+    """English documentation for function `ensure_output_dir`."""
     output_dir.mkdir(parents=True, exist_ok=True)
 
 
 def parse_float_list(val):
-    """Why: DICOM 坐标与方向字段通常是字符串数组，需要安全转浮点。
-
-    Content: 把可迭代字段转成 float 列表；失败返回空列表。
-    Input: val（DICOM 字段值）。
-    Output: float 列表。
-    """
+    """English documentation for function `parse_float_list`."""
     out = []
     if val is None:
         return out
@@ -102,12 +74,7 @@ def parse_float_list(val):
 
 
 def normalize_vec(vec):
-    """Why: 方向向量需要归一化后才能做几何投影。
-
-    Content: 对 3D 向量做 L2 归一化，零向量返回 None。
-    Input: vec 数组。
-    Output: 归一化向量或 None。
-    """
+    """English documentation for function `normalize_vec`."""
     arr = np.asarray(vec, dtype=np.float64)
     norm = float(np.linalg.norm(arr))
     if norm <= 0.0:
@@ -116,12 +83,7 @@ def normalize_vec(vec):
 
 
 def safe_dcmread(path, stop_before_pixels):
-    """Why: 读取大量 DICOM 时要统一容错策略，避免单文件坏掉拖垮流程。
-
-    Content: 用 pydicom 读取 DICOM，读取失败返回 None。
-    Input: path 文件路径，stop_before_pixels 布尔值。
-    Output: pydicom dataset 或 None。
-    """
+    """English documentation for function `safe_dcmread`."""
     try:
         return pydicom.dcmread(str(path), force=True, stop_before_pixels=stop_before_pixels)
     except Exception:
@@ -129,12 +91,7 @@ def safe_dcmread(path, stop_before_pixels):
 
 
 def scan_case_headers(case_dir):
-    """Why: 需要先全局扫描 case 目录，才能确定 CT/SEG 文件和序列关系。
-
-    Content: 递归读取全部 .dcm 头信息，提取最小必要字段。
-    Input: case_dir 病例目录。
-    Output: header 字典列表。
-    """
+    """English documentation for function `scan_case_headers`."""
     headers = []
     for dcm_path in sorted(case_dir.rglob("*.dcm")):
         ds = safe_dcmread(dcm_path, stop_before_pixels=True)
@@ -153,12 +110,7 @@ def scan_case_headers(case_dir):
 
 
 def get_seg_candidates(headers):
-    """Why: Stage 5 需要唯一 SEG 作为肿瘤标注来源。
-
-    Content: 从头信息中筛选 Modality=SEG 或 SOPClass=Segmentation Storage 的文件。
-    Input: headers 扫描结果。
-    Output: SEG 文件路径列表。
-    """
+    """English documentation for function `get_seg_candidates`."""
     out = []
     for h in headers:
         if h["modality"] == "SEG" or h["sop_class_uid"] == SEG_SOP_CLASS_UID:
@@ -167,12 +119,7 @@ def get_seg_candidates(headers):
 
 
 def load_seg_dataset(case_dir, seg_file_arg, headers):
-    """Why: 后续 segment 选择和 frame 映射都依赖完整 SEG dataset。
-
-    Content: 根据显式路径或自动发现加载唯一 SEG DICOM。
-    Input: case_dir、seg_file_arg、headers。
-    Output: (seg_path, seg_ds)。
-    """
+    """English documentation for function `load_seg_dataset`."""
     if seg_file_arg:
         seg_path = Path(seg_file_arg)
         if not seg_path.exists():
@@ -199,12 +146,7 @@ def load_seg_dataset(case_dir, seg_file_arg, headers):
 
 
 def collect_referenced_series_uids(seg_ds):
-    """Why: SEG 通常会引用来源 CT 序列，这是最可靠的 CT 选择依据。
-
-    Content: 从 SEG 中提取 ReferencedSeriesSequence 的 SeriesInstanceUID。
-    Input: seg_ds。
-    Output: Series UID 列表。
-    """
+    """English documentation for function `collect_referenced_series_uids`."""
     out = []
 
     if hasattr(seg_ds, "ReferencedSeriesSequence"):
@@ -224,12 +166,7 @@ def collect_referenced_series_uids(seg_ds):
 
 
 def extract_segment_records(seg_ds):
-    """Why: 需要读取 SegmentSequence，才能选择肿瘤 segment。
-
-    Content: 解析每个 segment 的编号与可读文本。
-    Input: seg_ds。
-    Output: segment 记录列表。
-    """
+    """English documentation for function `extract_segment_records`."""
     out = []
     seg_seq = getattr(seg_ds, "SegmentSequence", [])
     for seg in seg_seq:
@@ -258,12 +195,7 @@ def extract_segment_records(seg_ds):
 
 
 def choose_segment_number(seg_ds, segment_number_arg, segment_label_arg):
-    """Why: Stage 5 要把“肿瘤 segment”唯一化，防止取错结构。
-
-    Content: 按显式编号、显式标签、关键词匹配三层规则选择 segment。
-    Input: seg_ds、segment_number_arg、segment_label_arg。
-    Output: 选中的 segment 记录字典。
-    """
+    """English documentation for function `choose_segment_number`."""
     segments = extract_segment_records(seg_ds)
     if not segments:
         raise RuntimeError("SEG has empty SegmentSequence")
@@ -320,12 +252,7 @@ def choose_segment_number(seg_ds, segment_number_arg, segment_label_arg):
 
 
 def get_ct_series_map(headers):
-    """Why: CT 可能有多个 series，先分组便于后续选择。
-
-    Content: 按 SeriesInstanceUID 聚合 CT 文件路径。
-    Input: headers。
-    Output: series_uid -> 路径列表字典。
-    """
+    """English documentation for function `get_ct_series_map`."""
     series_map = {}
     for h in headers:
         if h["modality"] != "CT":
@@ -342,12 +269,7 @@ def get_ct_series_map(headers):
 
 
 def choose_ct_series_uid(series_map, referenced_series_uids, ct_series_uid_arg):
-    """Why: SEG 对齐必须绑定唯一 CT 序列，不能模糊选择。
-
-    Content: 优先显式 UID，其次 SEG 引用 UID，再次单序列直选。
-    Input: series_map、referenced_series_uids、ct_series_uid_arg。
-    Output: 选中的 CT SeriesInstanceUID。
-    """
+    """English documentation for function `choose_ct_series_uid`."""
     if not series_map:
         raise RuntimeError("no CT DICOM found in case_dir")
 
@@ -379,12 +301,7 @@ def choose_ct_series_uid(series_map, referenced_series_uids, ct_series_uid_arg):
 
 
 def get_first_valid_iop(slices):
-    """Why: 构建 CT 仿射矩阵需要方向基向量。
-
-    Content: 找到首个可用的 ImageOrientationPatient。
-    Input: slices（已读取 CT dataset 列表）。
-    Output: 长度6浮点列表或 None。
-    """
+    """English documentation for function `get_first_valid_iop`."""
     for ds in slices:
         iop = parse_float_list(getattr(ds, "ImageOrientationPatient", None))
         if len(iop) >= 6:
@@ -393,12 +310,7 @@ def get_first_valid_iop(slices):
 
 
 def get_slice_sort_info(ds, slice_dir):
-    """Why: CT 切片必须按几何顺序排序，才能确保 z 轴与 SEG 对齐。
-
-    Content: 提取用于排序的 scalar 和 instance 值。
-    Input: ds、slice_dir。
-    Output: (scalar, instance, ipp_tuple)。
-    """
+    """English documentation for function `get_slice_sort_info`."""
     ipp = parse_float_list(getattr(ds, "ImagePositionPatient", None))
     ipp_tuple = None
     scalar = None
@@ -415,12 +327,7 @@ def get_slice_sort_info(ds, slice_dir):
 
 
 def compute_slice_spacing(sorted_scalars, fallback_thickness):
-    """Why: CT spacing 需要 z 方向体素间距，用于 affine 和元数据。
-
-    Content: 用相邻切片几何差值中位数估计 z spacing，失败回退 SliceThickness。
-    Input: sorted_scalars、fallback_thickness。
-    Output: slice spacing 浮点数。
-    """
+    """English documentation for function `compute_slice_spacing`."""
     if len(sorted_scalars) > 1:
         diffs = []
         for i in range(1, len(sorted_scalars)):
@@ -435,12 +342,7 @@ def compute_slice_spacing(sorted_scalars, fallback_thickness):
 
 
 def load_ct_geometry(series_dcm_paths):
-    """Why: Stage 5 要产出与 CT 一致的网格信息，先完整构建 CT 几何。
-
-    Content: 读取 CT 切片、排序、组装体数据并计算 spacing/origin/direction/affine。
-    Input: series_dcm_paths。
-    Output: CT 几何与体数据字典。
-    """
+    """English documentation for function `load_ct_geometry`."""
     slices = []
     for p in series_dcm_paths:
         ds = safe_dcmread(p, stop_before_pixels=False)
@@ -563,12 +465,7 @@ def load_ct_geometry(series_dcm_paths):
 
 
 def frame_segment_number(frame_fg):
-    """Why: 多 segment SEG 需要按 frame 过滤目标 segment。
-
-    Content: 从 SegmentIdentificationSequence 读取 ReferencedSegmentNumber。
-    Input: frame_fg。
-    Output: segment number 或 None。
-    """
+    """English documentation for function `frame_segment_number`."""
     seq = getattr(frame_fg, "SegmentIdentificationSequence", [])
     if not seq:
         return None
@@ -580,12 +477,7 @@ def frame_segment_number(frame_fg):
 
 
 def frame_referenced_sop_uid(frame_fg):
-    """Why: SEG 最可靠的切片映射方式是引用源 CT 的 SOP UID。
-
-    Content: 从 DerivationImageSequence/SourceImageSequence 提取 ReferencedSOPInstanceUID。
-    Input: frame_fg。
-    Output: SOP UID 字符串（可能为空）。
-    """
+    """English documentation for function `frame_referenced_sop_uid`."""
     deriv = getattr(frame_fg, "DerivationImageSequence", [])
     for d in deriv:
         for src in getattr(d, "SourceImageSequence", []):
@@ -596,12 +488,7 @@ def frame_referenced_sop_uid(frame_fg):
 
 
 def frame_image_position(frame_fg):
-    """Why: 当 SOP UID 缺失时，需要用空间位置匹配 CT 切片。
-
-    Content: 从 PlanePositionSequence 读取 ImagePositionPatient。
-    Input: frame_fg。
-    Output: (x,y,z) 浮点元组或 None。
-    """
+    """English documentation for function `frame_image_position`."""
     seq = getattr(frame_fg, "PlanePositionSequence", [])
     if not seq:
         return None
@@ -612,12 +499,7 @@ def frame_image_position(frame_fg):
 
 
 def resize_2d_nearest(mask_hw, target_h, target_w):
-    """Why: SEG 帧分辨率和 CT 帧可能不同，需要最近邻缩放保证标签值不污染。
-
-    Content: 将单帧 mask 缩放到目标 H,W。
-    Input: mask_hw、target_h、target_w。
-    Output: 缩放后的二值 mask。
-    """
+    """English documentation for function `resize_2d_nearest`."""
     if int(mask_hw.shape[0]) == int(target_h) and int(mask_hw.shape[1]) == int(target_w):
         return (mask_hw > 0).astype(np.uint8)
     zoom_h = float(target_h) / float(mask_hw.shape[0])
@@ -634,12 +516,7 @@ def resize_2d_nearest(mask_hw, target_h, target_w):
 
 
 def resample_3d_nearest(mask_zyx, target_shape_zyx):
-    """Why: 某些解码器返回的 3D mask shape 不同，必要时需要重采样对齐 CT 网格。
-
-    Content: 对 3D mask 做最近邻重采样到目标 shape。
-    Input: mask_zyx、target_shape_zyx。
-    Output: 重采样后的二值 mask。
-    """
+    """English documentation for function `resample_3d_nearest`."""
     if tuple(mask_zyx.shape) == tuple(target_shape_zyx):
         return (mask_zyx > 0).astype(np.uint8)
     zf = float(target_shape_zyx[0]) / float(mask_zyx.shape[0])
@@ -658,12 +535,7 @@ def resample_3d_nearest(mask_zyx, target_shape_zyx):
 
 
 def decode_seg_with_pydicom_seg(seg_ds, segment_number):
-    """Why: 优先尝试 pydicom-seg 解码，和用户要求保持一致。
-
-    Content: 尝试用 pydicom-seg API 解析 segment；失败返回 None。
-    Input: seg_ds、segment_number。
-    Output: 成功时返回 3D mask，失败返回 None。
-    """
+    """English documentation for function `decode_seg_with_pydicom_seg`."""
     if pydicom_seg is None:
         return None
 
@@ -689,12 +561,7 @@ def decode_seg_with_pydicom_seg(seg_ds, segment_number):
 
 
 def decode_seg_with_highdicom(seg_ds, segment_number, ct_info):
-    """Why: 当 pydicom-seg 不可用时，highdicom 是第二优先解码器。
-
-    Content: 尝试 highdicom 读取 SEG 并按 CT 实例顺序取像素；失败返回 None。
-    Input: seg_ds、segment_number、ct_info。
-    Output: 成功时返回 3D mask，失败返回 None。
-    """
+    """English documentation for function `decode_seg_with_highdicom`."""
     if highdicom is None:
         return None
 
@@ -719,12 +586,7 @@ def decode_seg_with_highdicom(seg_ds, segment_number, ct_info):
 
 
 def decode_seg_with_pydicom_manual(seg_ds, segment_number, ct_info):
-    """Why: 在无第三方解码器时必须有稳定 fallback，保证 Stage 5 可运行。
-
-    Content: 逐帧读取 SEG 像素并按 SOP UID/空间位置严格映射到 CT 切片。
-    Input: seg_ds、segment_number、ct_info。
-    Output: (mask_zyx, align_mode)。
-    """
+    """English documentation for function `decode_seg_with_pydicom_manual`."""
     arr = np.asarray(seg_ds.pixel_array)
     if arr.ndim == 2:
         arr = arr[np.newaxis, :, :]
@@ -761,7 +623,6 @@ def decode_seg_with_pydicom_manual(seg_ds, segment_number, ct_info):
             if frame_seg_num is not None and int(frame_seg_num) != int(segment_number):
                 continue
             if frame_seg_num is None and int(segment_number) != 1:
-                # 无 segment 标记且不是 segment 1，无法确定归属，按严格策略报错
                 raise RuntimeError(
                     f"frame {i} missing ReferencedSegmentNumber for non-1 target segment."
                 )
@@ -808,12 +669,7 @@ def decode_seg_with_pydicom_manual(seg_ds, segment_number, ct_info):
 
 
 def decode_tumor_mask(seg_ds, segment_number, ct_info, force_resample):
-    """Why: Stage 5 需要统一解码入口，封装优先级与对齐策略。
-
-    Content: 按 pydicom-seg -> highdicom -> pydicom manual 顺序解码并对齐 CT shape。
-    Input: seg_ds、segment_number、ct_info、force_resample。
-    Output: (mask_zyx, decode_backend, align_mode)。
-    """
+    """English documentation for function `decode_tumor_mask`."""
     target_shape = ct_info["ct_shape_zyx"]
 
     mask = decode_seg_with_pydicom_seg(seg_ds, segment_number)
@@ -844,12 +700,7 @@ def decode_tumor_mask(seg_ds, segment_number, ct_info, force_resample):
 
 
 def save_mask_nifti(mask_zyx, affine_ras_yxz, output_path):
-    """Why: 下游通常消费 NIfTI，需要把 3D 肿瘤 mask 写成标准文件。
-
-    Content: 将 z,y,x 的 mask 转为 y,x,z 并保存为 NIfTI。
-    Input: mask_zyx、affine_ras_yxz、output_path。
-    Output: NIfTI 文件路径。
-    """
+    """English documentation for function `save_mask_nifti`."""
     mask_yxz = np.transpose(mask_zyx.astype(np.uint8), (1, 2, 0))
     nii = nib.Nifti1Image(mask_yxz, affine_ras_yxz)
     nii.set_data_dtype(np.uint8)
@@ -869,12 +720,7 @@ def build_metadata_dict(
     decode_backend,
     align_mode,
 ):
-    """Why: Stage 5 要输出可追溯元数据，方便后续训练/审计使用。
-
-    Content: 组装 metadata.json 需要的必备字段和关键扩展字段。
-    Input: subject_id 等运行结果参数。
-    Output: metadata 字典。
-    """
+    """English documentation for function `build_metadata_dict`."""
     meta = {
         "SubjectID": subject_id,
         "SeriesInstanceUID": series_instance_uid,
@@ -897,24 +743,14 @@ def build_metadata_dict(
 
 
 def write_metadata_json(metadata, output_path):
-    """Why: 结果必须可机器读取，JSON 是最稳定格式。
-
-    Content: 将 metadata 字典写到 json 文件。
-    Input: metadata、output_path。
-    Output: json 文件路径。
-    """
+    """English documentation for function `write_metadata_json`."""
     with output_path.open("w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
     return output_path
 
 
 def run_stage5(case_dir, output_dir, seg_file, ct_series_uid, segment_number, segment_label, subject_id, force_resample, verbose):
-    """Why: 把 Stage 5 单病例端到端步骤封装为函数，供批处理复用。
-
-    Content: 扫描 case、选 SEG/CT、解码 segment、对齐 CT、写 NIfTI 和 metadata。
-    Input: case_dir、output_dir、seg_file、ct_series_uid、segment_number、segment_label、subject_id、force_resample、verbose。
-    Output: 结果路径与关键统计字典。
-    """
+    """English documentation for function `run_stage5`."""
     headers = scan_case_headers(case_dir)
     if not headers:
         raise RuntimeError(f"no .dcm file found in case_dir: {case_dir}")
@@ -989,12 +825,7 @@ DEFAULT_OUTPUT_ROOT = Path("output/stage5")
 
 
 def read_segment_map(segment_map_csv):
-    """Why: 全病例时常有 per-patient segment 差异，需要映射表控制。
-
-    Content: 读取 patient_id 到 segment_number/segment_label 的映射。
-    Input: segment_map_csv 路径。
-    Output: patient_id -> {"segment_number","segment_label"} 字典。
-    """
+    """English documentation for function `read_segment_map`."""
     out = {}
     if not segment_map_csv:
         return out
@@ -1023,12 +854,7 @@ def read_segment_map(segment_map_csv):
 
 
 def load_patient_ids_from_manifest(manifest_csv, require_seg):
-    """Why: manifest 已做过病例整合，优先它可减少重复扫描成本。
-
-    Content: 从 manifest 读取 patient_id，并按 has_ct/has_seg 筛选。
-    Input: manifest_csv、require_seg。
-    Output: 排序后的 patient_id 列表。
-    """
+    """English documentation for function `load_patient_ids_from_manifest`."""
     path = Path(manifest_csv)
     if not path.exists():
         return []
@@ -1051,12 +877,7 @@ def load_patient_ids_from_manifest(manifest_csv, require_seg):
 
 
 def load_patient_ids_from_metadata(metadata_csv, require_seg):
-    """Why: 当 manifest 不存在或不想依赖时，需要从 metadata 直接构建病例列表。
-
-    Content: 解析 NSCLC Radiogenomics 的 Subject ID，并按 CT/SEG 可用性筛选。
-    Input: metadata_csv、require_seg。
-    Output: 排序后的 patient_id 列表。
-    """
+    """English documentation for function `load_patient_ids_from_metadata`."""
     path = Path(metadata_csv)
     if not path.exists():
         raise RuntimeError(f"metadata_csv not found: {path}")
@@ -1086,12 +907,7 @@ def load_patient_ids_from_metadata(metadata_csv, require_seg):
 
 
 def resolve_patient_ids(manifest_csv, metadata_csv, require_seg):
-    """Why: 批处理应尽量自动可用，优先 manifest，回退 metadata。
-
-    Content: 先从 manifest 取病例；若为空再从 metadata 构建。
-    Input: manifest_csv、metadata_csv、require_seg。
-    Output: patient_id 列表与来源标记。
-    """
+    """English documentation for function `resolve_patient_ids`."""
     from_manifest = load_patient_ids_from_manifest(manifest_csv, require_seg)
     if from_manifest:
         return from_manifest, "manifest"
@@ -1100,22 +916,12 @@ def resolve_patient_ids(manifest_csv, metadata_csv, require_seg):
 
 
 def ensure_output_root(output_root):
-    """Why: 批处理需要统一输出根目录和汇总文件落盘位置。
-
-    Content: 创建 output_root 目录。
-    Input: output_root。
-    Output: 目录可写。
-    """
+    """English documentation for function `ensure_output_root`."""
     Path(output_root).mkdir(parents=True, exist_ok=True)
 
 
 def write_csv(path, fieldnames, rows):
-    """Why: 批处理汇总需要稳定字段结构，便于后续分析和重跑。
-
-    Content: 写 CSV。
-    Input: path、fieldnames、rows。
-    Output: CSV 文件。
-    """
+    """English documentation for function `write_csv`."""
     with Path(path).open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -1123,12 +929,7 @@ def write_csv(path, fieldnames, rows):
 
 
 def parse_args():
-    """Why: 提供全病例运行开关，兼容调试和全量两种模式。
-
-    Content: 解析批处理参数，并忽略 IDE 注入未知参数。
-    Input: 命令行参数。
-    Output: args。
-    """
+    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="Batch Stage 5 tumor mask provider over NSCLC Radiogenomics cases.",
         allow_abbrev=False,
@@ -1158,12 +959,7 @@ def parse_args():
 
 
 def choose_segment_for_patient(patient_id, segment_map, default_segment_number, default_segment_label):
-    """Why: 每例可能有不同 segment 定义，需要统一决策优先级。
-
-    Content: 优先用映射表，其次用全局默认参数。
-    Input: patient_id、segment_map、default_segment_number、default_segment_label。
-    Output: (segment_number, segment_label, segment_source)。
-    """
+    """English documentation for function `choose_segment_for_patient`."""
     if patient_id in segment_map:
         item = segment_map[patient_id]
         return item.get("segment_number"), item.get("segment_label", ""), "map_csv"
@@ -1171,12 +967,7 @@ def choose_segment_for_patient(patient_id, segment_map, default_segment_number, 
 
 
 def run_batch():
-    """Why: 一条命令执行全病例 Stage 5，并输出可追踪汇总。
-
-    Content: 解析病例列表、逐例调用 run_stage5、汇总成功和失败结果。
-    Input: 命令行参数。
-    Output: 每例输出目录 + 批处理 summary CSV。
-    """
+    """English documentation for function `run_batch`."""
     args = parse_args()
     missing = check_required_dependencies()
     if missing:

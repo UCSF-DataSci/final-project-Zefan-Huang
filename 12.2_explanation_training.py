@@ -38,7 +38,13 @@ if nn is None:
     nn = _NNPlaceholder()
 
 
-ROOT = Path(__file__).resolve().parent
+def resolve_root():
+    if "__file__" in globals():
+        return Path(__file__).resolve().parent
+    return Path.cwd().resolve()
+
+
+ROOT = resolve_root()
 DEFAULT_STAGE11_PACK = ROOT / "output/stage11/11.2_graph_reasoning/graph_reasoning_pack.npz"
 DEFAULT_OUTPUT_ROOT = ROOT / "output/stage12/12.2_explanation_training"
 
@@ -101,6 +107,21 @@ def ensure_output_dirs(output_root):
     }
 
 
+def filter_stage11_pack(stage11_pack, keep_patient_ids):
+    keep_set = {str(x) for x in keep_patient_ids}
+    patient_ids = [str(x) for x in stage11_pack["patient_ids"].tolist()]
+    indices = [idx for idx, patient_id in enumerate(patient_ids) if patient_id in keep_set]
+    if not indices:
+        raise RuntimeError("no matching patients found for requested stage11 subset")
+    subset = {}
+    for key, value in stage11_pack.items():
+        if isinstance(value, np.ndarray) and value.ndim >= 1 and value.shape[0] == len(patient_ids):
+            subset[key] = value[np.asarray(indices, dtype=np.int64)]
+        else:
+            subset[key] = value
+    return subset
+
+
 def load_stage11_pack(npz_path):
     with np.load(npz_path, allow_pickle=True) as z:
         out = {}
@@ -143,6 +164,25 @@ def build_edge_feature_tensor(pack, device):
         ],
         dim=-1,
     )
+
+
+def load_model_payload(model_path):
+    payload = torch.load(str(model_path), map_location="cpu")
+    if not isinstance(payload, dict) or "state_dict" not in payload:
+        raise RuntimeError(f"invalid model payload: {model_path}")
+    return payload
+
+
+def freeze_model_prefixes(model, freeze_prefixes):
+    prefixes = [str(x).strip() for x in freeze_prefixes if str(x).strip()]
+    if not prefixes:
+        return []
+    frozen = []
+    for name, param in model.named_parameters():
+        if any(name == prefix or name.startswith(prefix + ".") for prefix in prefixes):
+            param.requires_grad = False
+            frozen.append(name)
+    return frozen
 
 
 def build_location_bucket_matrix(organ_node_names, recurrence_classes):
@@ -532,6 +572,8 @@ def train_explanation_guided_model(
     loss_weight_edge_prior=0.1,
     seed=2024,
     device="auto",
+    init_model_path=None,
+    freeze_prefixes=None,
 ):
     device = PRIMARY_MOD.choose_device(device)
     set_seed(seed)
@@ -578,6 +620,12 @@ def train_explanation_guided_model(
         survival_mode=survival_mode,
         num_time_bins=num_time_bins,
     ).to(device)
+    loaded_init_model_path = None
+    if init_model_path is not None:
+        payload = load_model_payload(init_model_path)
+        model.load_state_dict(payload["state_dict"], strict=False)
+        loaded_init_model_path = str(init_model_path)
+    frozen_parameter_names = freeze_model_prefixes(model, freeze_prefixes or [])
 
     recurrence_pos_weight = PRIMARY_MOD.compute_binary_pos_weight(
         target=supervision_torch["event_rec"][train_indices],
@@ -588,7 +636,10 @@ def train_explanation_guided_model(
         known_mask=supervision_torch["rec_location_known"][train_indices] > 0,
         num_classes=len(recurrence_classes),
     )
-    optimizer = torch.optim.Adam(model.parameters(), lr=float(lr), weight_decay=float(weight_decay))
+    trainable_parameters = [param for param in model.parameters() if param.requires_grad]
+    if not trainable_parameters:
+        raise RuntimeError("all model parameters are frozen; nothing to optimize")
+    optimizer = torch.optim.Adam(trainable_parameters, lr=float(lr), weight_decay=float(weight_decay))
 
     history_rows = []
     best_state = PRIMARY_MOD.snapshot_state_dict(model)
@@ -823,6 +874,10 @@ def train_explanation_guided_model(
         "recurrence_location_class_weights": recurrence_location_class_weights.detach().cpu().numpy().astype(np.float32),
         "bin_edges": bin_edges.astype(np.float32),
         "split_name": split_name,
+        "loaded_init_model_path": loaded_init_model_path,
+        "frozen_parameter_names": frozen_parameter_names,
+        "trainable_parameter_count": int(sum(param.numel() for param in model.parameters() if param.requires_grad)),
+        "frozen_parameter_count": int(sum(param.numel() for param in model.parameters() if not param.requires_grad)),
         **outputs_np,
     }
 
@@ -857,6 +912,13 @@ def parse_args():
     parser.add_argument("--loss-weight-edge-prior", type=float, default=0.1)
     parser.add_argument("--seed", type=int, default=2024)
     parser.add_argument("--device", type=str, default="auto", choices=["auto", "cpu", "cuda"])
+    parser.add_argument("--init-model-path", type=str, default="")
+    parser.add_argument(
+        "--freeze-prefixes",
+        type=str,
+        default="",
+        help="Comma-separated module prefixes to freeze, e.g. pool,base_trunk",
+    )
     args, _unknown = parser.parse_known_args()
     return args
 
@@ -935,6 +997,8 @@ def main():
         loss_weight_edge_prior=args.loss_weight_edge_prior,
         seed=args.seed,
         device=args.device,
+        init_model_path=(Path(args.init_model_path) if str(args.init_model_path).strip() else None),
+        freeze_prefixes=[x.strip() for x in str(args.freeze_prefixes).split(",") if x.strip()],
     )
 
     PRIMARY_MOD.write_prediction_csv(
@@ -1075,6 +1139,10 @@ def main():
         "loss_weight_edge_prior": float(args.loss_weight_edge_prior),
         "seed": int(args.seed),
         "device": str(args.device),
+        "init_model_path": train_result["loaded_init_model_path"],
+        "freeze_prefixes": [x.strip() for x in str(args.freeze_prefixes).split(",") if x.strip()],
+        "trainable_parameter_count": int(train_result["trainable_parameter_count"]),
+        "frozen_parameter_count": int(train_result["frozen_parameter_count"]),
         "best_epoch": int(train_result["best_epoch"]),
         "best_monitor_loss": train_result["best_monitor_loss"],
         "stopped_early": bool(train_result["stopped_early"]),

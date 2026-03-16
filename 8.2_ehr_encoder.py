@@ -1,21 +1,4 @@
-"""
-作用：
-- 实现 project.md Stage 8.2：EHR encoder（MLP）生成 g_ehr。
-- 读取 Stage 8.1 的 x_ehr 特征，训练轻量 MLP 编码器（MVP）。
-- 当前 MLP 版本要求 Stage 8.1 使用 one-hot 类别编码，避免把类别索引误当连续值输入。
-- 导出 g_ehr、模型权重、训练日志与元信息。
-
-输入：
-- output/stage8/8.1_clinical_feature_engineering/x_ehr_features.npz（优先）
-- output/stage8/8.1_clinical_feature_engineering_smoke/x_ehr_features.npz（回退）
-
-输出：
-- output/stage8/8.2_ehr_encoder/model/ehr_encoder.pt
-- output/stage8/8.2_ehr_encoder/train/ehr_encoder_training_summary.csv
-- output/stage8/8.2_ehr_encoder/train/ehr_encoder_meta.json
-- output/stage8/8.2_ehr_encoder/tokens/g_ehr.csv
-- output/stage8/8.2_ehr_encoder/tokens/ehr_encoder_outputs.npz
-"""
+"""Train the Stage 8.2 EHR encoder and export clinical embeddings."""
 import argparse
 import csv
 import json
@@ -40,7 +23,7 @@ except Exception:
 
 if nn is None:
     class _NNPlaceholder:
-        """Why: 缺失 torch 时保持脚本可导入，运行时再统一报依赖。"""
+        """Placeholder namespace used when torch is unavailable."""
 
         Module = object
 
@@ -53,12 +36,7 @@ DEFAULT_OUTPUT_ROOT = Path("output/stage8/8.2_ehr_encoder")
 
 
 def check_dependencies():
-    """Why: Stage 8.2 的训练依赖 numpy/torch，需提前检查。
-
-    Content: 检查依赖是否可用。
-    Input: 无。
-    Output: 缺失依赖名称列表。
-    """
+    """English documentation for function `check_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -68,12 +46,7 @@ def check_dependencies():
 
 
 def resolve_stage81_npz(path_arg):
-    """Why: 8.2 必须读取 8.1 的 x_ehr，路径需稳定解析。
-
-    Content: 优先命令行路径，否则按默认与回退路径查找。
-    Input: path_arg。
-    Output: 可用 NPZ 路径。
-    """
+    """English documentation for function `resolve_stage81_npz`."""
     if path_arg.strip():
         p = Path(path_arg)
         if p.exists():
@@ -90,12 +63,7 @@ def resolve_stage81_npz(path_arg):
 
 
 def resolve_output_paths(output_root):
-    """Why: 模型/训练日志/token 需要分目录保存，避免结果混杂。
-
-    Content: 组装 Stage 8.2 输出路径集合。
-    Input: output_root。
-    Output: 路径字典。
-    """
+    """English documentation for function `resolve_output_paths`."""
     root = Path(output_root)
     train_dir = root / "train"
     model_dir = root / "model"
@@ -114,24 +82,14 @@ def resolve_output_paths(output_root):
 
 
 def ensure_output_dirs(paths):
-    """Why: 输出前先创建目录，避免中途写文件失败。
-
-    Content: 创建 train/model/tokens 目录。
-    Input: paths。
-    Output: 目录创建完成。
-    """
+    """English documentation for function `ensure_output_dirs`."""
     paths["train_dir"].mkdir(parents=True, exist_ok=True)
     paths["model_dir"].mkdir(parents=True, exist_ok=True)
     paths["token_dir"].mkdir(parents=True, exist_ok=True)
 
 
 def set_seed(seed):
-    """Why: 训练涉及随机性，固定 seed 能保证可复现。
-
-    Content: 固定 python/numpy/torch 随机种子。
-    Input: seed。
-    Output: 随机状态被固定。
-    """
+    """English documentation for function `set_seed`."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -140,12 +98,7 @@ def set_seed(seed):
 
 
 def load_stage81_npz(npz_path):
-    """Why: Stage 8.2 训练要读取 x_ehr 与病人顺序，需统一校验输入结构。
-
-    Content: 读取 x_ehr/patient_ids/feature_names，并返回结构化字典。
-    Input: npz_path。
-    Output: 包含 x_ehr、patient_ids、feature_names 的字典。
-    """
+    """English documentation for function `load_stage81_npz`."""
     with np.load(npz_path, allow_pickle=True) as z:
         for key in ["x_ehr", "patient_ids", "feature_names"]:
             if key not in z:
@@ -175,12 +128,7 @@ def load_stage81_npz(npz_path):
 
 
 def apply_patient_limit(x_ehr, patient_ids, max_patients):
-    """Why: 支持快速调试前 N 个病人，但默认应支持全量。
-
-    Content: 根据 max_patients 截断样本；0 表示全量。
-    Input: x_ehr、patient_ids、max_patients。
-    Output: 截断后的 x_ehr 与 patient_ids。
-    """
+    """English documentation for function `apply_patient_limit`."""
     if max_patients < 0:
         raise RuntimeError("max_patients must be >= 0")
     if max_patients == 0:
@@ -190,12 +138,7 @@ def apply_patient_limit(x_ehr, patient_ids, max_patients):
 
 
 def split_train_val_indices(n_samples, val_ratio, seed):
-    """Why: 训练需要验证集来监控过拟合并支持早停。
-
-    Content: 随机划分 train/val；样本过少时回退为纯训练。
-    Input: n_samples、val_ratio、seed。
-    Output: train_idx、val_idx。
-    """
+    """English documentation for function `split_train_val_indices`."""
     if val_ratio < 0 or val_ratio >= 1:
         raise RuntimeError("val_ratio must be in [0,1)")
 
@@ -214,12 +157,7 @@ def split_train_val_indices(n_samples, val_ratio, seed):
 
 
 def build_dataloaders(x_ehr, train_idx, val_idx, batch_size):
-    """Why: 训练和验证都需要 DataLoader 统一批处理流程。
-
-    Content: 基于索引构建 train/val DataLoader。
-    Input: x_ehr、train_idx、val_idx、batch_size。
-    Output: train_loader、val_loader。
-    """
+    """English documentation for function `build_dataloaders`."""
     if batch_size <= 0:
         raise RuntimeError("batch_size must be >= 1")
 
@@ -235,12 +173,7 @@ def build_dataloaders(x_ehr, train_idx, val_idx, batch_size):
 
 
 class EHREncoderMLP(nn.Module):
-    """Why: Stage 8.2 需要 MLP 把 x_ehr 编码为 g_ehr（MVP 方案）。
-
-    Content: 编码器输出 g_ehr，解码器重建 x_ehr 作为训练约束。
-    Input: x [B,p]。
-    Output: recon [B,p], g [B,d]。
-    """
+    """English documentation for class `EHREncoderMLP`."""
 
     def __init__(self, input_dim, g_dim, hidden_dim, dropout):
         super().__init__()
@@ -273,12 +206,7 @@ class EHREncoderMLP(nn.Module):
 
 
 def eval_loss(model, loader, device):
-    """Why: 早停和最佳模型选择需要稳定的验证损失计算。
-
-    Content: 在 loader 上计算平均 MSE。
-    Input: model、loader、device。
-    Output: 平均 loss 或 None。
-    """
+    """English documentation for function `eval_loss`."""
     if loader is None:
         return None
 
@@ -299,12 +227,7 @@ def eval_loss(model, loader, device):
 
 
 def train_model(model, train_loader, val_loader, device, epochs, lr, weight_decay, early_stop_patience, early_stop_min_delta):
-    """Why: 需要训练 MLP 参数，才能得到稳定的 g_ehr 表征。
-
-    Content: 训练重建任务并按 val/train loss 早停。
-    Input: model、train_loader、val_loader、device、epochs、lr、weight_decay、early_stop_patience、early_stop_min_delta。
-    Output: 训练结果字典（best epoch/metric/history）。
-    """
+    """English documentation for function `train_model`."""
     if epochs <= 0:
         raise RuntimeError("epochs must be >= 1")
     if lr <= 0:
@@ -388,12 +311,7 @@ def train_model(model, train_loader, val_loader, device, epochs, lr, weight_deca
 
 
 def infer_g_ehr(model, x_ehr, device, infer_batch_size):
-    """Why: 训练后需为所有病人导出 g_ehr。
-
-    Content: 批量前向推理，仅取编码器输出 g_ehr。
-    Input: model、x_ehr、device、infer_batch_size。
-    Output: g_ehr 矩阵。
-    """
+    """English documentation for function `infer_g_ehr`."""
     if infer_batch_size <= 0:
         raise RuntimeError("infer_batch_size must be >= 1")
 
@@ -413,12 +331,7 @@ def infer_g_ehr(model, x_ehr, device, infer_batch_size):
 
 
 def l2_normalize_rows(mat):
-    """Why: g_ehr 向量尺度需稳定，便于后续融合。
-
-    Content: 对每行做 L2 归一化，零向量保持零。
-    Input: mat。
-    Output: 归一化矩阵。
-    """
+    """English documentation for function `l2_normalize_rows`."""
     norm = np.linalg.norm(mat, axis=1, keepdims=True)
     safe = np.where(norm > 1e-8, norm, 1.0)
     out = mat / safe
@@ -427,12 +340,7 @@ def l2_normalize_rows(mat):
 
 
 def write_csv(path, fieldnames, rows):
-    """Why: 训练日志与 token 结果都需固定结构，便于后续读取。
-
-    Content: 按字段顺序写 CSV。
-    Input: path、fieldnames、rows。
-    Output: CSV 文件。
-    """
+    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -440,12 +348,7 @@ def write_csv(path, fieldnames, rows):
 
 
 def write_g_ehr_csv(path, patient_ids, g_ehr):
-    """Why: 下游 tabular 融合时 CSV 最直接，便于人工检查。
-
-    Content: 写 patient_id + g_ehr 向量列。
-    Input: path、patient_ids、g_ehr。
-    Output: g_ehr.csv。
-    """
+    """English documentation for function `write_g_ehr_csv`."""
     fields = ["patient_id"] + [f"g_{i:03d}" for i in range(g_ehr.shape[1])]
     rows = []
     for i, pid in enumerate(patient_ids):
@@ -457,23 +360,13 @@ def write_g_ehr_csv(path, patient_ids, g_ehr):
 
 
 def write_meta_json(path, meta):
-    """Why: 训练配置和关键指标需落盘，便于复现和审计。
-
-    Content: 写 JSON。
-    Input: path、meta。
-    Output: meta.json。
-    """
+    """English documentation for function `write_meta_json`."""
     with path.open("w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
 
 
 def parse_args():
-    """Why: Stage 8.2 需要可调超参，支持快速试验与稳定复现。
-
-    Content: 解析参数并忽略 IDE 注入未知参数。
-    Input: 命令行参数。
-    Output: 参数对象。
-    """
+    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="Stage 8.2 EHR encoder: MLP -> g_ehr.",
         allow_abbrev=False,
@@ -506,12 +399,7 @@ def parse_args():
 
 
 def main():
-    """Why: 一条命令跑完 Stage 8.2 全流程并导出 g_ehr。
-
-    Content: 读 8.1、训练 EHR encoder、导出 g_ehr 与训练记录。
-    Input: 命令行参数。
-    Output: model/csv/npz/json 文件。
-    """
+    """English documentation for function `main`."""
     args = parse_args()
     missing = check_dependencies()
     if missing:

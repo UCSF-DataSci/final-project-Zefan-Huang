@@ -25,7 +25,7 @@ import torch.nn as nn
 
 
 DEFAULT_STAGE9_PACK = Path("output/stage9/9.1_organ_tokenization/organ_tokenization_pack.npz")
-DEFAULT_STAGE9_MODULE = Path("9.2_organ_query.py")
+DEFAULT_STAGE9_MODULE = Path(__file__).resolve().parent / "9.2_organ_query.py"
 DEFAULT_OUTPUT_ROOT = Path("output/stage10/10.1_multimodal_fusion")
 
 

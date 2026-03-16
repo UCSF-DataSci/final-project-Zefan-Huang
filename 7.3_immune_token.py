@@ -1,19 +1,4 @@
-"""
-作用：
-- 实现 project.md Stage 7.3：Immune / microenvironment token（derive from RNA first）。
-- 先基于 RNA 计算 immune signatures（marker sets），再用 MLP 生成 t_imm。
-
-输入：
-- output/stage7/7.1_rna_alignment/x_rna_log1p_zscore.npz（优先）
-
-输出：
-- output/stage7/7.3_immune_token/model/immune_token_mlp.pt
-- output/stage7/7.3_immune_token/train/immune_token_training_summary.csv
-- output/stage7/7.3_immune_token/train/immune_token_meta.json
-- output/stage7/7.3_immune_token/tokens/immune_signatures.csv
-- output/stage7/7.3_immune_token/tokens/t_imm.csv
-- output/stage7/7.3_immune_token/tokens/t_imm_outputs.npz
-"""
+"""Build immune and microenvironment tokens from RNA features for Stage 7.3."""
 import argparse
 import csv
 import json
@@ -38,7 +23,7 @@ except Exception:
 
 if nn is None:
     class _NNPlaceholder:
-        """Why: 缺失 torch 时保持脚本可导入，运行时再统一报依赖。"""
+        """Placeholder namespace used when torch is unavailable."""
 
         Module = object
 
@@ -49,31 +34,25 @@ PRIMARY_STAGE71_NPZ = Path("output/stage7/7.1_rna_alignment/x_rna_log1p_zscore.n
 FALLBACK_STAGE71_NPZ = Path("output/stage7/7.1_rna_alignment_smoke/x_rna_log1p_zscore.npz")
 DEFAULT_OUTPUT_ROOT = Path("output/stage7/7.3_immune_token")
 
-# marker sets 使用 Entrez GeneID（和当前 RNA 文件第一列一致）。
 IMMUNE_MARKER_SETS = {
-    "t_cell_core": ["915", "916", "914", "940"],  # CD3D/CD3E/CD2/CD27
-    "cd8_cytotoxic": ["925", "926", "3002", "5551", "4818"],  # CD8A/B, GZMB, PRF1, NKG7
-    "nk_cell": ["4818", "5551", "3002", "9437", "6402"],  # NKG7, PRF1, GZMB, NCR1, SELPLG
-    "b_cell": ["931", "973", "974", "933", "930"],  # MS4A1, CD79A/B, CD22, CD19
-    "antigen_presentation": ["3122", "3113", "3117", "3105", "3119"],  # HLA-DRA/DPA1/DPB1/DRB1/DQA1
-    "myeloid": ["3684", "2214", "7940", "958", "929"],  # ITGAM, FCGR3A, LST1, CD14, CD163
-    "macrophage": ["968", "929", "4057", "366", "4123"],  # CD68, CD163, CCL2, AIF1, MRC1
-    "neutrophil": ["6279", "6280", "2215", "1003", "3688"],  # S100A8/A9, FCGR3B, CD24, ITGAX
-    "ifn_gamma_response": ["3458", "3627", "4283", "6772", "3659"],  # IFNG, CXCL10, CXCL9, STAT1, IRF1
-    "checkpoint_exhaustion": ["5133", "1493", "3902", "84868", "201633"],  # PDCD1, CTLA4, LAG3, HAVCR2, TIGIT
-    "treg": ["50943", "3559", "22807", "100506742", "941"],  # FOXP3, IL2RA, IKZF2, CTLA4-AS? + CD28
-    "stromal_tgf_beta": ["7040", "7422", "1277", "1278", "1281", "2191", "59"],  # TGFB1, VEGFA, collagens, FAP, ACTA2
-    "proliferation": ["4288", "983", "7153", "10232", "4171"],  # MKI67, CDK1, TOP2A, MCM7, MCM2
+    "t_cell_core": ["915", "916", "914", "940"],
+    "cd8_cytotoxic": ["925", "926", "3002", "5551", "4818"],
+    "nk_cell": ["4818", "5551", "3002", "9437", "6402"],
+    "b_cell": ["931", "973", "974", "933", "930"],
+    "antigen_presentation": ["3122", "3113", "3117", "3105", "3119"],
+    "myeloid": ["3684", "2214", "7940", "958", "929"],
+    "macrophage": ["968", "929", "4057", "366", "4123"],
+    "neutrophil": ["6279", "6280", "2215", "1003", "3688"],
+    "ifn_gamma_response": ["3458", "3627", "4283", "6772", "3659"],
+    "checkpoint_exhaustion": ["5133", "1493", "3902", "84868", "201633"],
+    "treg": ["50943", "3559", "22807", "100506742", "941"],
+    "stromal_tgf_beta": ["7040", "7422", "1277", "1278", "1281", "2191", "59"],
+    "proliferation": ["4288", "983", "7153", "10232", "4171"],
 }
 
 
 def check_dependencies():
-    """Why: Stage 7.3 训练与矩阵运算依赖 numpy/torch，需提前检查。
-
-    Content: 检查依赖是否可用。
-    Input: 无。
-    Output: 缺失依赖名称列表。
-    """
+    """English documentation for function `check_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -83,12 +62,7 @@ def check_dependencies():
 
 
 def resolve_stage71_npz(path_arg):
-    """Why: Stage 7.3 必须读取 7.1 的 RNA 矩阵，需稳定解析输入路径。
-
-    Content: 优先命令行路径，否则按默认与回退路径查找。
-    Input: path_arg。
-    Output: 可用 NPZ 路径。
-    """
+    """English documentation for function `resolve_stage71_npz`."""
     if path_arg.strip():
         p = Path(path_arg)
         if p.exists():
@@ -105,12 +79,7 @@ def resolve_stage71_npz(path_arg):
 
 
 def resolve_output_paths(output_root):
-    """Why: 训练日志、模型、token 需要分目录保存，便于管理。
-
-    Content: 组装 Stage 7.3 输出路径。
-    Input: output_root。
-    Output: 路径字典。
-    """
+    """English documentation for function `resolve_output_paths`."""
     root = Path(output_root)
     train_dir = root / "train"
     model_dir = root / "model"
@@ -130,24 +99,14 @@ def resolve_output_paths(output_root):
 
 
 def ensure_output_dirs(paths):
-    """Why: 输出前必须确保目录已存在，避免写文件失败。
-
-    Content: 创建 train/model/tokens 目录。
-    Input: paths。
-    Output: 目录创建完成。
-    """
+    """English documentation for function `ensure_output_dirs`."""
     paths["train_dir"].mkdir(parents=True, exist_ok=True)
     paths["model_dir"].mkdir(parents=True, exist_ok=True)
     paths["token_dir"].mkdir(parents=True, exist_ok=True)
 
 
 def set_seed(seed):
-    """Why: 固定随机种子可减少训练波动，便于复现。
-
-    Content: 设置 python/numpy/torch 随机状态。
-    Input: seed。
-    Output: 随机状态已设置。
-    """
+    """English documentation for function `set_seed`."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -155,12 +114,7 @@ def set_seed(seed):
 
 
 def normalize_gene_id(raw):
-    """Why: RNA gene_id 可能有小数或空白，需统一成可匹配格式。
-
-    Content: 去空白并去掉 .0 后缀。
-    Input: raw。
-    Output: 规范化 gene_id 字符串。
-    """
+    """English documentation for function `normalize_gene_id`."""
     txt = str(raw).strip()
     if txt.endswith(".0"):
         txt = txt[:-2]
@@ -168,12 +122,7 @@ def normalize_gene_id(raw):
 
 
 def load_stage71_npz(npz_path):
-    """Why: 7.3 需要 x_rna、patient_ids、gene_ids 作为输入。
-
-    Content: 读取并校验 7.1 NPZ 的关键字段。
-    Input: npz_path。
-    Output: 数据字典。
-    """
+    """English documentation for function `load_stage71_npz`."""
     with np.load(npz_path, allow_pickle=True) as z:
         required = ["x_rna", "patient_ids", "gene_ids"]
         for k in required:
@@ -200,12 +149,7 @@ def load_stage71_npz(npz_path):
 
 
 def apply_patient_limit(x_rna, patient_ids, max_patients):
-    """Why: 便于快速调试 N 例，但默认应支持全量。
-
-    Content: 根据 max_patients 截断样本；0 表示全量。
-    Input: x_rna、patient_ids、max_patients。
-    Output: 截断后的 x_rna 与 patient_ids。
-    """
+    """English documentation for function `apply_patient_limit`."""
     if max_patients < 0:
         raise RuntimeError("max_patients must be >= 0")
     if max_patients == 0:
@@ -215,12 +159,7 @@ def apply_patient_limit(x_rna, patient_ids, max_patients):
 
 
 def build_gene_index(gene_ids):
-    """Why: signature 计算需要快速把 marker gene 映射到列索引。
-
-    Content: 构建 gene_id -> index 字典。
-    Input: gene_ids。
-    Output: 映射字典。
-    """
+    """English documentation for function `build_gene_index`."""
     out = {}
     for i, gid in enumerate(gene_ids.tolist()):
         if gid and gid not in out:
@@ -229,12 +168,7 @@ def build_gene_index(gene_ids):
 
 
 def compute_immune_signatures(x_rna, gene_ids, marker_sets):
-    """Why: Stage 7.3 第一步是从 RNA 计算 immune signatures。
-
-    Content: 对每个 marker set 取对应基因的均值，得到 sample x signature 矩阵。
-    Input: x_rna、gene_ids、marker_sets。
-    Output: signatures、signature_names、signature_meta_rows。
-    """
+    """English documentation for function `compute_immune_signatures`."""
     gene_index = build_gene_index(gene_ids)
     names = list(marker_sets.keys())
     n = x_rna.shape[0]
@@ -264,12 +198,7 @@ def compute_immune_signatures(x_rna, gene_ids, marker_sets):
 
 
 def zscore_columns(mat):
-    """Why: MLP 输入尺度需要统一，避免某些 signature 主导训练。
-
-    Content: 对每列做 z-score；常量列置 0。
-    Input: mat。
-    Output: (z_mat, col_mean, col_std)。
-    """
+    """English documentation for function `zscore_columns`."""
     mean = mat.mean(axis=0)
     std = mat.std(axis=0)
     safe = np.where(std > 1e-8, std, 1.0)
@@ -281,12 +210,7 @@ def zscore_columns(mat):
 
 
 def split_train_val_indices(n_samples, val_ratio, seed):
-    """Why: 训练需要验证集监控过拟合并支持早停。
-
-    Content: 随机划分 train/val；样本过少时回退为纯训练。
-    Input: n_samples、val_ratio、seed。
-    Output: train_idx、val_idx。
-    """
+    """English documentation for function `split_train_val_indices`."""
     if val_ratio < 0 or val_ratio >= 1:
         raise RuntimeError("val_ratio must be in [0,1)")
 
@@ -305,12 +229,7 @@ def split_train_val_indices(n_samples, val_ratio, seed):
 
 
 def build_dataloaders(sig_z, train_idx, val_idx, batch_size):
-    """Why: 训练和验证都要统一批处理流程。
-
-    Content: 基于索引构建 DataLoader。
-    Input: sig_z、train_idx、val_idx、batch_size。
-    Output: train_loader、val_loader。
-    """
+    """English documentation for function `build_dataloaders`."""
     if batch_size <= 0:
         raise RuntimeError("batch_size must be >= 1")
 
@@ -326,12 +245,7 @@ def build_dataloaders(sig_z, train_idx, val_idx, batch_size):
 
 
 class ImmuneTokenMLP(nn.Module):
-    """Why: Stage 7.3 需要 MLP 把 signatures 编码成 t_imm token。
-
-    Content: 编码器输出 t_imm，解码器重建 signature 作为训练约束。
-    Input: signature 向量 [B,S]。
-    Output: recon [B,S], t_imm [B,d]。
-    """
+    """English documentation for class `ImmuneTokenMLP`."""
 
     def __init__(self, input_dim, token_dim, hidden_dim, dropout):
         super().__init__()
@@ -364,12 +278,7 @@ class ImmuneTokenMLP(nn.Module):
 
 
 def eval_loss(model, loader, device):
-    """Why: 早停和最佳模型选择需要稳定的验证损失计算。
-
-    Content: 在 loader 上计算平均 MSE。
-    Input: model、loader、device。
-    Output: 平均 loss 或 None。
-    """
+    """English documentation for function `eval_loss`."""
     if loader is None:
         return None
 
@@ -390,12 +299,7 @@ def eval_loss(model, loader, device):
 
 
 def train_model(model, train_loader, val_loader, device, epochs, lr, weight_decay, early_stop_patience, early_stop_min_delta):
-    """Why: 需要训练 MLP 参数，才能得到稳定的 t_imm 表征。
-
-    Content: 训练重建任务并按 val/train loss 早停。
-    Input: model、train_loader、val_loader、device、epochs、lr、weight_decay、early_stop_patience、early_stop_min_delta。
-    Output: 训练结果字典（best epoch/metric/history）。
-    """
+    """English documentation for function `train_model`."""
     if epochs <= 0:
         raise RuntimeError("epochs must be >= 1")
     if lr <= 0:
@@ -477,12 +381,7 @@ def train_model(model, train_loader, val_loader, device, epochs, lr, weight_deca
 
 
 def l2_normalize_rows(mat):
-    """Why: token 向量尺度要稳定，便于后续融合。
-
-    Content: 对每行做 L2 归一化，零向量保持零。
-    Input: mat。
-    Output: 归一化矩阵。
-    """
+    """English documentation for function `l2_normalize_rows`."""
     norm = np.linalg.norm(mat, axis=1, keepdims=True)
     safe = np.where(norm > 1e-8, norm, 1.0)
     out = mat / safe
@@ -491,12 +390,7 @@ def l2_normalize_rows(mat):
 
 
 def infer_t_imm(model, sig_z, device, infer_batch_size):
-    """Why: 训练后需为所有病人导出最终 t_imm token。
-
-    Content: 批量前向只取 encoder 输出。
-    Input: model、sig_z、device、infer_batch_size。
-    Output: t_imm 矩阵。
-    """
+    """English documentation for function `infer_t_imm`."""
     if infer_batch_size <= 0:
         raise RuntimeError("infer_batch_size must be >= 1")
 
@@ -516,12 +410,7 @@ def infer_t_imm(model, sig_z, device, infer_batch_size):
 
 
 def write_csv(path, fieldnames, rows):
-    """Why: 训练日志和 token 表需要固定结构，便于后续读取。
-
-    Content: 按字段顺序写 CSV。
-    Input: path、fieldnames、rows。
-    Output: CSV 文件。
-    """
+    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -529,12 +418,7 @@ def write_csv(path, fieldnames, rows):
 
 
 def write_signature_csv(path, patient_ids, sig_names, sig_raw, sig_z):
-    """Why: Stage 7.3 需要保留 signature 结果，便于解释 t_imm 来源。
-
-    Content: 写 patient x signature（raw/z）到 CSV。
-    Input: path、patient_ids、sig_names、sig_raw、sig_z。
-    Output: immune_signatures.csv。
-    """
+    """English documentation for function `write_signature_csv`."""
     fields = ["patient_id"]
     for name in sig_names:
         fields.append(f"raw_{name}")
@@ -554,12 +438,7 @@ def write_signature_csv(path, patient_ids, sig_names, sig_raw, sig_z):
 
 
 def write_t_imm_csv(path, patient_ids, t_imm):
-    """Why: 下游融合常用 CSV，需直接提供病人级 token 表。
-
-    Content: 写 patient_id + t_imm 各维度。
-    Input: path、patient_ids、t_imm。
-    Output: t_imm.csv。
-    """
+    """English documentation for function `write_t_imm_csv`."""
     fields = ["patient_id"] + [f"t_imm_{i:03d}" for i in range(t_imm.shape[1])]
     rows = []
     for i, pid in enumerate(patient_ids):
@@ -571,23 +450,13 @@ def write_t_imm_csv(path, patient_ids, t_imm):
 
 
 def write_meta_json(path, meta):
-    """Why: 训练配置和关键统计需要落盘，方便复现和审计。
-
-    Content: 写 JSON。
-    Input: path、meta。
-    Output: meta.json。
-    """
+    """English documentation for function `write_meta_json`."""
     with path.open("w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
 
 
 def parse_args():
-    """Why: 需要可调超参，便于后续实验扩展。
-
-    Content: 解析参数并忽略 IDE 注入未知参数。
-    Input: 命令行参数。
-    Output: 参数对象。
-    """
+    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="Stage 7.3 immune token: marker-set signatures + MLP token encoder.",
         allow_abbrev=False,
@@ -620,12 +489,7 @@ def parse_args():
 
 
 def main():
-    """Why: 一条命令跑完 Stage 7.3，直接产出 t_imm。
-
-    Content: 读 7.1 -> 算 signatures -> 训练 MLP -> 导出 t_imm 与日志。
-    Input: 命令行参数。
-    Output: model/csv/npz/json 文件。
-    """
+    """English documentation for function `main`."""
     args = parse_args()
     missing = check_dependencies()
     if missing:

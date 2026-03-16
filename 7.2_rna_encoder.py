@@ -1,20 +1,4 @@
-"""
-作用：
-- 实现 project.md Stage 7.2：RNA encoder（MLP）生成 g_rna。
-- 可选导出 T_rna（token 形式）作为后续多模态融合输入。
-
-输入：
-- output/stage7/7.1_rna_alignment/x_rna_log1p_zscore.npz（优先）
-
-输出：
-- output/stage7/7.2_rna_encoder/model/rna_encoder.pt
-- output/stage7/7.2_rna_encoder/train/rna_encoder_training_summary.csv
-- output/stage7/7.2_rna_encoder/tokens/g_rna.csv
-- output/stage7/7.2_rna_encoder/tokens/t_rna_tokens.csv
-- output/stage7/7.2_rna_encoder/tokens/rna_gene_selection.csv
-- output/stage7/7.2_rna_encoder/tokens/rna_encoder_outputs.npz
-- output/stage7/7.2_rna_encoder/train/rna_encoder_meta.json
-"""
+"""Train the Stage 7.2 RNA encoder and export RNA embeddings and tokens."""
 import argparse
 import csv
 import json
@@ -39,7 +23,7 @@ except Exception:
 
 if nn is None:
     class _NNPlaceholder:
-        """Why: 缺失 torch 时保持脚本可导入，运行主流程时再统一报依赖。"""
+        """Placeholder namespace used when torch is unavailable."""
 
         Module = object
 
@@ -52,12 +36,7 @@ DEFAULT_OUTPUT_ROOT = Path("output/stage7/7.2_rna_encoder")
 
 
 def check_dependencies():
-    """Why: Stage 7.2 训练和矩阵处理依赖 numpy/torch，需提前检查。
-
-    Content: 检查 numpy 与 torch 是否可用。
-    Input: 无。
-    Output: 缺失依赖名称列表。
-    """
+    """English documentation for function `check_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -67,12 +46,7 @@ def check_dependencies():
 
 
 def resolve_input_npz(path_arg):
-    """Why: 7.2 必须读取 7.1 产物，路径需稳定自动解析。
-
-    Content: 优先使用命令行路径，其次使用默认路径和回退路径。
-    Input: path_arg。
-    Output: 可用 NPZ 路径。
-    """
+    """English documentation for function `resolve_input_npz`."""
     if path_arg.strip():
         p = Path(path_arg)
         if p.exists():
@@ -89,12 +63,7 @@ def resolve_input_npz(path_arg):
 
 
 def resolve_output_paths(output_root):
-    """Why: 训练、模型、token 需要分目录保存，避免结果混杂。
-
-    Content: 组装 Stage 7.2 输出路径集合。
-    Input: output_root。
-    Output: 路径字典。
-    """
+    """English documentation for function `resolve_output_paths`."""
     root = Path(output_root)
     train_dir = root / "train"
     model_dir = root / "model"
@@ -115,24 +84,14 @@ def resolve_output_paths(output_root):
 
 
 def ensure_output_dirs(paths):
-    """Why: 输出前需要确保目录存在，避免中途写文件失败。
-
-    Content: 创建 train/model/tokens 目录。
-    Input: paths。
-    Output: 目录创建完成。
-    """
+    """English documentation for function `ensure_output_dirs`."""
     paths["train_dir"].mkdir(parents=True, exist_ok=True)
     paths["model_dir"].mkdir(parents=True, exist_ok=True)
     paths["token_dir"].mkdir(parents=True, exist_ok=True)
 
 
 def set_seed(seed):
-    """Why: 固定随机种子可减少小样本训练抖动，便于复现。
-
-    Content: 设置 python/numpy/torch 随机种子。
-    Input: seed。
-    Output: 随机状态更新完成。
-    """
+    """English documentation for function `set_seed`."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -140,12 +99,7 @@ def set_seed(seed):
 
 
 def load_stage71_npz(npz_path):
-    """Why: 7.2 需要读取 7.1 的 x_rna、patient_ids、gene_ids。
-
-    Content: 读取并校验 7.1 NPZ 的关键字段。
-    Input: npz_path。
-    Output: 数据字典。
-    """
+    """English documentation for function `load_stage71_npz`."""
     with np.load(npz_path, allow_pickle=True) as z:
         required = ["x_rna", "patient_ids", "gene_ids"]
         for key in required:
@@ -176,12 +130,7 @@ def load_stage71_npz(npz_path):
 
 
 def apply_patient_limit(x_rna, patient_ids, max_patients):
-    """Why: 调试时可能只想跑前 N 例，但默认应支持全量。
-
-    Content: 根据 max_patients 截断 patient 维度。
-    Input: x_rna、patient_ids、max_patients。
-    Output: 截断后的 x_rna 与 patient_ids。
-    """
+    """English documentation for function `apply_patient_limit`."""
     if max_patients < 0:
         raise RuntimeError("max_patients must be >= 0")
     if max_patients == 0:
@@ -192,12 +141,7 @@ def apply_patient_limit(x_rna, patient_ids, max_patients):
 
 
 def select_top_variable_genes(x_rna, gene_ids, gene_std_log1p, top_genes):
-    """Why: 高维 RNA 直接建模易过拟合，先做变异度筛选更稳。
-
-    Content: 按 log1p 后标准差或 x_rna 方差排序，选前 top_genes。
-    Input: x_rna、gene_ids、gene_std_log1p、top_genes。
-    Output: 选中基因索引、基因 ID、筛选后矩阵、score。
-    """
+    """English documentation for function `select_top_variable_genes`."""
     gene_count = x_rna.shape[1]
     if top_genes < 0:
         raise RuntimeError("top_genes must be >= 0")
@@ -220,12 +164,7 @@ def select_top_variable_genes(x_rna, gene_ids, gene_std_log1p, top_genes):
 
 
 def split_train_val_indices(n_samples, val_ratio, seed):
-    """Why: 需要验证集监控过拟合并做早停。
-
-    Content: 随机划分 train/val 索引；样本过少时回退到全训练。
-    Input: n_samples、val_ratio、seed。
-    Output: train_idx、val_idx。
-    """
+    """English documentation for function `split_train_val_indices`."""
     if val_ratio < 0 or val_ratio >= 1:
         raise RuntimeError("val_ratio must be in [0,1)")
 
@@ -245,12 +184,7 @@ def split_train_val_indices(n_samples, val_ratio, seed):
 
 
 def build_dataloaders(x_selected, train_idx, val_idx, batch_size):
-    """Why: 训练和验证都需要 DataLoader 统一批处理流程。
-
-    Content: 基于索引构建 train/val DataLoader。
-    Input: x_selected、train_idx、val_idx、batch_size。
-    Output: train_loader、val_loader。
-    """
+    """English documentation for function `build_dataloaders`."""
     if batch_size <= 0:
         raise RuntimeError("batch_size must be >= 1")
 
@@ -268,12 +202,7 @@ def build_dataloaders(x_selected, train_idx, val_idx, batch_size):
 
 
 class RNAEncoderMLP(nn.Module):
-    """Why: Stage 7.2 需要可训练 RNA encoder，MLP 是最稳的 MVP 方案。
-
-    Content: 编码器输出 g_rna 与 token 隐层，解码器做重建约束。
-    Input: x [B,G]。
-    Output: recon [B,G], g [B,d], token_flat [B,num_tokens*token_dim]。
-    """
+    """English documentation for class `RNAEncoderMLP`."""
 
     def __init__(self, input_dim, g_dim, num_tokens, token_dim, dropout):
         super().__init__()
@@ -312,12 +241,7 @@ class RNAEncoderMLP(nn.Module):
 
 
 def evaluate_loader_loss(model, loader, device):
-    """Why: 早停和最优模型选择需要稳定的 loss 评估函数。
-
-    Content: 在 loader 上计算平均 MSE 重建损失。
-    Input: model、loader、device。
-    Output: 平均 loss。
-    """
+    """English documentation for function `evaluate_loader_loss`."""
     if loader is None:
         return None
 
@@ -338,12 +262,7 @@ def evaluate_loader_loss(model, loader, device):
 
 
 def write_csv(path, fieldnames, rows):
-    """Why: 训练日志和 token 表都需要固定结构输出，便于下游读取。
-
-    Content: 按字段顺序写 CSV。
-    Input: path、fieldnames、rows。
-    Output: CSV 文件。
-    """
+    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -351,12 +270,7 @@ def write_csv(path, fieldnames, rows):
 
 
 def train_rna_encoder(model, train_loader, val_loader, device, epochs, lr, weight_decay, early_stop_patience, early_stop_min_delta):
-    """Why: 需要训练 encoder 参数，才能得到可用的 g_rna 表征。
-
-    Content: 训练自编码器并基于 val/train loss 早停，返回最佳状态与历史。
-    Input: model、train_loader、val_loader、device、epochs、lr、weight_decay、early_stop_patience、early_stop_min_delta。
-    Output: 训练结果字典。
-    """
+    """English documentation for function `train_rna_encoder`."""
     if epochs <= 0:
         raise RuntimeError("epochs must be >= 1")
     if lr <= 0:
@@ -440,12 +354,7 @@ def train_rna_encoder(model, train_loader, val_loader, device, epochs, lr, weigh
 
 
 def infer_embeddings(model, x_selected, device, infer_batch_size):
-    """Why: 训练后需要对所有病人导出 g_rna / T_rna 供后续模块使用。
-
-    Content: 批量前向得到 g_rna 和 token_flat，并转为 numpy。
-    Input: model、x_selected、device、infer_batch_size。
-    Output: g_rna、token_flat。
-    """
+    """English documentation for function `infer_embeddings`."""
     if infer_batch_size <= 0:
         raise RuntimeError("infer_batch_size must be >= 1")
 
@@ -468,12 +377,7 @@ def infer_embeddings(model, x_selected, device, infer_batch_size):
 
 
 def l2_normalize_rows(mat):
-    """Why: g_rna / token 向量尺度需要稳定，便于后续融合与检索。
-
-    Content: 对每一行做 L2 归一化，零向量保持零。
-    Input: mat。
-    Output: 归一化后的矩阵。
-    """
+    """English documentation for function `l2_normalize_rows`."""
     norm = np.linalg.norm(mat, axis=1, keepdims=True)
     safe = np.where(norm > 1e-8, norm, 1.0)
     out = mat / safe
@@ -482,12 +386,7 @@ def l2_normalize_rows(mat):
 
 
 def build_t_rna_tokens(token_flat, num_tokens, token_dim):
-    """Why: project.md 的 T_rna 是可选，但提前导出可直接接入多模态模块。
-
-    Content: 将 token_flat reshape 为 [N, num_tokens, token_dim]。
-    Input: token_flat、num_tokens、token_dim。
-    Output: t_rna 3D 数组。
-    """
+    """English documentation for function `build_t_rna_tokens`."""
     if num_tokens <= 0 or token_dim <= 0:
         return np.zeros((token_flat.shape[0], 0, 0), dtype=np.float32)
 
@@ -502,12 +401,7 @@ def build_t_rna_tokens(token_flat, num_tokens, token_dim):
 
 
 def write_g_rna_csv(path, patient_ids, g_rna):
-    """Why: 下游 tabular 融合时 CSV 最直接，便于人工检查。
-
-    Content: 写 patient_id + g_rna 向量列。
-    Input: path、patient_ids、g_rna。
-    Output: g_rna.csv。
-    """
+    """English documentation for function `write_g_rna_csv`."""
     fieldnames = ["patient_id"] + [f"g_{i:03d}" for i in range(g_rna.shape[1])]
     rows = []
     for i, patient_id in enumerate(patient_ids):
@@ -519,12 +413,7 @@ def write_g_rna_csv(path, patient_ids, g_rna):
 
 
 def write_t_rna_csv(path, patient_ids, t_rna):
-    """Why: T_rna 是多 token 结构，CSV 需要 long format 存储。
-
-    Content: 每个 patient 每个 token 一行，token 向量以 json 保存。
-    Input: path、patient_ids、t_rna。
-    Output: t_rna_tokens.csv。
-    """
+    """English documentation for function `write_t_rna_csv`."""
     fieldnames = ["patient_id", "token_index", "token_dim", "token_json"]
     rows = []
     for i, patient_id in enumerate(patient_ids):
@@ -541,12 +430,7 @@ def write_t_rna_csv(path, patient_ids, t_rna):
 
 
 def write_gene_selection_csv(path, selected_idx, selected_gene_ids, selected_score):
-    """Why: 基因筛选需要可解释性，必须保留 rank 与分数。
-
-    Content: 写出筛选基因明细。
-    Input: path、selected_idx、selected_gene_ids、selected_score。
-    Output: rna_gene_selection.csv。
-    """
+    """English documentation for function `write_gene_selection_csv`."""
     fieldnames = ["rank", "gene_index", "gene_id", "variance_score"]
     rows = []
     for rank, (idx, gid, sc) in enumerate(zip(selected_idx, selected_gene_ids, selected_score), start=1):
@@ -562,23 +446,13 @@ def write_gene_selection_csv(path, selected_idx, selected_gene_ids, selected_sco
 
 
 def write_meta_json(path, meta):
-    """Why: 训练配置和关键指标需要落盘，便于复现与回溯。
-
-    Content: 写出 JSON 元信息。
-    Input: path、meta。
-    Output: meta.json。
-    """
+    """English documentation for function `write_meta_json`."""
     with path.open("w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
 
 
 def parse_args():
-    """Why: Stage 7.2 需要可调超参，便于后续试验扩展。
-
-    Content: 解析命令行参数，并忽略 IDE 注入未知参数。
-    Input: 命令行参数。
-    Output: 参数对象。
-    """
+    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="Stage 7.2 RNA encoder: top-variance genes + MLP encoder (g_rna, optional T_rna).",
         allow_abbrev=False,
@@ -618,12 +492,7 @@ def parse_args():
 
 
 def main():
-    """Why: 一条命令跑完 Stage 7.2 全流程，直接产出 g_rna 与 T_rna。
-
-    Content: 读取 7.1、筛选基因、训练编码器、导出 embedding 与训练记录。
-    Input: 命令行参数。
-    Output: model/csv/npz/json 文件。
-    """
+    """English documentation for function `main`."""
     args = parse_args()
     missing = check_dependencies()
     if missing:

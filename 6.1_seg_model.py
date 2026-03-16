@@ -1,21 +1,4 @@
-"""
-作用：
-- 用 CT-ORG 做器官分割（PyTorch 2.5D U-Net baseline）。
-- 从分割结果提取 organ imaging tokens。
-- 支持 case-level train/val 切分和 early stopping。
-- 支持 run_tag 和 save_dir，避免不同超参实验互相覆盖。
-- 默认使用实测较优超参（lr=5e-4, base_channels=24），可按需覆盖。
-
-输入：
-- data/PKG - CT-ORG/CT-ORG/OrganSegmentations/volume-*.nii.gz
-- data/PKG - CT-ORG/CT-ORG/OrganSegmentations/labels-*.nii.gz
-
-输出：
-- <save_dir>/<run_tag>/train/organ_seg_training_summary.csv
-- <save_dir>/<run_tag>/tokens/organ_imaging_tokens.csv
-- <save_dir>/<run_tag>/pred/organ_seg_predictions/*.npz
-- <save_dir>/<run_tag>/model/organ_seg_unet.pt
-"""
+"""Train a CT-ORG organ segmentation baseline and export organ imaging tokens."""
 import argparse
 import csv
 import json
@@ -55,7 +38,7 @@ except Exception:
 
 if nn is None:
     class _NNPlaceholder:
-        """Why: torch 缺失时让模块可导入，实际运行再统一报依赖缺失。"""
+        """Placeholder namespace used when torch is unavailable."""
 
         Module = object
 
@@ -77,12 +60,7 @@ DEFAULT_ORGAN_NAME_MAP = {
 
 
 def check_dependencies():
-    """Why: 运行器官分割依赖多个第三方库，需提前统一检测。
-
-    Content: 检查 numpy/scipy/nibabel/torch 是否可用。
-    Input: 无。
-    Output: 缺失依赖名称列表。
-    """
+    """English documentation for function `check_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -96,12 +74,7 @@ def check_dependencies():
 
 
 def resolve_run_paths(save_dir, run_tag):
-    """Why: 超参实验需要隔离输出，避免文件互相覆盖。
-
-    Content: 基于 save_dir/run_tag 生成本次实验的目录和文件路径。
-    Input: save_dir、run_tag。
-    Output: 包含各输出路径的字典。
-    """
+    """English documentation for function `resolve_run_paths`."""
     run_root = Path(save_dir) / run_tag
     train_dir = run_root / "train"
     token_dir = run_root / "tokens"
@@ -120,12 +93,7 @@ def resolve_run_paths(save_dir, run_tag):
 
 
 def ensure_output_dirs(run_paths):
-    """Why: 训练和 token 导出会写多个目录，需要提前创建。
-
-    Content: 创建 run_root 下的 train/token/pred/model 目录。
-    Input: run_paths（由 resolve_run_paths 返回）。
-    Output: 输出目录创建完成。
-    """
+    """English documentation for function `ensure_output_dirs`."""
     run_paths["run_root"].mkdir(parents=True, exist_ok=True)
     run_paths["train_dir"].mkdir(parents=True, exist_ok=True)
     run_paths["token_dir"].mkdir(parents=True, exist_ok=True)
@@ -134,12 +102,7 @@ def ensure_output_dirs(run_paths):
 
 
 def set_seed(seed):
-    """Why: 固定随机种子，减少每次快速调试结果漂移。
-
-    Content: 设置 python/numpy/torch 随机种子。
-    Input: seed 整数。
-    Output: 随机种子已设置。
-    """
+    """English documentation for function `set_seed`."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -147,12 +110,7 @@ def set_seed(seed):
 
 
 def parse_case_id(path):
-    """Why: 需要按 case id 匹配 volume 与 labels 文件。
-
-    Content: 从文件名里提取数字 id。
-    Input: Path 文件路径。
-    Output: case id 字符串（找不到返回空字符串）。
-    """
+    """English documentation for function `parse_case_id`."""
     m = re.search(r"(\d+)", path.name)
     if not m:
         return ""
@@ -160,12 +118,7 @@ def parse_case_id(path):
 
 
 def find_case_pairs(organ_dir):
-    """Why: 训练数据要按 volume-label 成对读取，避免错配。
-
-    Content: 扫描目录并匹配 volume-*.nii.gz 与 labels-*.nii.gz。
-    Input: organ_dir 数据目录。
-    Output: [(case_id, volume_path, label_path), ...] 列表。
-    """
+    """English documentation for function `find_case_pairs`."""
     pairs = []
     volume_files = sorted(organ_dir.glob("volume-*.nii.gz"))
     for vol in volume_files:
@@ -180,12 +133,7 @@ def find_case_pairs(organ_dir):
 
 
 def write_csv(path, fieldnames, rows):
-    """Why: 训练和 token 输出都需要结构化表格，统一写法减少重复。
-
-    Content: 用固定字段顺序写 CSV。
-    Input: path、fieldnames、rows。
-    Output: CSV 文件写入完成。
-    """
+    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -193,34 +141,19 @@ def write_csv(path, fieldnames, rows):
 
 
 def load_nifti_array(path):
-    """Why: CT-ORG 是 NIfTI 文件，需要读成 numpy 数组进入训练。
-
-    Content: 使用 nibabel 读取 NIfTI 并转 float32。
-    Input: path NIfTI 路径。
-    Output: numpy 数组（3D）。
-    """
+    """English documentation for function `load_nifti_array`."""
     arr = nib.load(str(path)).get_fdata()
     return np.asarray(arr, dtype=np.float32)
 
 
 def normalize_ct(volume):
-    """Why: CT 灰度范围跨度大，训练前必须做统一归一化。
-
-    Content: HU 裁剪到 [-1000, 400] 后缩放到 [0, 1]。
-    Input: volume 3D CT 数组。
-    Output: 归一化后的 3D 数组。
-    """
+    """English documentation for function `normalize_ct`."""
     clipped = np.clip(volume, HU_CLIP[0], HU_CLIP[1])
     return ((clipped - HU_CLIP[0]) / (HU_CLIP[1] - HU_CLIP[0])).astype(np.float32)
 
 
 def align_label_to_volume(label, volume_shape):
-    """Why: 部分标签体素大小可能和原图不完全一致，需要先对齐。
-
-    Content: 用最近邻把 label 重采样到 volume 形状。
-    Input: label 3D 标签数组，volume_shape 目标形状。
-    Output: 对齐后的 int64 标签数组。
-    """
+    """English documentation for function `align_label_to_volume`."""
     if tuple(label.shape) == tuple(volume_shape):
         return label.astype(np.int64)
     zoom = (
@@ -241,12 +174,7 @@ def align_label_to_volume(label, volume_shape):
 
 
 def select_slice_indices(indices, max_count):
-    """Why: 每个 case 直接用全部切片会过大，需要可控采样。
-
-    Content: 从索引序列中等间隔采样，最多 max_count 张。
-    Input: indices、max_count。
-    Output: 采样后的切片索引列表。
-    """
+    """English documentation for function `select_slice_indices`."""
     if not indices:
         return []
     if max_count is None or max_count <= 0 or len(indices) <= max_count:
@@ -261,12 +189,7 @@ def select_slice_indices(indices, max_count):
 
 
 def build_context_stack(volume, z, num_context_slices, slice_stride):
-    """Why: 2.5D 训练需要中心切片及其上下文作为多通道输入。
-
-    Content: 按对称窗口收集邻近切片并在边界做夹取。
-    Input: volume、z、num_context_slices、slice_stride。
-    Output: [C,H,W] 的 float32 数组。
-    """
+    """English documentation for function `build_context_stack`."""
     depth = int(volume.shape[0])
     channels = []
     for offset in range(-num_context_slices, num_context_slices + 1):
@@ -277,12 +200,7 @@ def build_context_stack(volume, z, num_context_slices, slice_stride):
 
 
 def resize_multichannel_and_label(image_chw, label_hw, image_size):
-    """Why: 模型输入尺寸需要统一，便于 batch 训练。
-
-    Content: 多通道图像用线性插值，标签用最近邻插值缩放到固定尺寸。
-    Input: image_chw、label_hw、image_size。
-    Output: (resized_image_chw, resized_label_hw)。
-    """
+    """English documentation for function `resize_multichannel_and_label`."""
     target_h, target_w = int(image_size), int(image_size)
     zoom_h = target_h / image_chw.shape[1]
     zoom_w = target_w / image_chw.shape[2]
@@ -294,12 +212,7 @@ def resize_multichannel_and_label(image_chw, label_hw, image_size):
 
 
 class CTORG25DSliceDataset(Dataset):
-    """Why: 2.5D 分割训练需要 slice-level 样本，并保留 case-level 索引。
-
-    Content: 预加载 case 的多切片样本，构建 case->sample 索引与代表切片。
-    Input: pairs、max_cases、image_size、num_context_slices、slice_stride、max_slices_per_case。
-    Output: 可迭代样本集合，每项含 image/mask/case_id/slice_idx。
-    """
+    """English documentation for class `CTORG25DSliceDataset`."""
 
     def __init__(self, pairs, max_cases, image_size, num_context_slices, slice_stride, max_slices_per_case):
         self.samples = []
@@ -364,12 +277,7 @@ class CTORG25DSliceDataset(Dataset):
 
 
 class DoubleConv(nn.Module):
-    """Why: U-Net 编码器/解码器都重复用到卷积块，封装可读性更好。
-
-    Content: 两层 3x3 卷积 + BN + ReLU。
-    Input: x 4D 特征图。
-    Output: 同尺度增强特征图。
-    """
+    """English documentation for class `DoubleConv`."""
 
     def __init__(self, in_channels, out_channels):
         super().__init__()
@@ -387,12 +295,7 @@ class DoubleConv(nn.Module):
 
 
 class SmallUNet(nn.Module):
-    """Why: 先做可跑通 baseline，U-Net 是医学分割的稳健起点。
-
-    Content: 轻量 2D U-Net，同时提供 token feature map 分支。
-    Input: x [B,C,H,W]。
-    Output: logits [B,K,H,W]，可选 token 特征图 [B,T,h,w]。
-    """
+    """English documentation for class `SmallUNet`."""
 
     def __init__(self, in_channels, num_classes, base_channels, token_dim):
         super().__init__()
@@ -433,12 +336,7 @@ class SmallUNet(nn.Module):
 
 
 def infer_num_classes(dataset, num_classes_arg):
-    """Why: 类别数必须与标签值匹配，否则 loss 会报错。
-
-    Content: 从样本标签自动推断类别数，支持手动覆盖。
-    Input: dataset、num_classes_arg。
-    Output: 类别数整数。
-    """
+    """English documentation for function `infer_num_classes`."""
     if num_classes_arg and num_classes_arg > 1:
         return int(num_classes_arg)
     max_label = 0
@@ -448,12 +346,7 @@ def infer_num_classes(dataset, num_classes_arg):
 
 
 def build_organ_name_map(num_classes):
-    """Why: 下游 6.2/6.3 需要可读器官名，不能只用 organ_1 这类占位名。
-
-    Content: 按 CT-ORG 官方编码构建 organ_id->organ_name 映射。
-    Input: num_classes。
-    Output: 字典，键为器官 id（不含背景）。
-    """
+    """English documentation for function `build_organ_name_map`."""
     out = {}
     for organ_id in range(1, num_classes):
         out[organ_id] = DEFAULT_ORGAN_NAME_MAP.get(organ_id, f"organ_{organ_id}")
@@ -461,12 +354,7 @@ def build_organ_name_map(num_classes):
 
 
 def split_train_val_case_ids(case_ids, val_ratio, seed):
-    """Why: 训练和验证必须按 case 切分，避免同病例切片泄漏。
-
-    Content: 打乱 case ids 后按比例切分。
-    Input: case_ids、val_ratio、seed。
-    Output: (train_case_ids, val_case_ids)。
-    """
+    """English documentation for function `split_train_val_case_ids`."""
     if len(case_ids) <= 1 or val_ratio <= 0:
         return list(case_ids), []
     case_ids = list(case_ids)
@@ -481,12 +369,7 @@ def split_train_val_case_ids(case_ids, val_ratio, seed):
 
 
 def case_ids_to_sample_indices(dataset, case_ids):
-    """Why: DataLoader 训练的是切片样本，需要从 case 集映射到 sample 索引。
-
-    Content: 收集每个 case 下所有样本索引。
-    Input: dataset、case_ids。
-    Output: 排序后的 sample 索引列表。
-    """
+    """English documentation for function `case_ids_to_sample_indices`."""
     indices = []
     for cid in case_ids:
         indices.extend(dataset.case_to_indices.get(cid, []))
@@ -494,12 +377,7 @@ def case_ids_to_sample_indices(dataset, case_ids):
 
 
 def multiclass_dice(logits, target, num_classes):
-    """Why: 仅看 CE loss 不直观，Dice 更贴近分割质量。
-
-    Content: 计算多分类平均 Dice（忽略背景 0 类）。
-    Input: logits、target、num_classes。
-    Output: 平均 Dice 浮点数。
-    """
+    """English documentation for function `multiclass_dice`."""
     with torch.no_grad():
         pred = torch.argmax(logits, dim=1)
         dice_vals = []
@@ -518,12 +396,7 @@ def multiclass_dice(logits, target, num_classes):
 
 
 def evaluate_model(model, loader, device, num_classes, criterion):
-    """Why: early stopping 需要每个 epoch 的验证集表现。
-
-    Content: 在给定 DataLoader 上计算平均 loss 和 dice。
-    Input: model、loader、device、num_classes、criterion。
-    Output: {"loss": float, "dice": float}。
-    """
+    """English documentation for function `evaluate_model`."""
     if loader is None or len(loader) == 0:
         return {"loss": None, "dice": None}
 
@@ -547,12 +420,7 @@ def evaluate_model(model, loader, device, num_classes, criterion):
 
 
 def is_improved(metric_name, current_value, best_value, min_delta):
-    """Why: 早停需要统一的“是否提升”判断逻辑。
-
-    Content: 根据监控指标类型（loss/dice）判断当前是否显著提升。
-    Input: metric_name、current_value、best_value、min_delta。
-    Output: 布尔值，表示是否提升。
-    """
+    """English documentation for function `is_improved`."""
     if current_value is None:
         return False
     if best_value is None:
@@ -563,12 +431,7 @@ def is_improved(metric_name, current_value, best_value, min_delta):
 
 
 def snapshot_state_dict(model):
-    """Why: 早停时要恢复 best epoch 权重，需要拷贝参数快照。
-
-    Content: 深拷贝 model.state_dict 到 CPU。
-    Input: model。
-    Output: state_dict 快照字典。
-    """
+    """English documentation for function `snapshot_state_dict`."""
     return {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
 
 
@@ -584,12 +447,7 @@ def train_one_model(
     early_stop_patience,
     early_stop_min_delta,
 ):
-    """Why: 需要可用于正式实验的训练器，支持验证和 early stopping。
-
-    Content: 训练模型、每轮评估、按监控指标保存 best 权重，并在无提升时提前停止。
-    Input: model/train_loader/val_loader/device/epochs/lr/num_classes/early-stop 参数。
-    Output: {"logs","best_state","best_epoch","best_metric","stopped_early"} 字典。
-    """
+    """English documentation for function `train_one_model`."""
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss()
     logs = []
@@ -703,12 +561,7 @@ def train_one_model(
 
 
 def l2_normalize_1d(vec):
-    """Why: token 需要尺度稳定，L2 归一化便于后续检索或融合。
-
-    Content: 对一维向量做 L2 标准化。
-    Input: vec torch 一维张量。
-    Output: 归一化后的一维张量。
-    """
+    """English documentation for function `l2_normalize_1d`."""
     norm = torch.linalg.norm(vec, ord=2)
     if float(norm) <= 0.0:
         return vec
@@ -716,12 +569,7 @@ def l2_normalize_1d(vec):
 
 
 def extract_and_save_tokens(model, dataset, device, num_classes, pred_dir, organ_name_map):
-    """Why: 分割之后要产出器官 imaging tokens 供多模态建模。
-
-    Content: 对每个 case 的代表切片推理，保存预测 mask，并按器官求 token。
-    Input: model、dataset、device、num_classes、pred_dir、organ_name_map。
-    Output: token CSV 行列表。
-    """
+    """English documentation for function `extract_and_save_tokens`."""
     token_rows = []
     model.eval()
 
@@ -733,12 +581,12 @@ def extract_and_save_tokens(model, dataset, device, num_classes, pred_dir, organ
             case_id = sample["case_id"]
             slice_idx = int(sample["slice_idx"])
             print(f"[token] {i}/{total} case_id={case_id} slice={slice_idx}", flush=True)
-            image_np = sample["image"]  # [C,H,W]
-            mask_np = sample["mask"]  # [H,W]
+            image_np = sample["image"]
+            mask_np = sample["mask"]
 
-            image = torch.from_numpy(image_np).unsqueeze(0).to(device)  # [1,C,H,W]
+            image = torch.from_numpy(image_np).unsqueeze(0).to(device)
             logits, token_map = model(image, return_token_map=True)
-            pred = torch.argmax(logits, dim=1)[0]  # [H,W]
+            pred = torch.argmax(logits, dim=1)[0]
 
             np.savez_compressed(
                 pred_dir / f"case_{case_id}_slice_{slice_idx}.npz",
@@ -752,7 +600,7 @@ def extract_and_save_tokens(model, dataset, device, num_classes, pred_dir, organ
                 size=pred.shape[-2:],
                 mode="bilinear",
                 align_corners=False,
-            )[0]  # [T,H,W]
+            )[0]
 
             gt_mask_tensor = torch.from_numpy(mask_np).to(device)
             for organ_id in range(1, num_classes):
@@ -784,12 +632,7 @@ def extract_and_save_tokens(model, dataset, device, num_classes, pred_dir, organ
 
 
 def parse_args():
-    """Why: 给你可调超参入口，后续可以直接改命令行扩展实验。
-
-    Content: 解析训练与导出需要的参数。
-    Input: 命令行参数。
-    Output: 参数对象。
-    """
+    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="CT-ORG organ segmentation + organ imaging tokens (2.5D).",
         allow_abbrev=False,
@@ -829,12 +672,7 @@ def parse_args():
 
 
 def main():
-    """Why: 一条命令跑完整的器官分割 + token 导出流程。
-
-    Content: 检查依赖、加载数据、训练模型、导出预测和 token。
-    Input: 命令行参数。
-    Output: 产出模型、预测文件和 CSV 结果。
-    """
+    """English documentation for function `main`."""
     args = parse_args()
     missing = check_dependencies()
     if missing:

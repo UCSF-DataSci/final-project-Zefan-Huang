@@ -1,20 +1,4 @@
-"""这个文件用于生成 patient_manifest 总表。
-
-作用：
-- 汇总每个病人的模态可用性（CT/PET/SEG/AIM/RNA）。
-- 根据临床字段构建 OS/复发相关标签字段。
-
-输入：
-- output/clean_data/NSCLCR01Radiogenomic_DATA_LABELS_2018-05-22_1500-shifted.csv（优先）
-- data/NSCLCR01Radiogenomic_DATA_LABELS_2018-05-22_1500-shifted.csv（回退）
-- data/manifest-1622561851074/metadata.csv
-- data/AIM_files_updated-11-10-2020/*.xml
-- output/clean_data/GSE103584_series_matrix.txt（优先）
-- data/GSE103584_series_matrix.txt（回退）
-
-输出：
-- output/patient_manifest.csv
-"""
+"""Build the patient manifest with modality availability and label-related fields."""
 
 from __future__ import annotations
 
@@ -39,12 +23,7 @@ MISSING_STRINGS = {"", "n/a", "na", "not collected", "not recorded in database",
 
 
 def normalize_missing(value):
-    """Why: 各数据字段缺失写法不一致，需要统一成一个规则。
-
-    Content: 去掉前后空格，并把缺失语义文本转为空字符串。
-    Input: value（字符串或 None）。
-    Output: 清理后的字符串；若缺失则返回空字符串。
-    """
+    """English documentation for function `normalize_missing`."""
     if value is None:
         return ""
     cleaned = value.strip()
@@ -54,12 +33,7 @@ def normalize_missing(value):
 
 
 def resolve_input_path(primary_path, fallback_path, label):
-    """Why: 当前项目有 output/data 两套目录，需要稳定选择可用输入文件。
-
-    Content: 优先使用 primary_path；不存在时回退 fallback_path；都不存在则报错。
-    Input: primary_path、fallback_path、label。
-    Output: 可读取的 Path。
-    """
+    """English documentation for function `resolve_input_path`."""
     if primary_path.exists():
         return primary_path
     if fallback_path.exists():
@@ -70,12 +44,7 @@ def resolve_input_path(primary_path, fallback_path, label):
 
 
 def parse_date(value):
-    """Why: 生存/复发时间都依赖日期差，必须先稳定解析日期。
-
-    Content: 先清理缺失值，再按支持格式解析日期，失败返回 None。
-    Input: value（日期字符串或 None）。
-    Output: date 对象或 None。
-    """
+    """English documentation for function `parse_date`."""
     cleaned = normalize_missing(value)
     if not cleaned:
         return None
@@ -88,12 +57,7 @@ def parse_date(value):
 
 
 def days_between(start, end):
-    """Why: 统一计算 time-to-event 天数，避免各处实现不一致。
-
-    Content: 计算 end-start 的非负天数；无效输入返回 None。
-    Input: start（起始日期），end（结束日期）。
-    Output: 天数整数或 None。
-    """
+    """English documentation for function `days_between`."""
     if start is None or end is None:
         return None
     delta = (end - start).days
@@ -103,12 +67,7 @@ def days_between(start, end):
 
 
 def load_modality_flags():
-    """Why: manifest 需要知道每个病人的模态可用性（CT/PET/SEG）。
-
-    Content: 读取影像 metadata，按病人聚合 has_ct/has_pet/has_seg。
-    Input: METADATA_CSV。
-    Output: 以 patient_id 为键的字典，值为三种可用性标记。
-    """
+    """English documentation for function `load_modality_flags`."""
     flags = defaultdict(
         lambda: {
             "has_ct": 0,
@@ -135,27 +94,16 @@ def load_modality_flags():
 
 
 def load_aim_cases():
-    """Why: manifest 需要知道语义注释（AIM）是否存在。
-
-    Content: 扫描 AIM XML 文件并标准化病例 ID（去掉 v1 这类后缀）。
-    Input: AIM_DIR 下的 XML 文件。
-    Output: 有 AIM 的病例 ID 集合。
-    """
+    """English documentation for function `load_aim_cases`."""
     out = set()
     for xml_file in AIM_DIR.glob("*.xml"):
-        # R01-023v1.xml 规范化为 R01-023
         case_id = re.sub(r"v\d+$", "", xml_file.stem)
         out.add(case_id)
     return out
 
 
 def load_rna_mapping(series_matrix_path):
-    """Why: 多模态训练需要把 RNA 样本（GSM）映射到病例 ID。
-
-    Content: 从 series_matrix 的标题行和 GEO accession 行提取映射。
-    Input: series_matrix_path。
-    Output: case_id 到 gsm_id 的映射字典。
-    """
+    """English documentation for function `load_rna_mapping`."""
     case_to_gsm = {}
     sample_titles = None
     sample_geo = None
@@ -179,12 +127,7 @@ def load_rna_mapping(series_matrix_path):
 
 
 def build_patient_manifest(clinical_csv_path, series_matrix_path):
-    """Why: 训练前需要一张病人级总表，把标签和模态状态放在一起。
-
-    Content: 合并临床、影像模态、AIM、RNA 映射，生成每病人一行的 manifest。
-    Input: clinical_csv_path + METADATA_CSV + AIM_DIR + series_matrix_path。
-    Output: 排序后的 manifest 行列表（字典列表）。
-    """
+    """English documentation for function `build_patient_manifest`."""
     modality_flags = load_modality_flags()
     aim_cases = load_aim_cases()
     case_to_gsm = load_rna_mapping(series_matrix_path)
@@ -264,12 +207,7 @@ def build_patient_manifest(clinical_csv_path, series_matrix_path):
 
 
 def write_manifest(rows):
-    """Why: 把内存中的 manifest 结果落盘，方便后续流程直接读取。
-
-    Content: 按固定字段顺序写 CSV。
-    Input: rows（build_patient_manifest 产出的行列表）。
-    Output: 在 OUTPUT_CSV 写出 patient_manifest.csv。
-    """
+    """English documentation for function `write_manifest`."""
     if not rows:
         raise RuntimeError("No rows generated for patient manifest")
     OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
@@ -302,14 +240,9 @@ def write_manifest(rows):
 
 
 def print_summary(rows):
-    """Why: 快速确认生成结果是否符合预期规模。
-
-    Content: 打印关键字段计数（模态可用性与标签可用性）。
-    Input: rows（manifest 行列表）。
-    Output: 终端摘要文本。
-    """
+    """English documentation for function `print_summary`."""
     n = len(rows)
-    has = lambda col: sum(1 for r in rows if int(r[col]) == 1)  # noqa: E731
+    has = lambda col: sum(1 for r in rows if int(r[col]) == 1)
     print(f"wrote: {OUTPUT_CSV}")
     print(f"rows: {n}")
     print(f"has_ct: {has('has_ct')}")
@@ -322,12 +255,7 @@ def print_summary(rows):
 
 
 def main():
-    """Why: 提供一键执行入口，减少手动调用步骤。
-
-    Content: 依次构建 manifest、写文件、打印摘要。
-    Input: 无（使用模块常量指定的数据路径）。
-    Output: 生成 patient_manifest.csv，并输出统计信息。
-    """
+    """English documentation for function `main`."""
     clinical_csv_path = resolve_input_path(
         PRIMARY_CLINICAL_CSV,
         LEGACY_CLINICAL_CSV,

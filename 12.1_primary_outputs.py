@@ -1,26 +1,4 @@
-"""
-作用：
-- 实现 project.md Stage 12.1：Primary supervised outputs。
-- 输入 Stage 11 的 Z'，训练 OS survival head 与 recurrence head。
-- 支持两种 patient-level 聚合：
-  1) attention pooling
-  2) weighted sum
-- 支持两种 OS 头：
-  1) Cox log-risk
-  2) discrete-time hazard
-
-输入：
-- output/stage11/11.2_graph_reasoning/graph_reasoning_pack.npz
-- output/labels_time_zero.csv（优先）
-- output/patient_manifest.csv（回退）
-
-输出：
-- output/stage12/12.1_primary_outputs/model/primary_heads.pt
-- output/stage12/12.1_primary_outputs/train/primary_training_summary.csv
-- output/stage12/12.1_primary_outputs/train/primary_meta.json
-- output/stage12/12.1_primary_outputs/pred/patient_primary_predictions.csv
-- output/stage12/12.1_primary_outputs/pred/primary_output_pack.npz
-"""
+"""Train and export primary supervised outputs for survival and recurrence tasks."""
 import argparse
 import csv
 import json

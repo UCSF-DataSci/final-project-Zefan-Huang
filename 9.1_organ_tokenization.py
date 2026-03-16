@@ -1,26 +1,4 @@
-"""
-作用：
-- 实现 project.md Stage 9 的离线 organ tokenization / evidence pack 组装。
-- 以 patient_manifest.csv 为主顺序，对齐 Stage 6/7/8 的可用 token。
-- 固定导出 project.md 的 6 个 organ nodes：
-  Primary / Lung / Bone / Liver / LymphNodeMediastinum / Brain
-- 当前 MVP 先使用可用模态：t_img[o] + g_rna + g_ehr + t_imm。
-- t_tumor / t_sem 若当前无 cohort-ready 输出，则导出零向量并打 missing mask。
-
-输入：
-- output/patient_manifest.csv
-- output/experiments/organ_seg/search_base24/infer/organ_imaging_tokens.csv
-- output/stage7/7.2_rna_encoder/tokens/g_rna.csv
-- output/stage7/7.3_immune_token/tokens/t_imm.csv
-- output/stage8/8.2_ehr_encoder/tokens/g_ehr.csv
-- output/preprocessed/roi_tokens.csv（可选）
-- output/preprocessed/semantic_tokens.csv（可选）
-
-输出：
-- output/stage9/9.1_organ_tokenization/organ_tokenization_pack.npz
-- output/stage9/9.1_organ_tokenization/organ_tokenization_manifest.csv
-- output/stage9/9.1_organ_tokenization/organ_tokenization_summary.json
-"""
+"""Assemble organ-level evidence packs and tokens for downstream multimodal fusion."""
 import argparse
 import csv
 import hashlib

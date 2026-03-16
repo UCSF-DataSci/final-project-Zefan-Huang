@@ -1,23 +1,4 @@
-"""
-
-作用：
-- 5.1 CT normalization：选主 CT 序列、读取体数据、重采样、HU 裁剪归一化（依赖 numpy/pydicom/scipy）。
-- 5.2 Tumor segmentation：读取 DICOM-SEG 并生成肿瘤 mask（依赖 numpy/pydicom）。
-- 5.3 Tumor ROI token：从肿瘤 ROI 计算 token（依赖 numpy）。
-- 5.4 Semantic annotation token：解析 AIM XML 并生成语义 token（仅标准库可运行）。
-
-输入：
-- output/patient_manifest.csv
-- data/manifest-1622561851074/metadata.csv
-- data/AIM_files_updated-11-10-2020/*.xml
-
-输出：
-- output/preprocessed/imaging_preprocess_summary.csv
-- output/preprocessed/semantic_tokens.csv
-- output/preprocessed/roi_tokens.csv
-- output/preprocessed/ct_norm/*.npz（依赖满足时）
-- output/preprocessed/seg_masks/*.npz（依赖满足时）
-"""
+"""Run imaging preprocessing, tumor ROI extraction, and semantic token preparation."""
 import argparse
 import csv
 import hashlib
@@ -66,37 +47,27 @@ ROI_MARGIN = 4
 
 
 def ensure_output_dirs():
-    """Why: 预处理会产出多个文件，需要提前保证输出目录存在。
-
-    Content: 创建 preprocessed 根目录和子目录。
-    Input: 无（使用模块常量目录）。
-    Output: 目录创建完成（已存在则不报错）。
-    """
+    """English documentation for function `ensure_output_dirs`."""
     OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
     OUTPUT_CT_DIR.mkdir(parents=True, exist_ok=True)
     OUTPUT_SEG_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def check_imaging_dependencies():
-    """Why: CT/SEG/ROI 步骤依赖第三方库，需先判断当前环境是否可跑。
-
-    Content: 检查 numpy、pydicom、scipy.ndimage 是否可导入。
-    Input: 无。
-    Output: 字典，包含 ready 标记、缺失库、已导入模块对象。
-    """
+    """English documentation for function `check_imaging_dependencies`."""
     deps = {"ready": False, "missing": [], "np": None, "pydicom": None, "ndimage": None}
     try:
-        import numpy as np  # noqa: WPS433
+        import numpy as np
     except Exception:
         deps["missing"].append("numpy")
         np = None
     try:
-        import pydicom  # noqa: WPS433
+        import pydicom
     except Exception:
         deps["missing"].append("pydicom")
         pydicom = None
     try:
-        from scipy import ndimage  # noqa: WPS433
+        from scipy import ndimage
     except Exception:
         deps["missing"].append("scipy")
         ndimage = None
@@ -109,12 +80,7 @@ def check_imaging_dependencies():
 
 
 def load_patient_ids():
-    """Why: 预处理应按项目病人清单逐例执行，而不是扫描全盘。
-
-    Content: 从 patient_manifest.csv 读取 patient_id 列。
-    Input: PATIENT_MANIFEST_CSV。
-    Output: patient_id 列表（按文件顺序）。
-    """
+    """English documentation for function `load_patient_ids`."""
     manifest_path = PATIENT_MANIFEST_CSV if PATIENT_MANIFEST_CSV.exists() else LEGACY_PATIENT_MANIFEST_CSV
     patient_ids = []
     with manifest_path.open(encoding="utf-8", newline="") as f:
@@ -125,12 +91,7 @@ def load_patient_ids():
 
 
 def load_metadata_rows():
-    """Why: 影像序列选择依赖 metadata.csv 里的模态、描述和路径信息。
-
-    Content: 读取 metadata.csv 全部行到内存。
-    Input: METADATA_CSV。
-    Output: metadata 行字典列表。
-    """
+    """English documentation for function `load_metadata_rows`."""
     rows = []
     with METADATA_CSV.open(encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
@@ -140,12 +101,7 @@ def load_metadata_rows():
 
 
 def build_series_index(metadata_rows):
-    """Why: 需要按病人快速查找 CT/SEG/AIM 对应序列。
-
-    Content: 将 metadata 行按 Subject ID 建索引。
-    Input: metadata 行列表。
-    Output: patient_id -> 系列行列表 的字典。
-    """
+    """English documentation for function `build_series_index`."""
     index = {}
     for row in metadata_rows:
         if row.get("Collection") != "NSCLC Radiogenomics":
@@ -160,12 +116,7 @@ def build_series_index(metadata_rows):
 
 
 def score_ct_series(series_description, num_images):
-    """Why: 每个病人通常有多个 CT 序列，需要可复用的主序列打分规则。
-
-    Content: 根据描述关键词和切片数计算启发式分数。
-    Input: series_description（字符串），num_images（整数）。
-    Output: 分数（越高越优先）。
-    """
+    """English documentation for function `score_ct_series`."""
     desc = (series_description or "").lower()
     score = 0
     if "chest" in desc or "thorax" in desc or "lung" in desc:
@@ -183,12 +134,7 @@ def score_ct_series(series_description, num_images):
 
 
 def resolve_series_dir(file_location):
-    """Why: metadata 里的路径是相对路径，后续读取文件需要绝对路径。
-
-    Content: 将 metadata File Location 转为本地目录路径。
-    Input: file_location（metadata 中的路径字符串）。
-    Output: Path 对象（序列目录）。
-    """
+    """English documentation for function `resolve_series_dir`."""
     rel = (file_location or "").strip()
     if rel.startswith("./"):
         rel = rel[2:]
@@ -196,12 +142,7 @@ def resolve_series_dir(file_location):
 
 
 def pick_primary_ct_series(patient_id, series_index):
-    """Why: 5.1 需要先确定一个主 CT 序列作为标准输入。
-
-    Content: 从该病人的 CT 系列中按启发式打分挑选最高分。
-    Input: patient_id，series_index。
-    Output: 最佳 CT 系列行；若不存在返回 None。
-    """
+    """English documentation for function `pick_primary_ct_series`."""
     candidates = []
     for row in series_index.get(patient_id, []):
         if (row.get("Modality") or "").strip() != "CT":
@@ -219,12 +160,7 @@ def pick_primary_ct_series(patient_id, series_index):
 
 
 def pick_seg_series(patient_id, series_index):
-    """Why: 5.2 需要定位肿瘤分割序列（优先 DICOM-SEG）。
-
-    Content: 在该病人序列中寻找 Modality=SEG 的系列。
-    Input: patient_id，series_index。
-    Output: SEG 系列行；若不存在返回 None。
-    """
+    """English documentation for function `pick_seg_series`."""
     seg_rows = []
     for row in series_index.get(patient_id, []):
         if (row.get("Modality") or "").strip() == "SEG":
@@ -237,12 +173,7 @@ def pick_seg_series(patient_id, series_index):
 
 
 def find_aim_file(patient_id):
-    """Why: 5.4 语义 token 需要 AIM XML 文件路径。
-
-    Content: 在 AIM 目录中按 patient_id 匹配 xml（支持 v1 后缀）。
-    Input: patient_id。
-    Output: AIM 文件路径字符串；若不存在返回空字符串。
-    """
+    """English documentation for function `find_aim_file`."""
     direct = AIM_DIR / f"{patient_id}.xml"
     if direct.exists():
         return str(direct)
@@ -253,12 +184,7 @@ def find_aim_file(patient_id):
 
 
 def normalize_vector(vec, np):
-    """Why: 几何对齐需要单位法向量，避免尺度影响切片匹配。
-
-    Content: 将 3D 向量归一化；零向量返回 None。
-    Input: vec（长度3），np。
-    Output: 归一化后的向量数组或 None。
-    """
+    """English documentation for function `normalize_vector`."""
     arr = np.asarray(vec, dtype="float64")
     norm = float(np.linalg.norm(arr))
     if norm <= 0:
@@ -267,12 +193,7 @@ def normalize_vector(vec, np):
 
 
 def extract_segment_numbers(seg_ds):
-    """Why: DICOM-SEG 可能包含多个 segment，需优先定位肿瘤相关 segment。
-
-    Content: 读取 SegmentSequence；命中肿瘤关键词时仅返回肿瘤 segment，否则返回全部。
-    Input: seg_ds（SEG DICOM 数据集）。
-    Output: (selected_set, all_set)。
-    """
+    """English documentation for function `extract_segment_numbers`."""
     keywords = ("tumor", "tumour", "lesion", "gtv", "target", "mass", "nodule", "primary")
     all_segments = set()
     tumor_segments = set()
@@ -301,12 +222,7 @@ def extract_segment_numbers(seg_ds):
 
 
 def frame_segment_number(frame_fg):
-    """Why: 逐帧筛选 segment 时需要知道当前 frame 属于哪个 segment。
-
-    Content: 从 PerFrame Functional Group 中读取 ReferencedSegmentNumber。
-    Input: frame_fg（单帧 functional group）。
-    Output: segment number 整数或 None。
-    """
+    """English documentation for function `frame_segment_number`."""
     seg_ident = getattr(frame_fg, "SegmentIdentificationSequence", [])
     if not seg_ident:
         return None
@@ -314,12 +230,7 @@ def frame_segment_number(frame_fg):
 
 
 def frame_referenced_sop_uid(frame_fg):
-    """Why: 几何最可靠映射是 frame 引用的 CT SOP Instance UID。
-
-    Content: 从 DerivationImageSequence/SourceImageSequence 提取 ReferencedSOPInstanceUID。
-    Input: frame_fg。
-    Output: SOP UID 字符串或空字符串。
-    """
+    """English documentation for function `frame_referenced_sop_uid`."""
     deriv = getattr(frame_fg, "DerivationImageSequence", [])
     for deriv_item in deriv:
         source_seq = getattr(deriv_item, "SourceImageSequence", [])
@@ -331,12 +242,7 @@ def frame_referenced_sop_uid(frame_fg):
 
 
 def frame_image_position(frame_fg):
-    """Why: 当没有 SOP 引用时，需要用 frame 的空间位置匹配 CT 切片。
-
-    Content: 从 PlanePositionSequence 中读取 ImagePositionPatient。
-    Input: frame_fg。
-    Output: 长度3浮点元组或 None。
-    """
+    """English documentation for function `frame_image_position`."""
     plane_pos = getattr(frame_fg, "PlanePositionSequence", [])
     if not plane_pos:
         return None
@@ -350,12 +256,7 @@ def frame_image_position(frame_fg):
 
 
 def load_ct_volume_and_normalize(ct_series_dir, deps):
-    """Why: 5.1 需要生成归一化 CT 体数据用于后续分割/特征提取。
-
-    Content: 读取 DICOM 序列，转换 HU，重采样到目标 spacing，裁剪并归一化。
-    Input: ct_series_dir（CT 目录），deps（依赖模块字典）。
-    Output: 包含状态、体数据、spacing、错误信息的字典。
-    """
+    """English documentation for function `load_ct_volume_and_normalize`."""
     if not deps["ready"]:
         return {"status": "blocked_missing_dependency", "error": ",".join(deps["missing"])}
 
@@ -501,12 +402,7 @@ def load_ct_volume_and_normalize(ct_series_dir, deps):
 
 
 def load_tumor_mask(seg_series_dir, ct_shape, ct_geometry, deps):
-    """Why: 5.2 需要得到和 CT 对齐的肿瘤二值 mask。
-
-    Content: 读取 DICOM-SEG 全部文件，基于 SOP UID/空间几何严格对齐到 CT 体素。
-    Input: seg_series_dir（SEG 目录）、ct_shape、ct_geometry、deps。
-    Output: 包含状态、mask、错误信息的字典。
-    """
+    """English documentation for function `load_tumor_mask`."""
     if not deps["ready"]:
         return {"status": "blocked_missing_dependency", "error": ",".join(deps["missing"])}
     if seg_series_dir is None:
@@ -693,12 +589,7 @@ def load_tumor_mask(seg_series_dir, ct_shape, ct_geometry, deps):
 
 
 def compute_roi_token(volume_norm, tumor_mask, deps):
-    """Why: 5.3 需要把肿瘤 ROI 压缩成固定维度 token 用于建模。
-
-    Content: 从肿瘤区域提取统计特征并投影到固定维度向量。
-    Input: volume_norm（归一化 CT），tumor_mask（二值 mask），deps。
-    Output: 包含状态、token、错误信息的字典。
-    """
+    """English documentation for function `compute_roi_token`."""
     if not deps["ready"]:
         return {"status": "blocked_missing_dependency", "error": ",".join(deps["missing"])}
 
@@ -752,12 +643,7 @@ def compute_roi_token(volume_norm, tumor_mask, deps):
 
 
 def parse_aim_feature_texts(aim_xml_path):
-    """Why: 5.4 需要把 AIM 语义注释转成可量化特征。
-
-    Content: 解析 XML，收集标签名、属性值和文本内容作为语义特征字符串。
-    Input: aim_xml_path（AIM 文件路径）。
-    Output: 特征字符串列表；解析失败返回空列表。
-    """
+    """English documentation for function `parse_aim_feature_texts`."""
     if not aim_xml_path:
         return []
     try:
@@ -781,12 +667,7 @@ def parse_aim_feature_texts(aim_xml_path):
 
 
 def build_semantic_token(feature_texts, token_dim):
-    """Why: 5.4 最终需要固定维度语义 token 作为模型输入。
-
-    Content: 使用哈希技巧将任意数量文本特征映射到固定维度向量并归一化。
-    Input: feature_texts（字符串列表），token_dim（目标维度）。
-    Output: token 浮点列表；若输入为空则返回空列表。
-    """
+    """English documentation for function `build_semantic_token`."""
     if not feature_texts:
         return []
     vec = [0.0 for _ in range(token_dim)]
@@ -796,7 +677,6 @@ def build_semantic_token(feature_texts, token_dim):
         sign = -1.0 if int(digest[8:10], 16) % 2 else 1.0
         vec[idx] += sign
 
-        # 尝试提取文本中的数字，额外编码到 token。
         nums = re.findall(r"[-+]?\d*\.?\d+", text)
         for num_text in nums[:2]:
             try:
@@ -813,12 +693,7 @@ def build_semantic_token(feature_texts, token_dim):
 
 
 def save_ct_npz(patient_id, ct_result, deps):
-    """Why: 归一化 CT 结果需要持久化，供训练阶段重复使用。
-
-    Content: 将归一化 CT 与 spacing 保存为压缩 npz。
-    Input: patient_id，ct_result，deps。
-    Output: 输出文件路径字符串。
-    """
+    """English documentation for function `save_ct_npz`."""
     np = deps["np"]
     out_path = OUTPUT_CT_DIR / f"{patient_id}.npz"
     np.savez_compressed(
@@ -830,12 +705,7 @@ def save_ct_npz(patient_id, ct_result, deps):
 
 
 def save_seg_npz(patient_id, mask, deps):
-    """Why: 肿瘤 mask 需要落盘，便于后续 ROI 和训练直接读取。
-
-    Content: 将 mask 保存为压缩 npz。
-    Input: patient_id，mask，deps。
-    Output: 输出文件路径字符串。
-    """
+    """English documentation for function `save_seg_npz`."""
     np = deps["np"]
     out_path = OUTPUT_SEG_DIR / f"{patient_id}.npz"
     np.savez_compressed(out_path, mask=mask.astype("uint8"))
@@ -843,12 +713,7 @@ def save_seg_npz(patient_id, mask, deps):
 
 
 def process_patient(patient_id, series_index, deps):
-    """Why: 把 5.1~5.4 串在一起，形成单病人端到端处理单元。
-
-    Content: 选择 CT/SEG/AIM，执行预处理，返回摘要和 token 结果。
-    Input: patient_id，series_index，deps。
-    Output: 包含 summary/semantic_token/roi_token 的字典。
-    """
+    """English documentation for function `process_patient`."""
     ct_row = pick_primary_ct_series(patient_id, series_index)
     seg_row = pick_seg_series(patient_id, series_index)
     aim_xml = find_aim_file(patient_id)
@@ -880,7 +745,6 @@ def process_patient(patient_id, series_index, deps):
     semantic_row = {"patient_id": patient_id, "token_json": ""}
     roi_row = {"patient_id": patient_id, "token_json": ""}
 
-    # 5.4 Semantic annotation token (标准库可跑)
     feature_texts = parse_aim_feature_texts(aim_xml)
     semantic_token = build_semantic_token(feature_texts, SEMANTIC_TOKEN_DIM)
     if semantic_token:
@@ -891,7 +755,7 @@ def process_patient(patient_id, series_index, deps):
         summary["semantic_status"] = "aim_missing_or_empty"
         summary["semantic_token_dim"] = 0
 
-    # 5.1 CT normalization
+
     ct_result = None
     if ct_row is None:
         summary["ct_status"] = "ct_series_not_found"
@@ -904,7 +768,7 @@ def process_patient(patient_id, series_index, deps):
             summary["ct_shape_norm"] = "x".join(str(x) for x in ct_result["volume_norm"].shape)
             summary["ct_norm_npz"] = save_ct_npz(patient_id, ct_result, deps)
 
-    # 5.2 Tumor segmentation
+
     seg_result = None
     if seg_row is None:
         summary["seg_status"] = "seg_series_not_found"
@@ -936,13 +800,13 @@ def process_patient(patient_id, series_index, deps):
                 if source_shape:
                     summary["seg_source_shape"] = "x".join(str(v) for v in source_shape)
 
-    # 5.3 Tumor ROI token
+
     if ct_result is None or ct_result.get("status") != "ok":
         summary["roi_token_status"] = "blocked_ct_unavailable"
     elif seg_result is None or seg_result.get("status") != "ok":
         summary["roi_token_status"] = "blocked_seg_unavailable"
     else:
-        # Tumor mask is aligned to original CT space, so ROI token uses native-space normalized CT.
+
         roi_result = compute_roi_token(ct_result["volume_norm_native"], seg_result["mask"], deps)
         summary["roi_token_status"] = roi_result["status"]
         if roi_result["status"] == "ok":
@@ -953,12 +817,7 @@ def process_patient(patient_id, series_index, deps):
 
 
 def write_csv(path, fieldnames, rows):
-    """Why: 预处理会写多张表，统一 CSV 写入逻辑可减少重复代码。
-
-    Content: 按给定字段顺序写入 CSV。
-    Input: path、fieldnames、rows。
-    Output: CSV 文件写入完成。
-    """
+    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -966,12 +825,7 @@ def write_csv(path, fieldnames, rows):
 
 
 def run_pipeline(max_cases):
-    """Why: 统一调度所有病人的 5.1~5.4 处理流程。
-
-    Content: 加载输入、遍历病人、执行预处理并写出结果文件。
-    Input: max_cases（最多处理多少病人，0/None 表示全部）。
-    Output: 终端统计 + 产出 CSV/NPZ 文件。
-    """
+    """English documentation for function `run_pipeline`."""
     ensure_output_dirs()
     deps = check_imaging_dependencies()
     patient_ids = load_patient_ids()
@@ -1049,12 +903,7 @@ def run_pipeline(max_cases):
 
 
 def parse_args():
-    """Why: 便于按批次调试，不必每次处理全量病例。
-
-    Content: 解析命令行参数。
-    Input: 命令行。
-    Output: argparse 参数对象。
-    """
+    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(description="Run imaging preprocessing pipeline (5.1~5.4).")
     parser.add_argument(
         "--max-cases",
@@ -1066,12 +915,7 @@ def parse_args():
 
 
 def main():
-    """Why: 提供脚本入口，一条命令执行整套流程。
-
-    Content: 读取参数并启动 pipeline。
-    Input: 命令行参数。
-    Output: 预处理结果文件和终端日志。
-    """
+    """English documentation for function `main`."""
     args = parse_args()
     run_pipeline(args.max_cases)
 
