@@ -1,4 +1,4 @@
-"""Infer organ masks and organ imaging tokens on Radiogenomics CT volumes."""
+
 import argparse
 import csv
 import json
@@ -25,7 +25,7 @@ except Exception:
 
 if nn is None:
     class _NNPlaceholder:
-        """Placeholder namespace used when torch is unavailable."""
+
 
         Module = object
 
@@ -47,7 +47,7 @@ DEFAULT_ORGAN_NAME_MAP = {
 
 
 def check_dependencies():
-    """English documentation for function `check_dependencies`."""
+
     missing = []
     if np is None:
         missing.append("numpy")
@@ -59,13 +59,11 @@ def check_dependencies():
 
 
 def ensure_output_dirs(output_root, mask_dir):
-    """English documentation for function `ensure_output_dirs`."""
     output_root.mkdir(parents=True, exist_ok=True)
     mask_dir.mkdir(parents=True, exist_ok=True)
 
 
 def resolve_model_path(model_path_arg, output_root, run_tag, allow_legacy_model_fallback):
-    """English documentation for function `resolve_model_path`."""
     if model_path_arg:
         return Path(model_path_arg)
 
@@ -85,7 +83,7 @@ def resolve_model_path(model_path_arg, output_root, run_tag, allow_legacy_model_
 
 
 def resolve_infer_paths(output_root, run_tag):
-    """English documentation for function `resolve_infer_paths`."""
+
     infer_root = Path(output_root) / run_tag / "infer"
     return {
         "infer_root": infer_root,
@@ -97,18 +95,15 @@ def resolve_infer_paths(output_root, run_tag):
 
 
 def parse_patient_id_from_ct_npz(path):
-    """English documentation for function `parse_patient_id_from_ct_npz`."""
     return path.stem
 
 
 def get_ct_npz_paths(ct_dir):
-    """English documentation for function `get_ct_npz_paths`."""
     paths = sorted(ct_dir.glob("*.npz"))
     return paths
 
 
 def build_default_organ_map(num_classes):
-    """English documentation for function `build_default_organ_map`."""
     organ_map = {}
     for organ_id in range(1, num_classes):
         organ_map[organ_id] = DEFAULT_ORGAN_NAME_MAP.get(organ_id, f"organ_{organ_id}")
@@ -116,7 +111,6 @@ def build_default_organ_map(num_classes):
 
 
 def write_csv(path, fieldnames, rows):
-    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -124,8 +118,6 @@ def write_csv(path, fieldnames, rows):
 
 
 class DoubleConv(nn.Module):
-    """English documentation for class `DoubleConv`."""
-
     def __init__(self, in_channels, out_channels):
         super().__init__()
         self.block = nn.Sequential(
@@ -142,8 +134,6 @@ class DoubleConv(nn.Module):
 
 
 class SmallUNet(nn.Module):
-    """English documentation for class `SmallUNet`."""
-
     def __init__(self, in_channels, num_classes, base_channels, token_dim):
         super().__init__()
         c1 = base_channels
@@ -184,7 +174,6 @@ class SmallUNet(nn.Module):
 
 
 def parse_organ_map_from_ckpt(ckpt, num_classes):
-    """English documentation for function `parse_organ_map_from_ckpt`."""
     raw_map = ckpt.get("organ_name_map", {}) if isinstance(ckpt, dict) else {}
     parsed = {}
     for k, v in raw_map.items():
@@ -201,7 +190,6 @@ def parse_organ_map_from_ckpt(ckpt, num_classes):
 
 
 def load_model(model_path, device):
-    """English documentation for function `load_model`."""
     ckpt = torch.load(str(model_path), map_location=device)
     if isinstance(ckpt, dict) and "model_state_dict" in ckpt:
         state_dict = ckpt["model_state_dict"]
@@ -264,7 +252,6 @@ def load_model(model_path, device):
 
 
 def build_context_stack(volume, z, num_context_slices, slice_stride):
-    """English documentation for function `build_context_stack`."""
     depth = int(volume.shape[0])
     channels = []
     for offset in range(-num_context_slices, num_context_slices + 1):
@@ -275,7 +262,6 @@ def build_context_stack(volume, z, num_context_slices, slice_stride):
 
 
 def resize_slice_for_model(image_chw, image_size):
-    """English documentation for function `resize_slice_for_model`."""
     h = image_chw.shape[1]
     w = image_chw.shape[2]
     zoom_h = image_size / h
@@ -286,7 +272,6 @@ def resize_slice_for_model(image_chw, image_size):
 
 
 def resize_mask_back(mask_2d, target_h, target_w):
-    """English documentation for function `resize_mask_back`."""
     zoom_h = target_h / mask_2d.shape[0]
     zoom_w = target_w / mask_2d.shape[1]
     resized = ndimage.zoom(mask_2d, zoom=(zoom_h, zoom_w), order=0)
@@ -310,7 +295,6 @@ def infer_volume_multilabel_mask_and_token_stats(
     slice_stride,
     organ_map,
 ):
-    """English documentation for function `infer_volume_multilabel_mask_and_token_stats`."""
     depth = ct_volume.shape[0]
     h = ct_volume.shape[1]
     w = ct_volume.shape[2]
@@ -366,7 +350,6 @@ def infer_volume_multilabel_mask_and_token_stats(
 
 
 def build_missing_flags(pred_mask, organ_map, min_organ_voxels):
-    """English documentation for function `build_missing_flags`."""
     missing = {}
     voxels = {}
     for organ_id, organ_name in organ_map.items():
@@ -377,7 +360,6 @@ def build_missing_flags(pred_mask, organ_map, min_organ_voxels):
 
 
 def save_patient_mask_npz(path, pred_mask, organ_map, source_ct_npz):
-    """English documentation for function `save_patient_mask_npz`."""
     organ_ids = np.asarray(list(organ_map.keys()), dtype=np.int16)
     organ_names = np.asarray([organ_map[i] for i in organ_ids], dtype=object)
     np.savez_compressed(
@@ -390,7 +372,6 @@ def save_patient_mask_npz(path, pred_mask, organ_map, source_ct_npz):
 
 
 def l2_normalize_token(token):
-    """English documentation for function `l2_normalize_token`."""
     arr = np.asarray(token, dtype=np.float32)
     norm = float(np.linalg.norm(arr))
     if norm <= 0.0:
@@ -406,7 +387,6 @@ def extract_organ_tokens_for_case(
     token_sums,
     token_voxel_counts,
 ):
-    """English documentation for function `extract_organ_tokens_for_case`."""
     rows = []
     for organ_id, organ_name in organ_map.items():
         organ_id = int(organ_id)
@@ -435,7 +415,6 @@ def extract_organ_tokens_for_case(
 
 
 def parse_args():
-    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="Infer organ masks and organ tokens on NSCLC Radiogenomics CT (docs/project.md 6.2/6.3).",
         allow_abbrev=False,
@@ -471,7 +450,6 @@ def parse_args():
 
 
 def main():
-    """English documentation for function `main`."""
     args = parse_args()
     missing = check_dependencies()
     if missing:

@@ -1,16 +1,3 @@
-"""
-Stage 11.1 organ graph construction (weak priors + learnable residual).
-
-This file provides:
-- a reusable WeakPriorGraphConstructor module
-- a runnable entrypoint that consumes Stage 10 fused organ tokens
-- export of graph metadata for downstream Stage 11.2 graph reasoning
-
-Graph design:
-- nodes: fixed organ set from Stage 9/10
-- sparse biological prior edges as weak inductive bias only
-- learnable residual edge logits initialized at zero
-"""
 import argparse
 import csv
 import json

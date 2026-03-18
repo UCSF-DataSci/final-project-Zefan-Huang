@@ -1,6 +1,3 @@
-"""
-Stage 15.3 unified entrypoint: case inputs -> system outputs deliverable bundle.
-"""
 import argparse
 import csv
 import importlib.util
@@ -129,51 +126,54 @@ def write_json(path, payload):
 
 
 def build_bundle_index_html(patient_id, case_input_rel, report_rel):
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <title>Inference Bundle: {patient_id}</title>
-  <style>
-    body {{
-      margin: 0;
-      padding: 32px;
-      background: linear-gradient(180deg, #f4efe5 0%, #ede4d2 100%);
-      color: #2c2318;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }}
-    .panel {{
-      background: rgba(255, 253, 248, 0.96);
-      border: 1px solid #d7ccb5;
-      border-radius: 22px;
-      padding: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 28px rgba(77, 59, 31, 0.08);
-    }}
-    a {{
-      color: #20406d;
-      text-decoration: none;
-    }}
-    a:hover {{
-      text-decoration: underline;
-    }}
-  </style>
-</head>
-<body>
-  <div class="panel">
-    <h1>Inference Bundle: {patient_id}</h1>
-    <p>This entrypoint ran Stage 15.1 case-input packaging and Stage 15.2 system-output export for one patient.</p>
-  </div>
-  <div class="panel">
-    <h2>Outputs</h2>
-    <ul>
-      <li><a href="{case_input_rel}">Case inputs summary</a></li>
-      <li><a href="{report_rel}">System outputs report</a></li>
-    </ul>
-  </div>
-</body>
-</html>
-"""
+    return "\n".join(
+        [
+            "<!doctype html>",
+            '<html lang="en">',
+            "<head>",
+            '  <meta charset="utf-8"/>',
+            f"  <title>Inference Bundle: {patient_id}</title>",
+            "  <style>",
+            "    body {",
+            "      margin: 0;",
+            "      padding: 32px;",
+            "      background: linear-gradient(180deg, #f4efe5 0%, #ede4d2 100%);",
+            "      color: #2c2318;",
+            '      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;',
+            "    }",
+            "    .panel {",
+            "      background: rgba(255, 253, 248, 0.96);",
+            "      border: 1px solid #d7ccb5;",
+            "      border-radius: 22px;",
+            "      padding: 24px;",
+            "      margin-bottom: 24px;",
+            "      box-shadow: 0 10px 28px rgba(77, 59, 31, 0.08);",
+            "    }",
+            "    a {",
+            "      color: #20406d;",
+            "      text-decoration: none;",
+            "    }",
+            "    a:hover {",
+            "      text-decoration: underline;",
+            "    }",
+            "  </style>",
+            "</head>",
+            "<body>",
+            '  <div class="panel">',
+            f"    <h1>Inference Bundle: {patient_id}</h1>",
+            "    <p>This entrypoint ran Stage 15.1 case-input packaging and Stage 15.2 system-output export for one patient.</p>",
+            "  </div>",
+            '  <div class="panel">',
+            "    <h2>Outputs</h2>",
+            "    <ul>",
+            f'      <li><a href="{case_input_rel}">Case inputs summary</a></li>',
+            f'      <li><a href="{report_rel}">System outputs report</a></li>',
+            "    </ul>",
+            "  </div>",
+            "</body>",
+            "</html>",
+        ]
+    )
 
 
 def print_usage_hint():

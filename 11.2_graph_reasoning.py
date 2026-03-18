@@ -1,17 +1,3 @@
-"""
-Stage 11.2 graph reasoning module.
-
-This file provides:
-- a graph attention reasoner that maps Z -> Z'
-- latent diffusion explanation heads:
-  - organ susceptibility s_o
-  - edge diffusion tendency p_{i->j}
-  - derived top-k paths from Primary
-
-Important:
-- organ/path outputs are model-induced latent explanations
-- they do not imply organ-level ground-truth supervision
-"""
 import argparse
 import csv
 import json

@@ -1,5 +1,3 @@
-"""Decode and export tumor masks from DICOM SEG aligned to CT volumes for Stage 5."""
-
 import argparse
 import csv
 import json
@@ -42,7 +40,6 @@ TUMOR_KEYWORDS = ("tumor", "tumour", "lesion", "gtv", "target", "mass", "nodule"
 
 
 def check_required_dependencies():
-    """English documentation for function `check_required_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -56,12 +53,10 @@ def check_required_dependencies():
 
 
 def ensure_output_dir(output_dir):
-    """English documentation for function `ensure_output_dir`."""
     output_dir.mkdir(parents=True, exist_ok=True)
 
 
 def parse_float_list(val):
-    """English documentation for function `parse_float_list`."""
     out = []
     if val is None:
         return out
@@ -74,7 +69,6 @@ def parse_float_list(val):
 
 
 def normalize_vec(vec):
-    """English documentation for function `normalize_vec`."""
     arr = np.asarray(vec, dtype=np.float64)
     norm = float(np.linalg.norm(arr))
     if norm <= 0.0:
@@ -83,7 +77,6 @@ def normalize_vec(vec):
 
 
 def safe_dcmread(path, stop_before_pixels):
-    """English documentation for function `safe_dcmread`."""
     try:
         return pydicom.dcmread(str(path), force=True, stop_before_pixels=stop_before_pixels)
     except Exception:
@@ -91,7 +84,6 @@ def safe_dcmread(path, stop_before_pixels):
 
 
 def scan_case_headers(case_dir):
-    """English documentation for function `scan_case_headers`."""
     headers = []
     for dcm_path in sorted(case_dir.rglob("*.dcm")):
         ds = safe_dcmread(dcm_path, stop_before_pixels=True)
@@ -110,7 +102,6 @@ def scan_case_headers(case_dir):
 
 
 def get_seg_candidates(headers):
-    """English documentation for function `get_seg_candidates`."""
     out = []
     for h in headers:
         if h["modality"] == "SEG" or h["sop_class_uid"] == SEG_SOP_CLASS_UID:
@@ -119,7 +110,6 @@ def get_seg_candidates(headers):
 
 
 def load_seg_dataset(case_dir, seg_file_arg, headers):
-    """English documentation for function `load_seg_dataset`."""
     if seg_file_arg:
         seg_path = Path(seg_file_arg)
         if not seg_path.exists():
@@ -146,7 +136,6 @@ def load_seg_dataset(case_dir, seg_file_arg, headers):
 
 
 def collect_referenced_series_uids(seg_ds):
-    """English documentation for function `collect_referenced_series_uids`."""
     out = []
 
     if hasattr(seg_ds, "ReferencedSeriesSequence"):
@@ -166,7 +155,6 @@ def collect_referenced_series_uids(seg_ds):
 
 
 def extract_segment_records(seg_ds):
-    """English documentation for function `extract_segment_records`."""
     out = []
     seg_seq = getattr(seg_ds, "SegmentSequence", [])
     for seg in seg_seq:
@@ -195,7 +183,6 @@ def extract_segment_records(seg_ds):
 
 
 def choose_segment_number(seg_ds, segment_number_arg, segment_label_arg):
-    """English documentation for function `choose_segment_number`."""
     segments = extract_segment_records(seg_ds)
     if not segments:
         raise RuntimeError("SEG has empty SegmentSequence")
@@ -252,7 +239,6 @@ def choose_segment_number(seg_ds, segment_number_arg, segment_label_arg):
 
 
 def get_ct_series_map(headers):
-    """English documentation for function `get_ct_series_map`."""
     series_map = {}
     for h in headers:
         if h["modality"] != "CT":
@@ -269,7 +255,6 @@ def get_ct_series_map(headers):
 
 
 def choose_ct_series_uid(series_map, referenced_series_uids, ct_series_uid_arg):
-    """English documentation for function `choose_ct_series_uid`."""
     if not series_map:
         raise RuntimeError("no CT DICOM found in case_dir")
 
@@ -301,7 +286,6 @@ def choose_ct_series_uid(series_map, referenced_series_uids, ct_series_uid_arg):
 
 
 def get_first_valid_iop(slices):
-    """English documentation for function `get_first_valid_iop`."""
     for ds in slices:
         iop = parse_float_list(getattr(ds, "ImageOrientationPatient", None))
         if len(iop) >= 6:
@@ -310,7 +294,6 @@ def get_first_valid_iop(slices):
 
 
 def get_slice_sort_info(ds, slice_dir):
-    """English documentation for function `get_slice_sort_info`."""
     ipp = parse_float_list(getattr(ds, "ImagePositionPatient", None))
     ipp_tuple = None
     scalar = None
@@ -327,7 +310,6 @@ def get_slice_sort_info(ds, slice_dir):
 
 
 def compute_slice_spacing(sorted_scalars, fallback_thickness):
-    """English documentation for function `compute_slice_spacing`."""
     if len(sorted_scalars) > 1:
         diffs = []
         for i in range(1, len(sorted_scalars)):
@@ -342,7 +324,6 @@ def compute_slice_spacing(sorted_scalars, fallback_thickness):
 
 
 def load_ct_geometry(series_dcm_paths):
-    """English documentation for function `load_ct_geometry`."""
     slices = []
     for p in series_dcm_paths:
         ds = safe_dcmread(p, stop_before_pixels=False)
@@ -465,7 +446,6 @@ def load_ct_geometry(series_dcm_paths):
 
 
 def frame_segment_number(frame_fg):
-    """English documentation for function `frame_segment_number`."""
     seq = getattr(frame_fg, "SegmentIdentificationSequence", [])
     if not seq:
         return None
@@ -477,7 +457,6 @@ def frame_segment_number(frame_fg):
 
 
 def frame_referenced_sop_uid(frame_fg):
-    """English documentation for function `frame_referenced_sop_uid`."""
     deriv = getattr(frame_fg, "DerivationImageSequence", [])
     for d in deriv:
         for src in getattr(d, "SourceImageSequence", []):
@@ -488,7 +467,6 @@ def frame_referenced_sop_uid(frame_fg):
 
 
 def frame_image_position(frame_fg):
-    """English documentation for function `frame_image_position`."""
     seq = getattr(frame_fg, "PlanePositionSequence", [])
     if not seq:
         return None
@@ -499,7 +477,6 @@ def frame_image_position(frame_fg):
 
 
 def resize_2d_nearest(mask_hw, target_h, target_w):
-    """English documentation for function `resize_2d_nearest`."""
     if int(mask_hw.shape[0]) == int(target_h) and int(mask_hw.shape[1]) == int(target_w):
         return (mask_hw > 0).astype(np.uint8)
     zoom_h = float(target_h) / float(mask_hw.shape[0])
@@ -516,7 +493,6 @@ def resize_2d_nearest(mask_hw, target_h, target_w):
 
 
 def resample_3d_nearest(mask_zyx, target_shape_zyx):
-    """English documentation for function `resample_3d_nearest`."""
     if tuple(mask_zyx.shape) == tuple(target_shape_zyx):
         return (mask_zyx > 0).astype(np.uint8)
     zf = float(target_shape_zyx[0]) / float(mask_zyx.shape[0])
@@ -535,7 +511,6 @@ def resample_3d_nearest(mask_zyx, target_shape_zyx):
 
 
 def decode_seg_with_pydicom_seg(seg_ds, segment_number):
-    """English documentation for function `decode_seg_with_pydicom_seg`."""
     if pydicom_seg is None:
         return None
 
@@ -561,7 +536,6 @@ def decode_seg_with_pydicom_seg(seg_ds, segment_number):
 
 
 def decode_seg_with_highdicom(seg_ds, segment_number, ct_info):
-    """English documentation for function `decode_seg_with_highdicom`."""
     if highdicom is None:
         return None
 
@@ -586,7 +560,6 @@ def decode_seg_with_highdicom(seg_ds, segment_number, ct_info):
 
 
 def decode_seg_with_pydicom_manual(seg_ds, segment_number, ct_info):
-    """English documentation for function `decode_seg_with_pydicom_manual`."""
     arr = np.asarray(seg_ds.pixel_array)
     if arr.ndim == 2:
         arr = arr[np.newaxis, :, :]
@@ -669,7 +642,6 @@ def decode_seg_with_pydicom_manual(seg_ds, segment_number, ct_info):
 
 
 def decode_tumor_mask(seg_ds, segment_number, ct_info, force_resample):
-    """English documentation for function `decode_tumor_mask`."""
     target_shape = ct_info["ct_shape_zyx"]
 
     mask = decode_seg_with_pydicom_seg(seg_ds, segment_number)
@@ -700,7 +672,6 @@ def decode_tumor_mask(seg_ds, segment_number, ct_info, force_resample):
 
 
 def save_mask_nifti(mask_zyx, affine_ras_yxz, output_path):
-    """English documentation for function `save_mask_nifti`."""
     mask_yxz = np.transpose(mask_zyx.astype(np.uint8), (1, 2, 0))
     nii = nib.Nifti1Image(mask_yxz, affine_ras_yxz)
     nii.set_data_dtype(np.uint8)
@@ -720,7 +691,6 @@ def build_metadata_dict(
     decode_backend,
     align_mode,
 ):
-    """English documentation for function `build_metadata_dict`."""
     meta = {
         "SubjectID": subject_id,
         "SeriesInstanceUID": series_instance_uid,
@@ -743,14 +713,12 @@ def build_metadata_dict(
 
 
 def write_metadata_json(metadata, output_path):
-    """English documentation for function `write_metadata_json`."""
     with output_path.open("w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
     return output_path
 
 
 def run_stage5(case_dir, output_dir, seg_file, ct_series_uid, segment_number, segment_label, subject_id, force_resample, verbose):
-    """English documentation for function `run_stage5`."""
     headers = scan_case_headers(case_dir)
     if not headers:
         raise RuntimeError(f"no .dcm file found in case_dir: {case_dir}")
@@ -825,7 +793,6 @@ DEFAULT_OUTPUT_ROOT = Path("output/stage5")
 
 
 def read_segment_map(segment_map_csv):
-    """English documentation for function `read_segment_map`."""
     out = {}
     if not segment_map_csv:
         return out
@@ -854,7 +821,6 @@ def read_segment_map(segment_map_csv):
 
 
 def load_patient_ids_from_manifest(manifest_csv, require_seg):
-    """English documentation for function `load_patient_ids_from_manifest`."""
     path = Path(manifest_csv)
     if not path.exists():
         return []
@@ -877,7 +843,6 @@ def load_patient_ids_from_manifest(manifest_csv, require_seg):
 
 
 def load_patient_ids_from_metadata(metadata_csv, require_seg):
-    """English documentation for function `load_patient_ids_from_metadata`."""
     path = Path(metadata_csv)
     if not path.exists():
         raise RuntimeError(f"metadata_csv not found: {path}")
@@ -907,7 +872,6 @@ def load_patient_ids_from_metadata(metadata_csv, require_seg):
 
 
 def resolve_patient_ids(manifest_csv, metadata_csv, require_seg):
-    """English documentation for function `resolve_patient_ids`."""
     from_manifest = load_patient_ids_from_manifest(manifest_csv, require_seg)
     if from_manifest:
         return from_manifest, "manifest"
@@ -916,12 +880,10 @@ def resolve_patient_ids(manifest_csv, metadata_csv, require_seg):
 
 
 def ensure_output_root(output_root):
-    """English documentation for function `ensure_output_root`."""
     Path(output_root).mkdir(parents=True, exist_ok=True)
 
 
 def write_csv(path, fieldnames, rows):
-    """English documentation for function `write_csv`."""
     with Path(path).open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -929,7 +891,6 @@ def write_csv(path, fieldnames, rows):
 
 
 def parse_args():
-    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="Batch Stage 5 tumor mask provider over NSCLC Radiogenomics cases.",
         allow_abbrev=False,
@@ -959,7 +920,6 @@ def parse_args():
 
 
 def choose_segment_for_patient(patient_id, segment_map, default_segment_number, default_segment_label):
-    """English documentation for function `choose_segment_for_patient`."""
     if patient_id in segment_map:
         item = segment_map[patient_id]
         return item.get("segment_number"), item.get("segment_label", ""), "map_csv"
@@ -967,7 +927,6 @@ def choose_segment_for_patient(patient_id, segment_map, default_segment_number, 
 
 
 def run_batch():
-    """English documentation for function `run_batch`."""
     args = parse_args()
     missing = check_required_dependencies()
     if missing:

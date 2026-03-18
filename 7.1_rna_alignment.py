@@ -1,12 +1,3 @@
-"""
-Compatibility wrapper for Stage 7.1 RNA alignment.
-
-The implementation now lives in prepare_clean/rna_alignment.py so that
-data alignment and cleaning scripts live together. This wrapper preserves
-the original numbered entrypoint and re-exports the implementation module's
-public symbols.
-"""
-
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 

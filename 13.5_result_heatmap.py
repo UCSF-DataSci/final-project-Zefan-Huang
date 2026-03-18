@@ -1,6 +1,3 @@
-"""
-Render a publication-style paired Organ x Patient heatmap for explanation results.
-"""
 import argparse
 import csv
 import json

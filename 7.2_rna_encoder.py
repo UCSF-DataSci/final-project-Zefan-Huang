@@ -1,4 +1,3 @@
-"""Train the Stage 7.2 RNA encoder and export RNA embeddings and tokens."""
 import argparse
 import csv
 import json
@@ -23,8 +22,6 @@ except Exception:
 
 if nn is None:
     class _NNPlaceholder:
-        """Placeholder namespace used when torch is unavailable."""
-
         Module = object
 
     nn = _NNPlaceholder()
@@ -36,7 +33,6 @@ DEFAULT_OUTPUT_ROOT = Path("output/stage7/7.2_rna_encoder")
 
 
 def check_dependencies():
-    """English documentation for function `check_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -46,7 +42,6 @@ def check_dependencies():
 
 
 def resolve_input_npz(path_arg):
-    """English documentation for function `resolve_input_npz`."""
     if path_arg.strip():
         p = Path(path_arg)
         if p.exists():
@@ -63,7 +58,6 @@ def resolve_input_npz(path_arg):
 
 
 def resolve_output_paths(output_root):
-    """English documentation for function `resolve_output_paths`."""
     root = Path(output_root)
     train_dir = root / "train"
     model_dir = root / "model"
@@ -84,14 +78,12 @@ def resolve_output_paths(output_root):
 
 
 def ensure_output_dirs(paths):
-    """English documentation for function `ensure_output_dirs`."""
     paths["train_dir"].mkdir(parents=True, exist_ok=True)
     paths["model_dir"].mkdir(parents=True, exist_ok=True)
     paths["token_dir"].mkdir(parents=True, exist_ok=True)
 
 
 def set_seed(seed):
-    """English documentation for function `set_seed`."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -99,7 +91,6 @@ def set_seed(seed):
 
 
 def load_stage71_npz(npz_path):
-    """English documentation for function `load_stage71_npz`."""
     with np.load(npz_path, allow_pickle=True) as z:
         required = ["x_rna", "patient_ids", "gene_ids"]
         for key in required:
@@ -130,7 +121,6 @@ def load_stage71_npz(npz_path):
 
 
 def apply_patient_limit(x_rna, patient_ids, max_patients):
-    """English documentation for function `apply_patient_limit`."""
     if max_patients < 0:
         raise RuntimeError("max_patients must be >= 0")
     if max_patients == 0:
@@ -141,7 +131,6 @@ def apply_patient_limit(x_rna, patient_ids, max_patients):
 
 
 def select_top_variable_genes(x_rna, gene_ids, gene_std_log1p, top_genes):
-    """English documentation for function `select_top_variable_genes`."""
     gene_count = x_rna.shape[1]
     if top_genes < 0:
         raise RuntimeError("top_genes must be >= 0")
@@ -164,7 +153,6 @@ def select_top_variable_genes(x_rna, gene_ids, gene_std_log1p, top_genes):
 
 
 def split_train_val_indices(n_samples, val_ratio, seed):
-    """English documentation for function `split_train_val_indices`."""
     if val_ratio < 0 or val_ratio >= 1:
         raise RuntimeError("val_ratio must be in [0,1)")
 
@@ -184,7 +172,6 @@ def split_train_val_indices(n_samples, val_ratio, seed):
 
 
 def build_dataloaders(x_selected, train_idx, val_idx, batch_size):
-    """English documentation for function `build_dataloaders`."""
     if batch_size <= 0:
         raise RuntimeError("batch_size must be >= 1")
 
@@ -202,8 +189,6 @@ def build_dataloaders(x_selected, train_idx, val_idx, batch_size):
 
 
 class RNAEncoderMLP(nn.Module):
-    """English documentation for class `RNAEncoderMLP`."""
-
     def __init__(self, input_dim, g_dim, num_tokens, token_dim, dropout):
         super().__init__()
         token_hidden_dim = int(num_tokens) * int(token_dim)
@@ -241,7 +226,6 @@ class RNAEncoderMLP(nn.Module):
 
 
 def evaluate_loader_loss(model, loader, device):
-    """English documentation for function `evaluate_loader_loss`."""
     if loader is None:
         return None
 
@@ -262,7 +246,6 @@ def evaluate_loader_loss(model, loader, device):
 
 
 def write_csv(path, fieldnames, rows):
-    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -270,7 +253,6 @@ def write_csv(path, fieldnames, rows):
 
 
 def train_rna_encoder(model, train_loader, val_loader, device, epochs, lr, weight_decay, early_stop_patience, early_stop_min_delta):
-    """English documentation for function `train_rna_encoder`."""
     if epochs <= 0:
         raise RuntimeError("epochs must be >= 1")
     if lr <= 0:
@@ -354,7 +336,6 @@ def train_rna_encoder(model, train_loader, val_loader, device, epochs, lr, weigh
 
 
 def infer_embeddings(model, x_selected, device, infer_batch_size):
-    """English documentation for function `infer_embeddings`."""
     if infer_batch_size <= 0:
         raise RuntimeError("infer_batch_size must be >= 1")
 
@@ -377,7 +358,6 @@ def infer_embeddings(model, x_selected, device, infer_batch_size):
 
 
 def l2_normalize_rows(mat):
-    """English documentation for function `l2_normalize_rows`."""
     norm = np.linalg.norm(mat, axis=1, keepdims=True)
     safe = np.where(norm > 1e-8, norm, 1.0)
     out = mat / safe
@@ -386,7 +366,6 @@ def l2_normalize_rows(mat):
 
 
 def build_t_rna_tokens(token_flat, num_tokens, token_dim):
-    """English documentation for function `build_t_rna_tokens`."""
     if num_tokens <= 0 or token_dim <= 0:
         return np.zeros((token_flat.shape[0], 0, 0), dtype=np.float32)
 
@@ -401,7 +380,6 @@ def build_t_rna_tokens(token_flat, num_tokens, token_dim):
 
 
 def write_g_rna_csv(path, patient_ids, g_rna):
-    """English documentation for function `write_g_rna_csv`."""
     fieldnames = ["patient_id"] + [f"g_{i:03d}" for i in range(g_rna.shape[1])]
     rows = []
     for i, patient_id in enumerate(patient_ids):
@@ -413,7 +391,6 @@ def write_g_rna_csv(path, patient_ids, g_rna):
 
 
 def write_t_rna_csv(path, patient_ids, t_rna):
-    """English documentation for function `write_t_rna_csv`."""
     fieldnames = ["patient_id", "token_index", "token_dim", "token_json"]
     rows = []
     for i, patient_id in enumerate(patient_ids):
@@ -430,7 +407,6 @@ def write_t_rna_csv(path, patient_ids, t_rna):
 
 
 def write_gene_selection_csv(path, selected_idx, selected_gene_ids, selected_score):
-    """English documentation for function `write_gene_selection_csv`."""
     fieldnames = ["rank", "gene_index", "gene_id", "variance_score"]
     rows = []
     for rank, (idx, gid, sc) in enumerate(zip(selected_idx, selected_gene_ids, selected_score), start=1):
@@ -446,13 +422,11 @@ def write_gene_selection_csv(path, selected_idx, selected_gene_ids, selected_sco
 
 
 def write_meta_json(path, meta):
-    """English documentation for function `write_meta_json`."""
     with path.open("w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
 
 
 def parse_args():
-    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="Stage 7.2 RNA encoder: top-variance genes + MLP encoder (g_rna, optional T_rna).",
         allow_abbrev=False,
@@ -492,7 +466,6 @@ def parse_args():
 
 
 def main():
-    """English documentation for function `main`."""
     args = parse_args()
     missing = check_dependencies()
     if missing:

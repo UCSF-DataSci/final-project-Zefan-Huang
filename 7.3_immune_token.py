@@ -1,4 +1,3 @@
-"""Build immune and microenvironment tokens from RNA features for Stage 7.3."""
 import argparse
 import csv
 import json
@@ -23,8 +22,6 @@ except Exception:
 
 if nn is None:
     class _NNPlaceholder:
-        """Placeholder namespace used when torch is unavailable."""
-
         Module = object
 
     nn = _NNPlaceholder()
@@ -52,7 +49,6 @@ IMMUNE_MARKER_SETS = {
 
 
 def check_dependencies():
-    """English documentation for function `check_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -62,7 +58,6 @@ def check_dependencies():
 
 
 def resolve_stage71_npz(path_arg):
-    """English documentation for function `resolve_stage71_npz`."""
     if path_arg.strip():
         p = Path(path_arg)
         if p.exists():
@@ -79,7 +74,6 @@ def resolve_stage71_npz(path_arg):
 
 
 def resolve_output_paths(output_root):
-    """English documentation for function `resolve_output_paths`."""
     root = Path(output_root)
     train_dir = root / "train"
     model_dir = root / "model"
@@ -99,14 +93,12 @@ def resolve_output_paths(output_root):
 
 
 def ensure_output_dirs(paths):
-    """English documentation for function `ensure_output_dirs`."""
     paths["train_dir"].mkdir(parents=True, exist_ok=True)
     paths["model_dir"].mkdir(parents=True, exist_ok=True)
     paths["token_dir"].mkdir(parents=True, exist_ok=True)
 
 
 def set_seed(seed):
-    """English documentation for function `set_seed`."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -114,7 +106,6 @@ def set_seed(seed):
 
 
 def normalize_gene_id(raw):
-    """English documentation for function `normalize_gene_id`."""
     txt = str(raw).strip()
     if txt.endswith(".0"):
         txt = txt[:-2]
@@ -122,7 +113,6 @@ def normalize_gene_id(raw):
 
 
 def load_stage71_npz(npz_path):
-    """English documentation for function `load_stage71_npz`."""
     with np.load(npz_path, allow_pickle=True) as z:
         required = ["x_rna", "patient_ids", "gene_ids"]
         for k in required:
@@ -149,7 +139,6 @@ def load_stage71_npz(npz_path):
 
 
 def apply_patient_limit(x_rna, patient_ids, max_patients):
-    """English documentation for function `apply_patient_limit`."""
     if max_patients < 0:
         raise RuntimeError("max_patients must be >= 0")
     if max_patients == 0:
@@ -159,7 +148,6 @@ def apply_patient_limit(x_rna, patient_ids, max_patients):
 
 
 def build_gene_index(gene_ids):
-    """English documentation for function `build_gene_index`."""
     out = {}
     for i, gid in enumerate(gene_ids.tolist()):
         if gid and gid not in out:
@@ -168,7 +156,6 @@ def build_gene_index(gene_ids):
 
 
 def compute_immune_signatures(x_rna, gene_ids, marker_sets):
-    """English documentation for function `compute_immune_signatures`."""
     gene_index = build_gene_index(gene_ids)
     names = list(marker_sets.keys())
     n = x_rna.shape[0]
@@ -198,7 +185,6 @@ def compute_immune_signatures(x_rna, gene_ids, marker_sets):
 
 
 def zscore_columns(mat):
-    """English documentation for function `zscore_columns`."""
     mean = mat.mean(axis=0)
     std = mat.std(axis=0)
     safe = np.where(std > 1e-8, std, 1.0)
@@ -210,7 +196,6 @@ def zscore_columns(mat):
 
 
 def split_train_val_indices(n_samples, val_ratio, seed):
-    """English documentation for function `split_train_val_indices`."""
     if val_ratio < 0 or val_ratio >= 1:
         raise RuntimeError("val_ratio must be in [0,1)")
 
@@ -229,7 +214,6 @@ def split_train_val_indices(n_samples, val_ratio, seed):
 
 
 def build_dataloaders(sig_z, train_idx, val_idx, batch_size):
-    """English documentation for function `build_dataloaders`."""
     if batch_size <= 0:
         raise RuntimeError("batch_size must be >= 1")
 
@@ -245,8 +229,6 @@ def build_dataloaders(sig_z, train_idx, val_idx, batch_size):
 
 
 class ImmuneTokenMLP(nn.Module):
-    """English documentation for class `ImmuneTokenMLP`."""
-
     def __init__(self, input_dim, token_dim, hidden_dim, dropout):
         super().__init__()
         self.input_dim = int(input_dim)
@@ -278,7 +260,6 @@ class ImmuneTokenMLP(nn.Module):
 
 
 def eval_loss(model, loader, device):
-    """English documentation for function `eval_loss`."""
     if loader is None:
         return None
 
@@ -299,7 +280,6 @@ def eval_loss(model, loader, device):
 
 
 def train_model(model, train_loader, val_loader, device, epochs, lr, weight_decay, early_stop_patience, early_stop_min_delta):
-    """English documentation for function `train_model`."""
     if epochs <= 0:
         raise RuntimeError("epochs must be >= 1")
     if lr <= 0:
@@ -381,7 +361,6 @@ def train_model(model, train_loader, val_loader, device, epochs, lr, weight_deca
 
 
 def l2_normalize_rows(mat):
-    """English documentation for function `l2_normalize_rows`."""
     norm = np.linalg.norm(mat, axis=1, keepdims=True)
     safe = np.where(norm > 1e-8, norm, 1.0)
     out = mat / safe
@@ -390,7 +369,6 @@ def l2_normalize_rows(mat):
 
 
 def infer_t_imm(model, sig_z, device, infer_batch_size):
-    """English documentation for function `infer_t_imm`."""
     if infer_batch_size <= 0:
         raise RuntimeError("infer_batch_size must be >= 1")
 
@@ -410,7 +388,6 @@ def infer_t_imm(model, sig_z, device, infer_batch_size):
 
 
 def write_csv(path, fieldnames, rows):
-    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -418,7 +395,6 @@ def write_csv(path, fieldnames, rows):
 
 
 def write_signature_csv(path, patient_ids, sig_names, sig_raw, sig_z):
-    """English documentation for function `write_signature_csv`."""
     fields = ["patient_id"]
     for name in sig_names:
         fields.append(f"raw_{name}")
@@ -438,7 +414,6 @@ def write_signature_csv(path, patient_ids, sig_names, sig_raw, sig_z):
 
 
 def write_t_imm_csv(path, patient_ids, t_imm):
-    """English documentation for function `write_t_imm_csv`."""
     fields = ["patient_id"] + [f"t_imm_{i:03d}" for i in range(t_imm.shape[1])]
     rows = []
     for i, pid in enumerate(patient_ids):
@@ -450,13 +425,11 @@ def write_t_imm_csv(path, patient_ids, t_imm):
 
 
 def write_meta_json(path, meta):
-    """English documentation for function `write_meta_json`."""
     with path.open("w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
 
 
 def parse_args():
-    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="Stage 7.3 immune token: marker-set signatures + MLP token encoder.",
         allow_abbrev=False,
@@ -489,7 +462,6 @@ def parse_args():
 
 
 def main():
-    """English documentation for function `main`."""
     args = parse_args()
     missing = check_dependencies()
     if missing:

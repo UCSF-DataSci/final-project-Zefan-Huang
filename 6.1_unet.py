@@ -1,10 +1,10 @@
-"""Compatibility entrypoint for Stage 6.1 organ segmentation training on CT-ORG."""
+
 import runpy
 from pathlib import Path
 
 
 def main():
-    """English documentation for function `main`."""
+
     seg_script = Path(__file__).with_name("6.1_seg_model.py")
     if not seg_script.exists():
         raise SystemExit(f"missing script: {seg_script}")

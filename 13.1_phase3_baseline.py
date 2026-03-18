@@ -1,6 +1,3 @@
-"""
-Stage 13.1 Phase 3 baseline training on 211 cases without RNA/immune tokens.
-"""
 import argparse
 import importlib.util
 from pathlib import Path

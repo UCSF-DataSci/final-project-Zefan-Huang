@@ -1,6 +1,3 @@
-"""
-Utilities for Stage 13 phased training scripts.
-"""
 import csv
 import importlib.util
 import json

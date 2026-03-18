@@ -1,4 +1,3 @@
-"""Assemble organ-level evidence packs and tokens for downstream multimodal fusion."""
 import argparse
 import csv
 import hashlib

@@ -1,6 +1,3 @@
-"""
-Stage 15.2 system-output export for inference and deliverables.
-"""
 import argparse
 import csv
 import html
@@ -347,142 +344,147 @@ def build_case_report_html(
     if svg_name:
         svg_block = f'<div class="panel"><h2>Directional Diffusion</h2><img src="{html.escape(svg_name)}" alt="Primary diffusion"/></div>'
 
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <title>System Outputs: {html.escape(patient_id)}</title>
-  <style>
-    body {{
-      margin: 0;
-      padding: 28px;
-      background: linear-gradient(180deg, #f4efe5 0%, #ede4d2 100%);
-      color: #2c2318;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }}
-    h1, h2, h3, h4 {{ margin: 0 0 12px 0; }}
-    p, li {{ line-height: 1.45; color: #594e42; }}
-    .panel {{
-      background: rgba(255, 253, 248, 0.96);
-      border: 1px solid #d7ccb5;
-      border-radius: 22px;
-      padding: 22px;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 28px rgba(77, 59, 31, 0.08);
-    }}
-    .grid {{
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }}
-    .card {{
-      background: #fffdf8;
-      border: 1px solid #e5dcc8;
-      border-radius: 16px;
-      padding: 16px;
-      margin-bottom: 14px;
-    }}
-    .cols {{
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }}
-    table {{
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }}
-    th, td {{
-      text-align: left;
-      padding: 9px 10px;
-      border-bottom: 1px solid #e6dcc8;
-      vertical-align: top;
-    }}
-    th {{
-      background: #f3ecdd;
-    }}
-    img {{
-      max-width: 100%;
-      border-radius: 18px;
-      border: 1px solid #d7ccb5;
-      background: #fffdf8;
-    }}
-    code {{
-      background: #f3ecdd;
-      padding: 2px 6px;
-      border-radius: 6px;
-    }}
-  </style>
-</head>
-<body>
-  <div class="panel">
-    <h1>System Outputs: {html.escape(patient_id)}</h1>
-    <p>This deliverable bundles primary predictions, latent diffusion explanation, cross-attention interpretation, and highest-contributing edge summaries.</p>
-    <p>{html.escape(stage10_note)}</p>
-  </div>
-  <div class="panel">
-    <h2>Primary Outputs</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Survival</h3>
-        <ul>
-          <li>survival_mode: {html.escape(str(primary_outputs.get('survival_mode', '')))}</li>
-          <li>survival_probability_last_bin: {html.escape(str(primary_outputs.get('survival_probability_last_bin')))}</li>
-          <li>time_os_days: {html.escape(str(primary_outputs.get('time_os_days', '')))}</li>
-          <li>event_os: {html.escape(str(primary_outputs.get('event_os', '')))}</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Recurrence</h3>
-        <ul>
-          <li>recurrence_probability: {safe_float(primary_outputs.get('recurrence_probability')):.4f}</li>
-          <li>predicted_recurrence_location: {html.escape(str(primary_outputs.get('predicted_recurrence_location', '')))}</li>
-        </ul>
-        <ul>{prob_lines}</ul>
-      </div>
-    </div>
-  </div>
-  <div class="panel">
-    <h2>Explanation Outputs</h2>
-    <div class="card">
-      <p>{html.escape(str(explanation_payload.get('explanation_semantics', '')))}</p>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <h3>Organ Susceptibility</h3>
-        <table>
-          <thead><tr><th>Organ</th><th>Rank</th><th>Susceptibility</th></tr></thead>
-          <tbody>{organ_lines}</tbody>
-        </table>
-      </div>
-      <div class="card">
-        <h3>Top Paths From Primary</h3>
-        <table>
-          <thead><tr><th>Path</th><th>Hops</th><th>Score</th></tr></thead>
-          <tbody>{path_lines}</tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  {svg_block}
-  <div class="panel">
-    <h2>Highest-Contributing Edges</h2>
-    <table>
-      <thead><tr><th>Source</th><th>Target</th><th>Edge Type</th><th>Probability</th></tr></thead>
-      <tbody>{edge_lines}</tbody>
-    </table>
-  </div>
-  <div class="panel">
-    <h2>Cross-Attention Interpretation</h2>
-    {''.join(attention_blocks) if attention_blocks else '<p>No cross-attention weights available for this patient.</p>'}
-  </div>
-  <div class="panel">
-    <h2>Case Input Availability</h2>
-    <ul>{availability_lines or '<li>No Stage 15.1 case-input bundle linked.</li>'}</ul>
-  </div>
-</body>
-</html>
-"""
+    attention_html = "".join(attention_blocks) if attention_blocks else "<p>No cross-attention weights available for this patient.</p>"
+    availability_html = availability_lines or "<li>No Stage 15.1 case-input bundle linked.</li>"
+    return "\n".join(
+        [
+            "<!doctype html>",
+            '<html lang="en">',
+            "<head>",
+            '  <meta charset="utf-8"/>',
+            f"  <title>System Outputs: {html.escape(patient_id)}</title>",
+            "  <style>",
+            "    body {",
+            "      margin: 0;",
+            "      padding: 28px;",
+            "      background: linear-gradient(180deg, #f4efe5 0%, #ede4d2 100%);",
+            "      color: #2c2318;",
+            '      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;',
+            "    }",
+            "    h1, h2, h3, h4 { margin: 0 0 12px 0; }",
+            "    p, li { line-height: 1.45; color: #594e42; }",
+            "    .panel {",
+            "      background: rgba(255, 253, 248, 0.96);",
+            "      border: 1px solid #d7ccb5;",
+            "      border-radius: 22px;",
+            "      padding: 22px;",
+            "      margin-bottom: 20px;",
+            "      box-shadow: 0 10px 28px rgba(77, 59, 31, 0.08);",
+            "    }",
+            "    .grid {",
+            "      display: grid;",
+            "      grid-template-columns: repeat(2, minmax(0, 1fr));",
+            "      gap: 16px;",
+            "    }",
+            "    .card {",
+            "      background: #fffdf8;",
+            "      border: 1px solid #e5dcc8;",
+            "      border-radius: 16px;",
+            "      padding: 16px;",
+            "      margin-bottom: 14px;",
+            "    }",
+            "    .cols {",
+            "      display: grid;",
+            "      grid-template-columns: repeat(2, minmax(0, 1fr));",
+            "      gap: 16px;",
+            "    }",
+            "    table {",
+            "      width: 100%;",
+            "      border-collapse: collapse;",
+            "      font-size: 14px;",
+            "    }",
+            "    th, td {",
+            "      text-align: left;",
+            "      padding: 9px 10px;",
+            "      border-bottom: 1px solid #e6dcc8;",
+            "      vertical-align: top;",
+            "    }",
+            "    th {",
+            "      background: #f3ecdd;",
+            "    }",
+            "    img {",
+            "      max-width: 100%;",
+            "      border-radius: 18px;",
+            "      border: 1px solid #d7ccb5;",
+            "      background: #fffdf8;",
+            "    }",
+            "    code {",
+            "      background: #f3ecdd;",
+            "      padding: 2px 6px;",
+            "      border-radius: 6px;",
+            "    }",
+            "  </style>",
+            "</head>",
+            "<body>",
+            '  <div class="panel">',
+            f"    <h1>System Outputs: {html.escape(patient_id)}</h1>",
+            "    <p>This deliverable bundles primary predictions, latent diffusion explanation, cross-attention interpretation, and highest-contributing edge summaries.</p>",
+            f"    <p>{html.escape(stage10_note)}</p>",
+            "  </div>",
+            '  <div class="panel">',
+            "    <h2>Primary Outputs</h2>",
+            '    <div class="grid">',
+            '      <div class="card">',
+            "        <h3>Survival</h3>",
+            "        <ul>",
+            f"          <li>survival_mode: {html.escape(str(primary_outputs.get('survival_mode', '')))}</li>",
+            f"          <li>survival_probability_last_bin: {html.escape(str(primary_outputs.get('survival_probability_last_bin')))}</li>",
+            f"          <li>time_os_days: {html.escape(str(primary_outputs.get('time_os_days', '')))}</li>",
+            f"          <li>event_os: {html.escape(str(primary_outputs.get('event_os', '')))}</li>",
+            "        </ul>",
+            "      </div>",
+            '      <div class="card">',
+            "        <h3>Recurrence</h3>",
+            "        <ul>",
+            f"          <li>recurrence_probability: {safe_float(primary_outputs.get('recurrence_probability')):.4f}</li>",
+            f"          <li>predicted_recurrence_location: {html.escape(str(primary_outputs.get('predicted_recurrence_location', '')))}</li>",
+            "        </ul>",
+            f"        <ul>{prob_lines}</ul>",
+            "      </div>",
+            "    </div>",
+            "  </div>",
+            '  <div class="panel">',
+            "    <h2>Explanation Outputs</h2>",
+            '    <div class="card">',
+            f"      <p>{html.escape(str(explanation_payload.get('explanation_semantics', '')))}</p>",
+            "    </div>",
+            '    <div class="grid">',
+            '      <div class="card">',
+            "        <h3>Organ Susceptibility</h3>",
+            "        <table>",
+            "          <thead><tr><th>Organ</th><th>Rank</th><th>Susceptibility</th></tr></thead>",
+            f"          <tbody>{organ_lines}</tbody>",
+            "        </table>",
+            "      </div>",
+            '      <div class="card">',
+            "        <h3>Top Paths From Primary</h3>",
+            "        <table>",
+            "          <thead><tr><th>Path</th><th>Hops</th><th>Score</th></tr></thead>",
+            f"          <tbody>{path_lines}</tbody>",
+            "        </table>",
+            "      </div>",
+            "    </div>",
+            "  </div>",
+            f"  {svg_block}",
+            '  <div class="panel">',
+            "    <h2>Highest-Contributing Edges</h2>",
+            "    <table>",
+            "      <thead><tr><th>Source</th><th>Target</th><th>Edge Type</th><th>Probability</th></tr></thead>",
+            f"      <tbody>{edge_lines}</tbody>",
+            "    </table>",
+            "  </div>",
+            '  <div class="panel">',
+            "    <h2>Cross-Attention Interpretation</h2>",
+            f"    {attention_html}",
+            "  </div>",
+            '  <div class="panel">',
+            "    <h2>Case Input Availability</h2>",
+            f"    <ul>{availability_html}</ul>",
+            "  </div>",
+            "</body>",
+            "</html>",
+        ]
+    )
 
 
 def build_index_html(output_root, rows, cohort_svg_rel):
@@ -507,76 +509,79 @@ def build_index_html(output_root, rows, cohort_svg_rel):
     if cohort_svg_rel:
         svg_block = f'<div class="panel"><h2>Cohort Diffusion View</h2><img src="{html.escape(cohort_svg_rel)}" alt="Cohort diffusion"/></div>'
 
-    page = f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <title>Stage 15.2 System Outputs</title>
-  <style>
-    body {{
-      margin: 0;
-      padding: 30px;
-      background: linear-gradient(180deg, #f4efe5 0%, #ede4d2 100%);
-      color: #2c2318;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }}
-    .panel {{
-      background: rgba(255, 253, 248, 0.96);
-      border: 1px solid #d7ccb5;
-      border-radius: 22px;
-      padding: 22px;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 28px rgba(77, 59, 31, 0.08);
-    }}
-    table {{
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }}
-    th, td {{
-      text-align: left;
-      padding: 10px 12px;
-      border-bottom: 1px solid #e6dcc8;
-    }}
-    th {{ background: #f3ecdd; }}
-    a {{ color: #20406d; text-decoration: none; }}
-    a:hover {{ text-decoration: underline; }}
-    img {{
-      max-width: 100%;
-      border-radius: 18px;
-      border: 1px solid #d7ccb5;
-      background: #fffdf8;
-    }}
-  </style>
-</head>
-<body>
-  <div class="panel">
-    <h1>Stage 15.2 System Outputs</h1>
-    <p>This index links each patient-level deliverable bundle. Primary outputs and latent diffusion explanations are bundled together with available cross-attention and edge interpretation materials.</p>
-  </div>
-  {svg_block}
-  <div class="panel">
-    <h2>Patient Deliverables</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Patient</th>
-          <th>Rec Prob</th>
-          <th>Pred Loc</th>
-          <th>Top Sus Org</th>
-          <th>Top Edge Dest</th>
-          <th>Top Path</th>
-          <th>Has Cross-Attn</th>
-        </tr>
-      </thead>
-      <tbody>
-        {''.join(table_rows)}
-      </tbody>
-    </table>
-  </div>
-</body>
-</html>
-"""
+    page = "\n".join(
+        [
+            "<!doctype html>",
+            '<html lang="en">',
+            "<head>",
+            '  <meta charset="utf-8"/>',
+            "  <title>Stage 15.2 System Outputs</title>",
+            "  <style>",
+            "    body {",
+            "      margin: 0;",
+            "      padding: 30px;",
+            "      background: linear-gradient(180deg, #f4efe5 0%, #ede4d2 100%);",
+            "      color: #2c2318;",
+            '      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;',
+            "    }",
+            "    .panel {",
+            "      background: rgba(255, 253, 248, 0.96);",
+            "      border: 1px solid #d7ccb5;",
+            "      border-radius: 22px;",
+            "      padding: 22px;",
+            "      margin-bottom: 20px;",
+            "      box-shadow: 0 10px 28px rgba(77, 59, 31, 0.08);",
+            "    }",
+            "    table {",
+            "      width: 100%;",
+            "      border-collapse: collapse;",
+            "      font-size: 14px;",
+            "    }",
+            "    th, td {",
+            "      text-align: left;",
+            "      padding: 10px 12px;",
+            "      border-bottom: 1px solid #e6dcc8;",
+            "    }",
+            "    th { background: #f3ecdd; }",
+            "    a { color: #20406d; text-decoration: none; }",
+            "    a:hover { text-decoration: underline; }",
+            "    img {",
+            "      max-width: 100%;",
+            "      border-radius: 18px;",
+            "      border: 1px solid #d7ccb5;",
+            "      background: #fffdf8;",
+            "    }",
+            "  </style>",
+            "</head>",
+            "<body>",
+            '  <div class="panel">',
+            "    <h1>Stage 15.2 System Outputs</h1>",
+            "    <p>This index links each patient-level deliverable bundle. Primary outputs and latent diffusion explanations are bundled together with available cross-attention and edge interpretation materials.</p>",
+            "  </div>",
+            f"  {svg_block}",
+            '  <div class="panel">',
+            "    <h2>Patient Deliverables</h2>",
+            "    <table>",
+            "      <thead>",
+            "        <tr>",
+            "          <th>Patient</th>",
+            "          <th>Rec Prob</th>",
+            "          <th>Pred Loc</th>",
+            "          <th>Top Sus Org</th>",
+            "          <th>Top Edge Dest</th>",
+            "          <th>Top Path</th>",
+            "          <th>Has Cross-Attn</th>",
+            "        </tr>",
+            "      </thead>",
+            "      <tbody>",
+            f"        {''.join(table_rows)}",
+            "      </tbody>",
+            "    </table>",
+            "  </div>",
+            "</body>",
+            "</html>",
+        ]
+    )
     (Path(output_root) / "index.html").write_text(page, encoding="utf-8")
 
 

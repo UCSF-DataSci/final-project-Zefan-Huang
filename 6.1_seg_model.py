@@ -1,4 +1,3 @@
-"""Train a CT-ORG organ segmentation baseline and export organ imaging tokens."""
 import argparse
 import csv
 import json
@@ -38,8 +37,6 @@ except Exception:
 
 if nn is None:
     class _NNPlaceholder:
-        """Placeholder namespace used when torch is unavailable."""
-
         Module = object
 
     nn = _NNPlaceholder()
@@ -60,7 +57,6 @@ DEFAULT_ORGAN_NAME_MAP = {
 
 
 def check_dependencies():
-    """English documentation for function `check_dependencies`."""
     missing = []
     if np is None:
         missing.append("numpy")
@@ -74,7 +70,6 @@ def check_dependencies():
 
 
 def resolve_run_paths(save_dir, run_tag):
-    """English documentation for function `resolve_run_paths`."""
     run_root = Path(save_dir) / run_tag
     train_dir = run_root / "train"
     token_dir = run_root / "tokens"
@@ -93,7 +88,6 @@ def resolve_run_paths(save_dir, run_tag):
 
 
 def ensure_output_dirs(run_paths):
-    """English documentation for function `ensure_output_dirs`."""
     run_paths["run_root"].mkdir(parents=True, exist_ok=True)
     run_paths["train_dir"].mkdir(parents=True, exist_ok=True)
     run_paths["token_dir"].mkdir(parents=True, exist_ok=True)
@@ -102,7 +96,6 @@ def ensure_output_dirs(run_paths):
 
 
 def set_seed(seed):
-    """English documentation for function `set_seed`."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -110,7 +103,6 @@ def set_seed(seed):
 
 
 def parse_case_id(path):
-    """English documentation for function `parse_case_id`."""
     m = re.search(r"(\d+)", path.name)
     if not m:
         return ""
@@ -118,7 +110,6 @@ def parse_case_id(path):
 
 
 def find_case_pairs(organ_dir):
-    """English documentation for function `find_case_pairs`."""
     pairs = []
     volume_files = sorted(organ_dir.glob("volume-*.nii.gz"))
     for vol in volume_files:
@@ -133,7 +124,6 @@ def find_case_pairs(organ_dir):
 
 
 def write_csv(path, fieldnames, rows):
-    """English documentation for function `write_csv`."""
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -141,19 +131,16 @@ def write_csv(path, fieldnames, rows):
 
 
 def load_nifti_array(path):
-    """English documentation for function `load_nifti_array`."""
     arr = nib.load(str(path)).get_fdata()
     return np.asarray(arr, dtype=np.float32)
 
 
 def normalize_ct(volume):
-    """English documentation for function `normalize_ct`."""
     clipped = np.clip(volume, HU_CLIP[0], HU_CLIP[1])
     return ((clipped - HU_CLIP[0]) / (HU_CLIP[1] - HU_CLIP[0])).astype(np.float32)
 
 
 def align_label_to_volume(label, volume_shape):
-    """English documentation for function `align_label_to_volume`."""
     if tuple(label.shape) == tuple(volume_shape):
         return label.astype(np.int64)
     zoom = (
@@ -174,7 +161,6 @@ def align_label_to_volume(label, volume_shape):
 
 
 def select_slice_indices(indices, max_count):
-    """English documentation for function `select_slice_indices`."""
     if not indices:
         return []
     if max_count is None or max_count <= 0 or len(indices) <= max_count:
@@ -189,7 +175,6 @@ def select_slice_indices(indices, max_count):
 
 
 def build_context_stack(volume, z, num_context_slices, slice_stride):
-    """English documentation for function `build_context_stack`."""
     depth = int(volume.shape[0])
     channels = []
     for offset in range(-num_context_slices, num_context_slices + 1):
@@ -200,7 +185,6 @@ def build_context_stack(volume, z, num_context_slices, slice_stride):
 
 
 def resize_multichannel_and_label(image_chw, label_hw, image_size):
-    """English documentation for function `resize_multichannel_and_label`."""
     target_h, target_w = int(image_size), int(image_size)
     zoom_h = target_h / image_chw.shape[1]
     zoom_w = target_w / image_chw.shape[2]
@@ -212,8 +196,6 @@ def resize_multichannel_and_label(image_chw, label_hw, image_size):
 
 
 class CTORG25DSliceDataset(Dataset):
-    """English documentation for class `CTORG25DSliceDataset`."""
-
     def __init__(self, pairs, max_cases, image_size, num_context_slices, slice_stride, max_slices_per_case):
         self.samples = []
         self.case_to_indices = {}
@@ -277,8 +259,6 @@ class CTORG25DSliceDataset(Dataset):
 
 
 class DoubleConv(nn.Module):
-    """English documentation for class `DoubleConv`."""
-
     def __init__(self, in_channels, out_channels):
         super().__init__()
         self.block = nn.Sequential(
@@ -295,8 +275,6 @@ class DoubleConv(nn.Module):
 
 
 class SmallUNet(nn.Module):
-    """English documentation for class `SmallUNet`."""
-
     def __init__(self, in_channels, num_classes, base_channels, token_dim):
         super().__init__()
         c1 = base_channels
@@ -336,7 +314,6 @@ class SmallUNet(nn.Module):
 
 
 def infer_num_classes(dataset, num_classes_arg):
-    """English documentation for function `infer_num_classes`."""
     if num_classes_arg and num_classes_arg > 1:
         return int(num_classes_arg)
     max_label = 0
@@ -346,7 +323,6 @@ def infer_num_classes(dataset, num_classes_arg):
 
 
 def build_organ_name_map(num_classes):
-    """English documentation for function `build_organ_name_map`."""
     out = {}
     for organ_id in range(1, num_classes):
         out[organ_id] = DEFAULT_ORGAN_NAME_MAP.get(organ_id, f"organ_{organ_id}")
@@ -354,7 +330,6 @@ def build_organ_name_map(num_classes):
 
 
 def split_train_val_case_ids(case_ids, val_ratio, seed):
-    """English documentation for function `split_train_val_case_ids`."""
     if len(case_ids) <= 1 or val_ratio <= 0:
         return list(case_ids), []
     case_ids = list(case_ids)
@@ -369,7 +344,6 @@ def split_train_val_case_ids(case_ids, val_ratio, seed):
 
 
 def case_ids_to_sample_indices(dataset, case_ids):
-    """English documentation for function `case_ids_to_sample_indices`."""
     indices = []
     for cid in case_ids:
         indices.extend(dataset.case_to_indices.get(cid, []))
@@ -377,7 +351,6 @@ def case_ids_to_sample_indices(dataset, case_ids):
 
 
 def multiclass_dice(logits, target, num_classes):
-    """English documentation for function `multiclass_dice`."""
     with torch.no_grad():
         pred = torch.argmax(logits, dim=1)
         dice_vals = []
@@ -396,7 +369,6 @@ def multiclass_dice(logits, target, num_classes):
 
 
 def evaluate_model(model, loader, device, num_classes, criterion):
-    """English documentation for function `evaluate_model`."""
     if loader is None or len(loader) == 0:
         return {"loss": None, "dice": None}
 
@@ -420,7 +392,6 @@ def evaluate_model(model, loader, device, num_classes, criterion):
 
 
 def is_improved(metric_name, current_value, best_value, min_delta):
-    """English documentation for function `is_improved`."""
     if current_value is None:
         return False
     if best_value is None:
@@ -431,7 +402,6 @@ def is_improved(metric_name, current_value, best_value, min_delta):
 
 
 def snapshot_state_dict(model):
-    """English documentation for function `snapshot_state_dict`."""
     return {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
 
 
@@ -447,7 +417,6 @@ def train_one_model(
     early_stop_patience,
     early_stop_min_delta,
 ):
-    """English documentation for function `train_one_model`."""
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss()
     logs = []
@@ -561,7 +530,6 @@ def train_one_model(
 
 
 def l2_normalize_1d(vec):
-    """English documentation for function `l2_normalize_1d`."""
     norm = torch.linalg.norm(vec, ord=2)
     if float(norm) <= 0.0:
         return vec
@@ -569,7 +537,6 @@ def l2_normalize_1d(vec):
 
 
 def extract_and_save_tokens(model, dataset, device, num_classes, pred_dir, organ_name_map):
-    """English documentation for function `extract_and_save_tokens`."""
     token_rows = []
     model.eval()
 
@@ -632,7 +599,6 @@ def extract_and_save_tokens(model, dataset, device, num_classes, pred_dir, organ
 
 
 def parse_args():
-    """English documentation for function `parse_args`."""
     parser = argparse.ArgumentParser(
         description="CT-ORG organ segmentation + organ imaging tokens (2.5D).",
         allow_abbrev=False,
@@ -672,7 +638,6 @@ def parse_args():
 
 
 def main():
-    """English documentation for function `main`."""
     args = parse_args()
     missing = check_dependencies()
     if missing:

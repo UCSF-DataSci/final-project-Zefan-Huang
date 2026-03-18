@@ -1,18 +1,3 @@
-"""
-Stage 10 multimodal fusion (Cross-Attention with organ queries).
-
-This file provides:
-- a reusable OrganCrossAttentionFusion module
-- a runnable entrypoint that consumes Stage 9 outputs and exports fused organ tokens Z
-
-Process:
-- Query: q_o from Stage 9 OrganQueryBuilder
-- Key/Value: T from Stage 9 OrganEvidenceProjector
-- Mask: mask_missing_tokens
-- h_o = CrossAttn(q_o, K=T, V=T, mask=missing)
-- z_o = LN(q_o + h_o)
-- z_o = LN(z_o + FFN(z_o))
-"""
 import argparse
 import csv
 import importlib.util

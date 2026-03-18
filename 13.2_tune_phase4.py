@@ -1,6 +1,3 @@
-"""
-Conservative Phase 4 tuning for Stage 13.
-"""
 import argparse
 import csv
 import importlib.util

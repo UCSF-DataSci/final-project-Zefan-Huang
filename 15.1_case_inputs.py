@@ -1,9 +1,3 @@
-"""
-Stage 15.1 case-input packaging for inference and deliverables.
-
-This script standardizes a single case's inputs into a canonical bundle that can
-be consumed by later inference/deliverable stages.
-"""
 import argparse
 import csv
 import importlib.util

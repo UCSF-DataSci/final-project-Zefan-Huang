@@ -1,6 +1,3 @@
-"""
-Stage 13.2 Phase 4 multimodal fine-tuning on the 130-case RNA subset.
-"""
 import argparse
 import importlib.util
 from pathlib import Path

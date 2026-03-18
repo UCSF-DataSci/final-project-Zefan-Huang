@@ -1,6 +1,3 @@
-"""
-Stage 13.3 compare Phase 3 baseline vs Phase 4 RNA fine-tuning.
-"""
 import argparse
 import csv
 import importlib.util

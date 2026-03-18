@@ -1,4 +1,3 @@
-"""Export latent diffusion explanation outputs and supporting reports for Stage 12.2."""
 import argparse
 import csv
 import json

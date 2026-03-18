@@ -1,10 +1,3 @@
-"""
-Stage 9 organ tokenization modules for later multimodal fusion.
-
-This file provides:
-- a learned projector that assembles Stage 9 evidence tokens into a fixed-slot tensor
-- a learned organ-query builder implementing q_o = e_o + MLP([g_rna, g_ehr, t_imm, t_tumor])
-"""
 from pathlib import Path
 
 import numpy as np

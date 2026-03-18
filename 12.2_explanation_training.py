@@ -1,16 +1,3 @@
-"""
-Stage 12.2 latent diffusion explanation training.
-
-This stage upgrades explanation outputs from static/random-init exports to
-task-constrained latent explanations:
-- organ susceptibility: s_o = sigmoid(MLP(z'_o))
-- edge diffusion tendency: p_{i->j} = sigmoid(MLP([z'_i, z'_j, e_ij]))
-- top-k paths remain derived from the trained edge matrix
-
-Important:
-- organ/path outputs remain model-induced latent explanations
-- they are not organ-level ground-truth supervision
-"""
 import argparse
 import importlib.util
 import json

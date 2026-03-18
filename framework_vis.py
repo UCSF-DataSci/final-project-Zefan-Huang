@@ -7,7 +7,7 @@ OUTPUT_PATH = ROOT / "key_outputs" / "academic_architecture_transformer_gnn_join
 W, H = 2420, 910
 FAM = "'Helvetica Neue', Arial, sans-serif"
 
-# ── Palette ──────────────────────────────────────────────────────────────────
+
 BLUE_BG,   BLUE_BD,   BLUE_H,   BLUE_B   = "#EFF6FF", "#93C5FD", "#1E40AF", "#1E3A5F"
 AMBER_BG,  AMBER_BD,  AMBER_H,  AMBER_B  = "#FFFBEB", "#F59E0B", "#78350F", "#92400E"
 GREEN_BG,  GREEN_BD,  GREEN_H,  GREEN_B  = "#F0FDF4", "#34D399", "#14532D", "#166534"
@@ -49,7 +49,7 @@ def arr(x1, y1, x2, y2, color=ARROW_C, sw=2.5, dash=None):
 
 
 def box(x, y, w, h, title, lines, bg=WH, bd=MID, th=DARK, tb=MID, tsz=13, bsz=12):
-    """Component box: rounded rect + title + horizontal rule + bullet lines."""
+
     sep = y + tsz + 8
     els = [
         R(x, y, w, h, bg, bd, sw=1.5),
@@ -76,7 +76,7 @@ def sec_header(x, y, w, num, title, sub, hc):
 def build_svg():
     g = []
 
-    # ── SVG open + defs ──────────────────────────────────────────────────────
+
     g.append(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
              f'viewBox="0 0 {W} {H}">')
     g.append(f"""<defs>
@@ -105,12 +105,11 @@ def build_svg():
     PAD = 12
     cols = [
         (22,  292),   # 0  Inputs
-        (354, 378),   # 1  Fusion      (Frozen)
-        (782, 352),   # 2  Graph       (Frozen)
-        (1184, 578),  # 3  Prediction  (Trainable)
+        (354, 378),   # 1  Fusion
+        (782, 352),   # 2  Graph
+        (1184, 578),  # 3  Prediction
         (1812, 572),  # 4  Outputs
     ]
-    # right edges: 314, 732, 1134, 1762, 2384  — all fit in W=2420
 
     colors = [
         (BLUE_BG,   BLUE_BD,   BLUE_H),
@@ -145,9 +144,7 @@ def build_svg():
     def bx(ci): return cols[ci][0] + PAD
     def bw(ci): return cols[ci][1] - 2 * PAD
 
-    # ════════════════════════════════════════════════════════════════════════
-    # COL 0 — Inputs
-    # ════════════════════════════════════════════════════════════════════════
+
     x0, w0 = bx(0), bw(0)
 
     g.append(box(x0, 152, w0, 108, "CT Imaging Tokens",
@@ -179,9 +176,7 @@ def build_svg():
                  "evidence — no imputation needed."],
                 sz=12, fill=MID))
 
-    # ════════════════════════════════════════════════════════════════════════
-    # COL 1 — Cross-Attention Fusion
-    # ════════════════════════════════════════════════════════════════════════
+
     x1, w1 = bx(1), bw(1)
     hw = (w1 - 8) // 2
 
@@ -217,9 +212,7 @@ def build_svg():
     g.append(T(x1 + 10, 612, "Stage 10  ·  OrganCrossAttentionFusion",
                sz=12, fill=AMBER_B))
 
-    # ════════════════════════════════════════════════════════════════════════
-    # COL 2 — Graph Reasoning
-    # ════════════════════════════════════════════════════════════════════════
+
     x2, w2 = bx(2), bw(2)
 
     g.append(box(x2, 152, w2, 116, "Graph Construction",
@@ -251,9 +244,7 @@ def build_svg():
     g.append(T(x2 + 10, 632, "Stage 11.1/11.2  ·  OrganGraphReasoner",
                sz=12, fill=AMBER_B))
 
-    # ════════════════════════════════════════════════════════════════════════
-    # COL 3 — Joint Prediction  (TRAINABLE)
-    # ════════════════════════════════════════════════════════════════════════
+
     x3, w3 = bx(3), bw(3)
     lw = w3 * 5 // 12
     rw = w3 - lw - 8
@@ -274,7 +265,7 @@ def build_svg():
                   "• Explanation is in-loop, not post-hoc"],
                  bg="#DCFCE7", bd=GREEN_BD, th=GREEN_H, tb=GREEN_B))
 
-    # 4 output head boxes
+
     HW = (w3 - 3 * 8) // 4
     head_data = [
         ("OS Head",    ["Cox / discrete hazard"]),
@@ -298,9 +289,7 @@ def build_svg():
                "Stage 12–13  ·  ExplanationGuidedPrimaryModel  ·  Only trained module in the pipeline",
                sz=11, fill=GREEN_B))
 
-    # ════════════════════════════════════════════════════════════════════════
-    # COL 4 — Outputs
-    # ════════════════════════════════════════════════════════════════════════
+
     x4, w4 = bx(4), bw(4)
 
     g.append(box(x4, 152, w4, 84, "Overall Survival",
@@ -331,9 +320,7 @@ def build_svg():
                  "Location labels  ·  Edge prior regularization"],
                 sz=12, fill=PURPLE_B))
 
-    # ════════════════════════════════════════════════════════════════════════
-    # Main flow arrows  (horizontal, at y=480)
-    # ════════════════════════════════════════════════════════════════════════
+
     AY = 480
     gaps = [
         (cols[0][0] + cols[0][1], cols[1][0]),  # C0 → C1
@@ -362,9 +349,7 @@ def build_svg():
     g.append(T((fb_x1 + fb_x2) // 2, mid_y + 14, "latent supervision signal",
                sz=11, fill=PURPLE_H, fw=600, anchor="middle"))
 
-    # ════════════════════════════════════════════════════════════════════════
-    # Bottom note bar
-    # ════════════════════════════════════════════════════════════════════════
+
     NY = SY + SH + 34
     g.append(R(20, NY, W - 40, 46, WH, "#CBD5E1", sw=1, rx=10))
     g.append(T(40, NY + 14, "Design note:", sz=12, fill=DARK, fw=700))

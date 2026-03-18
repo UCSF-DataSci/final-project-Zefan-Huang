@@ -1,4 +1,3 @@
-"""Train and export primary supervised outputs for survival and recurrence tasks."""
 import argparse
 import csv
 import json

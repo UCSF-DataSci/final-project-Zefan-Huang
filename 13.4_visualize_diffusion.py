@@ -1,6 +1,3 @@
-"""
-Render latent diffusion explanations as directional SVG graphs and an HTML dashboard.
-"""
 import argparse
 import csv
 import html
@@ -586,99 +583,105 @@ def render_dashboard(output_root, explanation_root, selected_rows, cohort_svg_pa
         )
 
     cohort_rel = Path(cohort_svg_path).relative_to(output_root) if cohort_svg_path else None
-    page = f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <title>Directional Diffusion Dashboard</title>
-  <style>
-    body {{
-      margin: 0;
-      padding: 32px;
-      background: linear-gradient(180deg, #f4efe5 0%, #ede4d2 100%);
-      color: #2c2318;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }}
-    h1, h2 {{
-      margin: 0 0 12px 0;
-    }}
-    p {{
-      margin: 0 0 14px 0;
-      line-height: 1.45;
-      color: #5f5447;
-    }}
-    .panel {{
-      background: rgba(255, 253, 248, 0.96);
-      border: 1px solid #d7ccb5;
-      border-radius: 22px;
-      padding: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 30px rgba(77, 59, 31, 0.08);
-    }}
-    img {{
-      max-width: 100%;
-      border-radius: 18px;
-      border: 1px solid #d7ccb5;
-      background: #fffdf8;
-    }}
-    table {{
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }}
-    th, td {{
-      text-align: left;
-      padding: 10px 12px;
-      border-bottom: 1px solid #e6dcc8;
-      vertical-align: top;
-    }}
-    th {{
-      background: #f3ecdd;
-      font-weight: 700;
-    }}
-    a {{
-      color: #20406d;
-      text-decoration: none;
-    }}
-    a:hover {{
-      text-decoration: underline;
-    }}
-  </style>
-</head>
-<body>
-  <div class="panel">
-    <h1>Directional Diffusion Dashboard</h1>
-    <p>Source explanation root: {html.escape(str(explanation_root))}</p>
-    <p>This view is a model-induced latent diffusion map for explaining OS and recurrence outputs. It is directional, but it is not organ-level ground-truth supervision.</p>
-  </div>
-  <div class="panel">
-    <h2>Cohort View</h2>
-    <p>The cohort graph averages Primary outgoing diffusion probabilities and organ susceptibility across the selected patients.</p>
-    {"<img src=\"" + html.escape(str(cohort_rel)) + "\" alt=\"Cohort diffusion graph\"/>" if cohort_rel else ""}
-  </div>
-  <div class="panel">
-    <h2>Patient Views</h2>
-    <p>Open any patient SVG to inspect the predicted outgoing directions from Primary.</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Patient</th>
-          <th>Rec Prob</th>
-          <th>Pred Loc</th>
-          <th>Top-1 Dest</th>
-          <th>Top-1 Prob</th>
-          <th>Top-3 Directions</th>
-          <th>Top Paths</th>
-        </tr>
-      </thead>
-      <tbody>
-        {"".join(cards)}
-      </tbody>
-    </table>
-  </div>
-</body>
-</html>
-"""
+    cohort_img = ""
+    if cohort_rel:
+        cohort_img = f'<img src="{html.escape(str(cohort_rel))}" alt="Cohort diffusion graph"/>'
+    page = "\n".join(
+        [
+            "<!doctype html>",
+            '<html lang="en">',
+            "<head>",
+            '  <meta charset="utf-8"/>',
+            "  <title>Directional Diffusion Dashboard</title>",
+            "  <style>",
+            "    body {",
+            "      margin: 0;",
+            "      padding: 32px;",
+            "      background: linear-gradient(180deg, #f4efe5 0%, #ede4d2 100%);",
+            "      color: #2c2318;",
+            '      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;',
+            "    }",
+            "    h1, h2 {",
+            "      margin: 0 0 12px 0;",
+            "    }",
+            "    p {",
+            "      margin: 0 0 14px 0;",
+            "      line-height: 1.45;",
+            "      color: #5f5447;",
+            "    }",
+            "    .panel {",
+            "      background: rgba(255, 253, 248, 0.96);",
+            "      border: 1px solid #d7ccb5;",
+            "      border-radius: 22px;",
+            "      padding: 24px;",
+            "      margin-bottom: 24px;",
+            "      box-shadow: 0 10px 30px rgba(77, 59, 31, 0.08);",
+            "    }",
+            "    img {",
+            "      max-width: 100%;",
+            "      border-radius: 18px;",
+            "      border: 1px solid #d7ccb5;",
+            "      background: #fffdf8;",
+            "    }",
+            "    table {",
+            "      width: 100%;",
+            "      border-collapse: collapse;",
+            "      font-size: 14px;",
+            "    }",
+            "    th, td {",
+            "      text-align: left;",
+            "      padding: 10px 12px;",
+            "      border-bottom: 1px solid #e6dcc8;",
+            "      vertical-align: top;",
+            "    }",
+            "    th {",
+            "      background: #f3ecdd;",
+            "      font-weight: 700;",
+            "    }",
+            "    a {",
+            "      color: #20406d;",
+            "      text-decoration: none;",
+            "    }",
+            "    a:hover {",
+            "      text-decoration: underline;",
+            "    }",
+            "  </style>",
+            "</head>",
+            "<body>",
+            '  <div class="panel">',
+            "    <h1>Directional Diffusion Dashboard</h1>",
+            f"    <p>Source explanation root: {html.escape(str(explanation_root))}</p>",
+            "    <p>This view is a model-induced latent diffusion map for explaining OS and recurrence outputs. It is directional, but it is not organ-level ground-truth supervision.</p>",
+            "  </div>",
+            '  <div class="panel">',
+            "    <h2>Cohort View</h2>",
+            "    <p>The cohort graph averages Primary outgoing diffusion probabilities and organ susceptibility across the selected patients.</p>",
+            f"    {cohort_img}",
+            "  </div>",
+            '  <div class="panel">',
+            "    <h2>Patient Views</h2>",
+            "    <p>Open any patient SVG to inspect the predicted outgoing directions from Primary.</p>",
+            "    <table>",
+            "      <thead>",
+            "        <tr>",
+            "          <th>Patient</th>",
+            "          <th>Rec Prob</th>",
+            "          <th>Pred Loc</th>",
+            "          <th>Top-1 Dest</th>",
+            "          <th>Top-1 Prob</th>",
+            "          <th>Top-3 Directions</th>",
+            "          <th>Top Paths</th>",
+            "        </tr>",
+            "      </thead>",
+            "      <tbody>",
+            f"        {''.join(cards)}",
+            "      </tbody>",
+            "    </table>",
+            "  </div>",
+            "</body>",
+            "</html>",
+        ]
+    )
     html_path.write_text(page, encoding="utf-8")
     return html_path
 
