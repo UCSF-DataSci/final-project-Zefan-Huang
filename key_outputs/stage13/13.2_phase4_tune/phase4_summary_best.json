@@ -1,0 +1,46 @@
+{
+  "phase": "phase4_rna_finetune_130",
+  "subset_stage11_path": "/Users/zefanhuang/Downloads/223/output/stage13/13.2_phase4_tune/stage_c/C_seed2025/prepared/stage11_rna_subset_pack.npz",
+  "phase4_model_dir": "/Users/zefanhuang/Downloads/223/output/stage13/13.2_phase4_tune/stage_c/C_seed2025/phase4_model",
+  "explanation_dir": "/Users/zefanhuang/Downloads/223/output/stage13/13.2_phase4_tune/stage_c/C_seed2025/explanation_outputs",
+  "rna_patient_count": 130,
+  "init_model_path": "/Users/zefanhuang/Downloads/223/output/stage13/13.1_phase3_baseline/phase3_model/model/explanation_guided_model.pt",
+  "freeze_prefixes": [
+    "pool",
+    "base_trunk"
+  ],
+  "loss_weight_expl_rec": 0.5,
+  "loss_weight_expl_loc": 0.25,
+  "loss_weight_edge_prior": 0.05,
+  "val_metrics": {
+    "val_patient_count": 28,
+    "val_os_known_count": 28,
+    "val_rec_known_count": 28,
+    "val_loc_known_count": 9,
+    "val_c_index": 0.5108695652173914,
+    "val_rec_auc": 0.695906432748538,
+    "val_loc_acc": 0.3333333333333333
+  },
+  "val_explanation_metrics": {
+    "expl_rec_auc": 0.5029239766081871,
+    "expl_loc_acc": 0.5555555555555556
+  },
+  "explanation_top1_path_frequency": [
+    {
+      "path_names": [
+        "Primary",
+        "Bone"
+      ],
+      "count": 127,
+      "fraction": 0.9769230769230769
+    },
+    {
+      "path_names": [
+        "Primary",
+        "Liver"
+      ],
+      "count": 3,
+      "fraction": 0.023076923076923078
+    }
+  ]
+}

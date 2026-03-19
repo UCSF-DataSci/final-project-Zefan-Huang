@@ -1,0 +1,42 @@
+{
+  "patient_count": 211,
+  "num_folds": 3,
+  "cv_seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "num_runs": 9,
+  "pool_mode": "attention",
+  "survival_mode": "discrete",
+  "num_time_bins": 8,
+  "loss_weight_os": 0.5,
+  "loss_weight_rec": 1.0,
+  "loss_weight_loc": 1.0,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "dropout": 0.1,
+  "epochs": 200,
+  "fold_metric_mean": {
+    "val_c_index": 0.5355658531188965,
+    "val_rec_auc": 0.5761337876319885,
+    "val_loc_acc": 0.38117286562919617,
+    "best_monitor_loss": 2.5969793796539307
+  },
+  "fold_metric_std": {
+    "val_c_index": 0.057771872729063034,
+    "val_rec_auc": 0.05781250447034836,
+    "val_loc_acc": 0.1079530194401741,
+    "best_monitor_loss": 0.08737190812826157
+  },
+  "oof_metric_mean": {
+    "oof_c_index": 0.5307417511940002,
+    "oof_rec_auc": 0.5666745901107788,
+    "oof_loc_acc": 0.37654319405555725
+  },
+  "oof_metric_std": {
+    "oof_c_index": 0.01634705439209938,
+    "oof_rec_auc": 0.025058893486857414,
+    "oof_loc_acc": 0.0087297223508358
+  }
+}

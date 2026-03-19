@@ -1,0 +1,10 @@
+{
+  "explanation_root": "/Users/zefanhuang/Downloads/223/output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/runtime/R01-003/explanation_outputs",
+  "primary_predictions_csv": "/Users/zefanhuang/Downloads/223/output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/runtime/R01-003/model_inference/pred/patient_primary_predictions.csv",
+  "attention_npz": "output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/runtime/R01-003/stage10/fused_organ_tokens.npz",
+  "visualization_root": "output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/visualization",
+  "case_input_root": "output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/case_inputs",
+  "patient_count": 1,
+  "has_attention_payload": true,
+  "cohort_svg_rel": "cohort_primary_diffusion.svg"
+}

@@ -1,0 +1,9286 @@
+[
+  {
+    "patient_id": "AMC-001",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7130955470636717,
+        "score_prob": 0.4901246428489685
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8967706278419236,
+        "score_prob": 0.40788474678993225
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0471154993978102,
+        "score_prob": 0.3509486019611358
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-002",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6588822814101146,
+        "score_prob": 0.5174293518066406
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.837248635564898,
+        "score_prob": 0.43289995193481445
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9985162238082169,
+        "score_prob": 0.3684256970882416
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-003",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6865012231201127,
+        "score_prob": 0.5033340454101562
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8564324705808433,
+        "score_prob": 0.4246744215488434
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.022241219425339,
+        "score_prob": 0.3597876727581024
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-004",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.726511661875707,
+        "score_prob": 0.4835929870605469
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9060511632186834,
+        "score_prob": 0.4041168689727783
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0786654706014291,
+        "score_prob": 0.3400490283966065
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-005",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8080957150173121,
+        "score_prob": 0.44570600986480713
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9845083740590415,
+        "score_prob": 0.373622864484787
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.137537232481806,
+        "score_prob": 0.32060763239860535
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-006",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6604124185627025,
+        "score_prob": 0.5166382193565369
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8055282387592085,
+        "score_prob": 0.44685181975364685
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.96949760909639,
+        "score_prob": 0.37927353382110596
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-007",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6530536770328383,
+        "score_prob": 0.5204540491104126
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8233225091074543,
+        "score_prob": 0.43897074460983276
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9865043498750827,
+        "score_prob": 0.3728778660297394
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-008",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.689012027198851,
+        "score_prob": 0.5020718574523926
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.856911402045697,
+        "score_prob": 0.42447108030319214
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9889143575981123,
+        "score_prob": 0.37198030948638916
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-009",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8185702216148288,
+        "score_prob": 0.4410618245601654
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9879907031636859,
+        "score_prob": 0.37232404947280884
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1318168610410437,
+        "score_prob": 0.3224468827247619
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-010",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6909252056326116,
+        "score_prob": 0.5011122226715088
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8788137354555782,
+        "score_prob": 0.4152752459049225
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0441578063146448,
+        "score_prob": 0.35198813676834106
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-011",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.756366496243025,
+        "score_prob": 0.4693687856197357
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9349879852757877,
+        "score_prob": 0.39259058237075806
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0910966802678181,
+        "score_prob": 0.3358479738235474
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-012",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8038712667025867,
+        "score_prob": 0.4475928544998169
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.017108903994352,
+        "score_prob": 0.36163896322250366
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.195485223342736,
+        "score_prob": 0.302557110786438
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-013",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7876270310116704,
+        "score_prob": 0.45492303371429443
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9876420120662492,
+        "score_prob": 0.372453898191452
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1616757058323333,
+        "score_prob": 0.31296131014823914
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-014",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7046964522020359,
+        "score_prob": 0.4942585825920105
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8745367167571967,
+        "score_prob": 0.4170551896095276
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.002360912331468,
+        "score_prob": 0.3670119345188141
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-015",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7489791562044052,
+        "score_prob": 0.4728490114212036
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9152568874700645,
+        "score_prob": 0.40041375160217285
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0505550362765923,
+        "score_prob": 0.3497435748577118
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-016",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.837600143103775,
+        "score_prob": 0.43274781107902527
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0486931007982834,
+        "score_prob": 0.350395381450653
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2036996139541736,
+        "score_prob": 0.3000819683074951
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-017",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7660073426237819,
+        "score_prob": 0.46486541628837585
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9567754029993458,
+        "score_prob": 0.3841295540332794
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0961663064831222,
+        "score_prob": 0.33414965867996216
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-018",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8286781099015752,
+        "score_prob": 0.4366260766983032
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0140014769741612,
+        "score_prob": 0.36276447772979736
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1702238952379658,
+        "score_prob": 0.3102974593639374
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-019",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6630895875536229,
+        "score_prob": 0.515256941318512
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8285301419759465,
+        "score_prob": 0.43669068813323975
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9870156019280789,
+        "score_prob": 0.37268728017807007
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-020",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8185290050755581,
+        "score_prob": 0.4410800039768219
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.992565020644161,
+        "score_prob": 0.3706248104572296
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1397755072094835,
+        "score_prob": 0.3198908269405365
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-021",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8235501068563055,
+        "score_prob": 0.4388708472251892
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9948138294158076,
+        "score_prob": 0.36979228258132935
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.146832557925984,
+        "score_prob": 0.3176412880420685
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-022",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7765200250631159,
+        "score_prob": 0.4600040316581726
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.960367626440099,
+        "score_prob": 0.3827521502971649
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1222671716776194,
+        "score_prob": 0.32554090023040777
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-023",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7343537834312258,
+        "score_prob": 0.47981542348861694
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9120643780611561,
+        "score_prob": 0.401694118976593
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0758505430199996,
+        "score_prob": 0.3410075902938843
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-024",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8228082963676212,
+        "score_prob": 0.43919652700424194
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.012088887286119,
+        "score_prob": 0.3634589612483978
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1516197249465951,
+        "score_prob": 0.3161243200302124
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-025",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.731507825331232,
+        "score_prob": 0.48118290305137634
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9150482852511513,
+        "score_prob": 0.40049728751182556
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0800227272644265,
+        "score_prob": 0.3395878076553345
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-026",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6051300738070938,
+        "score_prob": 0.5460034012794495
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.74171869409465,
+        "score_prob": 0.476294606924057
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.896225050121387,
+        "score_prob": 0.40810734033584595
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-027",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8142908233767515,
+        "score_prob": 0.44295334815979004
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0074423861105313,
+        "score_prob": 0.3651517033576965
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1520673440650004,
+        "score_prob": 0.315982848405838
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-028",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7196604611298755,
+        "score_prob": 0.48691755533218384
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8754243447998352,
+        "score_prob": 0.41668516397476196
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0218466804556474,
+        "score_prob": 0.35992965102195734
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-029",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8191544629190438,
+        "score_prob": 0.44080421328544617
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.998835632474496,
+        "score_prob": 0.36830803751945496
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1451851494743521,
+        "score_prob": 0.3181650042533874
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-030",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7508218126813367,
+        "score_prob": 0.4719785153865814
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9332420169410727,
+        "score_prob": 0.3932766318321228
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1029437376682147,
+        "score_prob": 0.33189263939857483
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-031",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8170887098537306,
+        "score_prob": 0.4417157471179962
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.000196770475999,
+        "score_prob": 0.3678070604801178
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1679838661035686,
+        "score_prob": 0.3109933137893676
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-032",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7099411899813908,
+        "score_prob": 0.4916731119155884
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9030362976213812,
+        "score_prob": 0.40533706545829773
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0679269846042747,
+        "score_prob": 0.34372031688690186
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-033",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7497768306515953,
+        "score_prob": 0.4724719822406769
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9377966452267649,
+        "score_prob": 0.3914894759654999
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1049163245188298,
+        "score_prob": 0.3312385976314545
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-034",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7567194607932488,
+        "score_prob": 0.4692031443119049
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9242434902651329,
+        "score_prob": 0.3968315124511719
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0882484496418603,
+        "score_prob": 0.336805909872055
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-035",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7395069349858672,
+        "score_prob": 0.4773492217063904
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9280152420258932,
+        "score_prob": 0.3953375816345215
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.09313750627613,
+        "score_prob": 0.33516326546669006
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-036",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6820415507423754,
+        "score_prob": 0.5055837631225586
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8655254504962342,
+        "score_prob": 0.4208303689956665
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0274249902266108,
+        "score_prob": 0.3579274415969848
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-037",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.665982747543862,
+        "score_prob": 0.5137683749198914
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8202586536623078,
+        "score_prob": 0.4403177499771118
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9898265966405743,
+        "score_prob": 0.3716411292552948
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-038",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.629443346043336,
+        "score_prob": 0.5328883528709412
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7891412773391445,
+        "score_prob": 0.45423468947410583
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9337737517624818,
+        "score_prob": 0.3930675685405731
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-039",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8435433477400133,
+        "score_prob": 0.4301835298538208
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.018895066149648,
+        "score_prob": 0.3609935939311981
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1610832846081935,
+        "score_prob": 0.31314677000045776
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-040",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7243550149571969,
+        "score_prob": 0.484637051820755
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.874073555715227,
+        "score_prob": 0.417248398065567
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0406676857668142,
+        "score_prob": 0.35321876406669617
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-041",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.701460847890113,
+        "score_prob": 0.49586039781570435
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8806269479633747,
+        "score_prob": 0.4145229458808899
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.041675191494724,
+        "score_prob": 0.352863073348999
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-042",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7162639115047169,
+        "score_prob": 0.48857420682907104
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8985719999076309,
+        "score_prob": 0.40715065598487854
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0519078380505325,
+        "score_prob": 0.349270761013031
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-043",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7538730050081515,
+        "score_prob": 0.4705406129360199
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9361758777550104,
+        "score_prob": 0.3921245038509369
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0715021519700183,
+        "score_prob": 0.34249365329742437
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-044",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7781205745646618,
+        "score_prob": 0.45926836133003235
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9724494778561502,
+        "score_prob": 0.3781556189060211
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1528803977678874,
+        "score_prob": 0.31572604179382324
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-045",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6556226623370719,
+        "score_prob": 0.5191187262535095
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8286067849901252,
+        "score_prob": 0.43665722012519836
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9850897165408613,
+        "score_prob": 0.37340572476387024
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-046",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8036435103074713,
+        "score_prob": 0.4476948082447052
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9842114501147292,
+        "score_prob": 0.3737338185310364
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.144767845748543,
+        "score_prob": 0.31829780340194697
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-047",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8207255092280067,
+        "score_prob": 0.44011223316192627
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0153194278305682,
+        "score_prob": 0.3622866868972778
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.168809394267708,
+        "score_prob": 0.31073668599128723
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-048",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7566657904652895,
+        "score_prob": 0.4692283272743225
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9452245497511169,
+        "score_prob": 0.38859230279922485
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.083109451949011,
+        "score_prob": 0.3385412096977234
+      }
+    ]
+  },
+  {
+    "patient_id": "AMC-049",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6949259934031164,
+        "score_prob": 0.4991113841533661
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8548851454555052,
+        "score_prob": 0.42533203959465027
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0133471752208116,
+        "score_prob": 0.36300191283226013
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-001",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.2901332355420933,
+        "score_prob": 0.7481638789176941
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.37654798382919885,
+        "score_prob": 0.6862261891365051
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.44635287851711547,
+        "score_prob": 0.6399579048156738
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-002",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.26271586254480783,
+        "score_prob": 0.7689603567123413
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.34220545275216063,
+        "score_prob": 0.7102022767066956
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.405803272626829,
+        "score_prob": 0.6664412617683411
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-003",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.48878994653029634,
+        "score_prob": 0.6133681535720825
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6118095616881702,
+        "score_prob": 0.5423685312271118
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6601473330254998,
+        "score_prob": 0.5167751908302307
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-004",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8153670228308174,
+        "score_prob": 0.44247689843177795
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9434769397028675,
+        "score_prob": 0.389272004365921
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0544083203465349,
+        "score_prob": 0.348398506641388
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-005",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0394069274804596,
+        "score_prob": 0.353664368391037
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1518369559684918,
+        "score_prob": 0.3160556554794311
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2966062383442865,
+        "score_prob": 0.2734582722187043
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-006",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8019310410948772,
+        "score_prob": 0.4484621286392212
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9607001577556199,
+        "score_prob": 0.38262489438056946
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0457164134759531,
+        "score_prob": 0.35143995285034174
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-007",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7080462501472505,
+        "score_prob": 0.49260568618774414
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8147201006877003,
+        "score_prob": 0.44276323914527893
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9300174217519397,
+        "score_prob": 0.39454683661460876
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-008",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.2673017384064486,
+        "score_prob": 0.7654420733451843
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3483530280188128,
+        "score_prob": 0.7058496475219727
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.40750330829553255,
+        "score_prob": 0.6653092503547668
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-009",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6886559385299603,
+        "score_prob": 0.5022506713867188
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8733847478022386,
+        "score_prob": 0.4175359010696411
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9989209224605,
+        "score_prob": 0.3682766258716583
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-010",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.33906391189059937,
+        "score_prob": 0.7124369144439697
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.44824687038749045,
+        "score_prob": 0.638746976852417
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5025568384979666,
+        "score_prob": 0.6049818396568298
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-011",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.27972196806891386,
+        "score_prob": 0.7559939026832581
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.36080180511421284,
+        "score_prob": 0.6971171498298645
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4356704455524349,
+        "score_prob": 0.6468308568000793
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-012",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.603114948457479,
+        "score_prob": 0.5471047759056091
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.749027436161608,
+        "score_prob": 0.47282618284225464
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8544175484315503,
+        "score_prob": 0.42553097009658813
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-013",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7705736348355006,
+        "score_prob": 0.4627475440502167
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9183650223022699,
+        "score_prob": 0.3991711437702179
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.000755851348016,
+        "score_prob": 0.3676014840602875
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-014",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6744716177763258,
+        "score_prob": 0.5094255208969116
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8192457392049872,
+        "score_prob": 0.4407639801502228
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8825434315305895,
+        "score_prob": 0.4137292802333832
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-015",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9969533374111159,
+        "score_prob": 0.36900195479393005
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1575980367932415,
+        "score_prob": 0.31424006819725037
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.24707078839898,
+        "score_prob": 0.28734526038169855
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-016",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4949162810919493,
+        "score_prob": 0.6096219420433044
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5921632459222353,
+        "score_prob": 0.5531294345855713
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7137241096255792,
+        "score_prob": 0.48981666564941406
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-017",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9182515447612571,
+        "score_prob": 0.3992164433002472
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0721485393651826,
+        "score_prob": 0.34227234125137324
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1710966469405584,
+        "score_prob": 0.31002676486968994
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-018",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.795370556717627,
+        "score_prob": 0.45141392946243286
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9157870355893051,
+        "score_prob": 0.4002015292644501
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0747720600291422,
+        "score_prob": 0.3413755595684052
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-019",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.38065788090062413,
+        "score_prob": 0.6834116578102112
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4882382364214499,
+        "score_prob": 0.613706648349762
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.548245126198683,
+        "score_prob": 0.5779631733894348
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-020",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.26179651261366094,
+        "score_prob": 0.7696676254272461
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.34697138416629036,
+        "score_prob": 0.7068255543708801
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4115903848337201,
+        "score_prob": 0.6625956296920776
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-021",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4895522909911616,
+        "score_prob": 0.6129007339477539
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.599204919690751,
+        "score_prob": 0.5492481589317322
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6987717060582784,
+        "score_prob": 0.49719563126564026
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-022",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9489829667872887,
+        "score_prob": 0.3871345520019531
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1057193803865184,
+        "score_prob": 0.33097270131111145
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2077275461999328,
+        "score_prob": 0.2988756895065308
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-023",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9279078248955618,
+        "score_prob": 0.39538004994392395
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0923165002448112,
+        "score_prob": 0.3354385495185852
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2102145312516952,
+        "score_prob": 0.29813331365585327
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-024",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9855722177007926,
+        "score_prob": 0.373225599527359
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1444989756435748,
+        "score_prob": 0.3183833956718445
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2363559280298493,
+        "score_prob": 0.2904406785964966
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-025",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3395587339059902,
+        "score_prob": 0.7120844721794128
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4477480397650306,
+        "score_prob": 0.639065682888031
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.49958330668227713,
+        "score_prob": 0.6067834496498108
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-026",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.49742388119385705,
+        "score_prob": 0.6080951690673828
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5958635213733271,
+        "score_prob": 0.5510864853858948
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.73599781164674,
+        "score_prob": 0.47902724146842957
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-027",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.123116356760133,
+        "score_prob": 0.32526457309722906
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2695320658326785,
+        "score_prob": 0.2809630632400512
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3670621329382076,
+        "score_prob": 0.25485458970069885
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-028",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1502594274517264,
+        "score_prob": 0.31655463576316833
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3377202048046102,
+        "score_prob": 0.26244330406188965
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4006201217690997,
+        "score_prob": 0.24644409120082858
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-029",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7521711496717133,
+        "score_prob": 0.4713420867919922
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8494305818398886,
+        "score_prob": 0.4276583790779114
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0050897100844782,
+        "score_prob": 0.3660117983818054
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-030",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3423201865771568,
+        "score_prob": 0.7101207971572876
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.44381751548671106,
+        "score_prob": 0.6415824890136719
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5045569830536358,
+        "score_prob": 0.6037729978561401
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-031",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.111126114484725,
+        "score_prob": 0.3291880488395691
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2498569535652648,
+        "score_prob": 0.2865457832813263
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3461973073452427,
+        "score_prob": 0.2602279484272003
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-032",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2263199280205068,
+        "score_prob": 0.29337021708488464
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.400832193860255,
+        "score_prob": 0.24639183282852173
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4931836057704482,
+        "score_prob": 0.22465629875659945
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-033",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8621340025502816,
+        "score_prob": 0.42226001620292664
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9805927697456294,
+        "score_prob": 0.3750886917114258
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.104390124609014,
+        "score_prob": 0.33141294121742254
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-034",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8200705107527304,
+        "score_prob": 0.4404006004333496
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9620697631326237,
+        "score_prob": 0.3821012079715729
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0888660897382458,
+        "score_prob": 0.3365979492664337
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-035",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2683496377571315,
+        "score_prob": 0.2812954783439636
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4119666564284652,
+        "score_prob": 0.24366360902786255
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5495125643018328,
+        "score_prob": 0.212351456284523
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-036",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.32519878881037356,
+        "score_prob": 0.7223837375640869
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4158401216212136,
+        "score_prob": 0.6597857475280762
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5080468056819398,
+        "score_prob": 0.6016696095466614
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-037",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.015124157597414,
+        "score_prob": 0.3623574376106262
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.176636839065179,
+        "score_prob": 0.30831390619277954
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2971286216405111,
+        "score_prob": 0.2733154594898224
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-038",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2135989037108537,
+        "score_prob": 0.29712602496147156
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4304234409906469,
+        "score_prob": 0.2392076104879379
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5382777721677476,
+        "score_prob": 0.21475063264369967
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-039",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.030863436253768,
+        "score_prob": 0.3566988408565521
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1827914743579382,
+        "score_prob": 0.3064221739768982
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.295983702890105,
+        "score_prob": 0.2736285626888275
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-040",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9636790204857378,
+        "score_prob": 0.38148680329322815
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1193687839998523,
+        "score_prob": 0.326485812664032
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2312521889454262,
+        "score_prob": 0.2919268012046814
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-041",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8899683974270941,
+        "score_prob": 0.4106687307357788
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0475621899392842,
+        "score_prob": 0.350791871547699
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1452224305871546,
+        "score_prob": 0.31815314292907715
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-042",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9753262244732207,
+        "score_prob": 0.3770693242549896
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.102831769486097,
+        "score_prob": 0.3319298028945923
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2544118293034343,
+        "score_prob": 0.28524357080459595
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-043",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5463431785198699,
+        "score_prob": 0.5790634751319885
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6703911447279122,
+        "score_prob": 0.5115084648132324
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7594744225959846,
+        "score_prob": 0.4679122865200043
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-044",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6409322033559934,
+        "score_prob": 0.5268011093139648
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8144295663214882,
+        "score_prob": 0.4428918957710266
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9260246616785397,
+        "score_prob": 0.39612531661987305
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-045",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3467349585495023,
+        "score_prob": 0.7069926857948303
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.451209338207715,
+        "score_prob": 0.6368575096130371
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5248520081759285,
+        "score_prob": 0.5916429162025452
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-046",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7093767289928505,
+        "score_prob": 0.49195072054862976
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8238029559002882,
+        "score_prob": 0.4387598931789398
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.923345163863938,
+        "score_prob": 0.3971881568431854
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-047",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.327536003267143,
+        "score_prob": 0.7206973433494568
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.42512827622091814,
+        "score_prob": 0.6536859273910522
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.48151332270347535,
+        "score_prob": 0.6178476810455322
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-048",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5201292040654829,
+        "score_prob": 0.5944437384605408
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6332283023221186,
+        "score_prob": 0.5308752059936523
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7577667673001381,
+        "score_prob": 0.4687120020389557
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-049",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4597207574120221,
+        "score_prob": 0.6314599514007568
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5387589959148101,
+        "score_prob": 0.5834718942642212
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6365638585889185,
+        "score_prob": 0.529107391834259
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-050",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.2776381977626464,
+        "score_prob": 0.7575708627700806
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.36598464070344316,
+        "score_prob": 0.6935134530067444
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.42933341015880444,
+        "score_prob": 0.650942862033844
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-051",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.082435533135031,
+        "score_prob": 0.33876943588256836
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2479158090378202,
+        "score_prob": 0.2871025502681732
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3912042276825425,
+        "score_prob": 0.24877554178237912
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-052",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.8924532773477485,
+        "score_prob": 0.150701642036438
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -2.1414844256464654,
+        "score_prob": 0.1174803227186203
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -2.2210247790240207,
+        "score_prob": 0.10849786549806595
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-053",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.306979098864013,
+        "score_prob": 0.7356659770011902
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.39099321243617235,
+        "score_prob": 0.6763847470283508
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4641530102097116,
+        "score_prob": 0.6286673545837402
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-054",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6339655549283151,
+        "score_prob": 0.5304839611053467
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7360851020545471,
+        "score_prob": 0.47898542881011963
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8537606900880437,
+        "score_prob": 0.4258105754852295
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-055",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3402577909718172,
+        "score_prob": 0.26177817583084106
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5170535221164012,
+        "score_prob": 0.2193572670221329
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.6470980948675986,
+        "score_prob": 0.19260802865028384
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-056",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6262547240536039,
+        "score_prob": 0.5345902442932129
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7587522874488062,
+        "score_prob": 0.4682503044605255
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8682216492973773,
+        "score_prob": 0.41969725489616394
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-057",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5821728764872665,
+        "score_prob": 0.5586830973625183
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7136759833134092,
+        "score_prob": 0.48984023928642273
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.800897012374604,
+        "score_prob": 0.44892609119415283
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-058",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.2947238639181921,
+        "score_prob": 0.7447372078895569
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.379436464944555,
+        "score_prob": 0.6842468976974487
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.44276455520636127,
+        "score_prob": 0.6422584056854248
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-059",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5815478815996656,
+        "score_prob": 0.5590323805809021
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6919522256288624,
+        "score_prob": 0.5005978345870972
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7864793529398815,
+        "score_prob": 0.45544543862342834
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-060",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0574291361524302,
+        "score_prob": 0.3473476469516754
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.217297750829962,
+        "score_prob": 0.2960290312767029
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.319525672772085,
+        "score_prob": 0.2672620415687561
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-061",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7230354230568369,
+        "score_prob": 0.485276997089386
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8563223691305611,
+        "score_prob": 0.4247211813926697
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9450571428729105,
+        "score_prob": 0.3886573612689972
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-062",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7018408864792435,
+        "score_prob": 0.49567198753356934
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8161319110507147,
+        "score_prob": 0.44213858246803284
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8746409093217294,
+        "score_prob": 0.41701173782348633
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-063",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7434167529139336,
+        "score_prob": 0.47548651695251465
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8612167664914946,
+        "score_prob": 0.42264750599861145
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.96081068854773,
+        "score_prob": 0.3825826048851013
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-064",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9631233404117897,
+        "score_prob": 0.3816988468170166
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1218359863061262,
+        "score_prob": 0.32568129897117615
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2567934697141954,
+        "score_prob": 0.2845650315284729
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-065",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6953530762679528,
+        "score_prob": 0.4988982677459717
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8188954188698996,
+        "score_prob": 0.4409184157848358
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9452072172758174,
+        "score_prob": 0.3885990381240845
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-066",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3322386342008565,
+        "score_prob": 0.26388585567474365
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5946290494370627,
+        "score_prob": 0.2029838114976883
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.692734894133075,
+        "score_prob": 0.18401557207107544
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-067",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8318293272343337,
+        "score_prob": 0.4352523386478424
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9655835602940681,
+        "score_prob": 0.38076093792915344
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0382513645160898,
+        "score_prob": 0.35407328605651855
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-068",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7110593570294763,
+        "score_prob": 0.49112364649772644
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8117880788467573,
+        "score_prob": 0.44406333565711975
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8899543914716601,
+        "score_prob": 0.41067448258399963
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-069",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.194902953659211,
+        "score_prob": 0.30273333191871643
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3522028436440974,
+        "score_prob": 0.25866982340812683
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4871450688611976,
+        "score_prob": 0.22601699829101565
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-070",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3547803074286656,
+        "score_prob": 0.7013275027275085
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4670115698535618,
+        "score_prob": 0.6268728375434875
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5312210518750016,
+        "score_prob": 0.5878866910934448
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-071",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5852448631335615,
+        "score_prob": 0.5569694638252258
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7061465008358122,
+        "score_prob": 0.4935424029827118
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8133794473619425,
+        "score_prob": 0.4433572292327881
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-072",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.47160546310206936,
+        "score_prob": 0.6239996552467346
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5491685551300486,
+        "score_prob": 0.5774297118186951
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6281128568071139,
+        "score_prob": 0.5335978269577026
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-073",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9412562070484338,
+        "score_prob": 0.3901374340057373
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1062053794181417,
+        "score_prob": 0.3308118879795075
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1874832487142872,
+        "score_prob": 0.30498787760734564
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-074",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.35284945338960916,
+        "score_prob": 0.7026829719543457
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.45295166277397253,
+        "score_prob": 0.6357488632202148
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5248964373942219,
+        "score_prob": 0.5916166305541992
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-075",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.28712281940349144,
+        "score_prob": 0.750419557094574
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3714386597190432,
+        "score_prob": 0.689741313457489
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4467295079176363,
+        "score_prob": 0.6397169232368469
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-076",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.48432981314773976,
+        "score_prob": 0.6161099672317505
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6169121048761769,
+        "score_prob": 0.5396081209182739
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.686862586776156,
+        "score_prob": 0.5031521916389465
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-077",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5220367465704794,
+        "score_prob": 0.5933108925819397
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6466999394257189,
+        "score_prob": 0.5237714052200317
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7603549077314559,
+        "score_prob": 0.4675004780292511
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-078",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4466261838788714,
+        "score_prob": 0.6397830247879028
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5572419024244655,
+        "score_prob": 0.5727866888046265
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6539300574467127,
+        "score_prob": 0.5199981331825256
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-079",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9615177826224914,
+        "score_prob": 0.38231217861175537
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1054519835177359,
+        "score_prob": 0.3310612142086029
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2400333742543392,
+        "score_prob": 0.28937456011772156
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-080",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6839957624058693,
+        "score_prob": 0.5045967102050781
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8573390051263057,
+        "score_prob": 0.42428961396217346
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9315105145488244,
+        "score_prob": 0.393958181142807
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-081",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4549370196525501,
+        "score_prob": 0.6344879269599915
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5779972063511197,
+        "score_prob": 0.5610208511352539
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6467547920321134,
+        "score_prob": 0.52374267578125
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-082",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.321403313725256,
+        "score_prob": 0.7251307368278503
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.41776294594322766,
+        "score_prob": 0.6585183143615723
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.48377717342797216,
+        "score_prob": 0.6164505481719971
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-083",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0006452747533852,
+        "score_prob": 0.36764213442802424
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1651413913838298,
+        "score_prob": 0.3118785619735718
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2639795764891073,
+        "score_prob": 0.28252744674682617
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-084",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8653164887115817,
+        "score_prob": 0.4209183156490326
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9717548542360948,
+        "score_prob": 0.3784183859825134
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1235139960945872,
+        "score_prob": 0.32513526082038885
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-085",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.35797109468967114,
+        "score_prob": 0.6990932822227478
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.472073717789004,
+        "score_prob": 0.6237075328826904
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5254849833399642,
+        "score_prob": 0.5912685394287109
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-086",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.38190681314138814,
+        "score_prob": 0.6825586557388306
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4882411500968242,
+        "score_prob": 0.6137048602104187
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5760562220683713,
+        "score_prob": 0.5621108412742615
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-087",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3061450889662875,
+        "score_prob": 0.7362797856330872
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.408384001262206,
+        "score_prob": 0.6647235751152039
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.46859937656498235,
+        "score_prob": 0.6258782744407654
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-088",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3372625130064184,
+        "score_prob": 0.7137214541435242
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.43767281367877636,
+        "score_prob": 0.6455369591712952
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.495864543262885,
+        "score_prob": 0.6090441346168518
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-089",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4490098244821661,
+        "score_prob": 0.6382598280906677
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5486954879088398,
+        "score_prob": 0.5777029395103455
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6349402946791218,
+        "score_prob": 0.5299671292304993
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-090",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3124415418334195,
+        "score_prob": 0.731658399105072
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.39653531388187385,
+        "score_prob": 0.6726465225219727
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4655029881926128,
+        "score_prob": 0.6278192400932312
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-091",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.47762326039834746,
+        "score_prob": 0.6202558279037476
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.586526880131928,
+        "score_prob": 0.5562558770179749
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6785569435122469,
+        "score_prob": 0.5073485970497131
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-092",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.29857380017044477,
+        "score_prob": 0.7418755292892456
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3903159568422415,
+        "score_prob": 0.676842987537384
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4516991304677051,
+        "score_prob": 0.6365456581115723
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-093",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2495334449529911,
+        "score_prob": 0.2866384983062744
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4012830342545157,
+        "score_prob": 0.24628077447414395
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5264854536417534,
+        "score_prob": 0.21729803085327148
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-094",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9304788995119229,
+        "score_prob": 0.3943648040294647
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0819465267967003,
+        "score_prob": 0.33893513679504395
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1507118066831814,
+        "score_prob": 0.31641146540641785
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-095",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.32731090796868306,
+        "score_prob": 0.7208595871925354
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4234202482950248,
+        "score_prob": 0.6548033952713013
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4890069640160223,
+        "score_prob": 0.6132350564002991
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-096",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2293900969013425,
+        "score_prob": 0.29247090220451355
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3647393928793325,
+        "score_prob": 0.25544723868370056
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.480583593628938,
+        "score_prob": 0.22750487923622134
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-097",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8129666694122681,
+        "score_prob": 0.4435402750968933
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9311112461448123,
+        "score_prob": 0.39411550760269165
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0339594206947404,
+        "score_prob": 0.3555962145328522
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-098",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4145469366620069,
+        "score_prob": 0.6606395244598389
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5363922086680234,
+        "score_prob": 0.5848544836044312
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5998300842048735,
+        "score_prob": 0.5489048957824707
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-099",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5157952304002477,
+        "score_prob": 0.5970256328582764
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.624234118903425,
+        "score_prob": 0.5356715321540833
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7511245047452502,
+        "score_prob": 0.4718356728553772
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-100",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5729840653161644,
+        "score_prob": 0.563840389251709
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7051078831365054,
+        "score_prob": 0.49405527114868164
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7966673687175702,
+        "score_prob": 0.4508289098739624
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-101",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4399904812756428,
+        "score_prob": 0.6440425515174866
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5377452117233602,
+        "score_prob": 0.584063708782196
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6080408330313269,
+        "score_prob": 0.5444164276123047
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-102",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5715759174546791,
+        "score_prob": 0.5646349191665649
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6752783322310011,
+        "score_prob": 0.5090147256851196
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.782120650380676,
+        "score_prob": 0.45743492245674133
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-103",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6100805101629937,
+        "score_prob": 0.5433071255683899
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7172423799389613,
+        "score_prob": 0.4880963861942291
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8141989218211487,
+        "score_prob": 0.44299405813217163
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-104",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4869473424496488,
+        "score_prob": 0.6144993901252747
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6214956011387613,
+        "score_prob": 0.5371404886245728
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6929285746189291,
+        "score_prob": 0.5001093149185181
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-105",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6153104053551995,
+        "score_prob": 0.5404731035232544
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7266623509271014,
+        "score_prob": 0.48352012038230896
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8356900649200392,
+        "score_prob": 0.43357518315315247
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-106",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5045984464345659,
+        "score_prob": 0.6037479639053345
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6123267605397889,
+        "score_prob": 0.5420880913734436
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7074992436874753,
+        "score_prob": 0.49287521839141846
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-107",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5674803369406018,
+        "score_prob": 0.5669521689414978
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6907413340263295,
+        "score_prob": 0.5012043714523315
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7762587080901668,
+        "score_prob": 0.46012425422668457
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-108",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.176923580467681,
+        "score_prob": 0.30822551250457764
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3988008839823554,
+        "score_prob": 0.24689283967018127
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.523522822255196,
+        "score_prob": 0.2179427593946457
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-109",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4894058430962537,
+        "score_prob": 0.6129904985427856
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.60232388077221,
+        "score_prob": 0.5475377440452576
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6681120249610478,
+        "score_prob": 0.5126755833625793
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-110",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6060888958150633,
+        "score_prob": 0.5454801321029663
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7341800089985723,
+        "score_prob": 0.4798988103866577
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8380044779089677,
+        "score_prob": 0.4325728714466095
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-111",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5827598313577915,
+        "score_prob": 0.5583552718162537
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6915248666993121,
+        "score_prob": 0.5008118152618408
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.782756856346731,
+        "score_prob": 0.45714399218559265
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-112",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5719963583198262,
+        "score_prob": 0.5643975734710693
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6960244385918471,
+        "score_prob": 0.4985634386539459
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7768151738080755,
+        "score_prob": 0.45986828207969666
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-113",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7000236945044445,
+        "score_prob": 0.4965735375881195
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8155115736686421,
+        "score_prob": 0.44241294264793396
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9006600080985332,
+        "score_prob": 0.4063014090061188
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-114",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5250918083328671,
+        "score_prob": 0.5915010571479797
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6244162859315076,
+        "score_prob": 0.5355739593505859
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7309441230954709,
+        "score_prob": 0.4814542233943939
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-115",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6047956471443219,
+        "score_prob": 0.5461860299110413
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7435558440348571,
+        "score_prob": 0.47542038559913635
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.837047426430178,
+        "score_prob": 0.4329870641231537
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-116",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.44457096017100795,
+        "score_prob": 0.6410992741584778
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5570005104908198,
+        "score_prob": 0.5729249715805054
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6367373566677499,
+        "score_prob": 0.5290156006813049
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-117",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6308836947877342,
+        "score_prob": 0.5321213603019714
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7727552810474673,
+        "score_prob": 0.46173909306526184
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8539941327321589,
+        "score_prob": 0.42571118474006653
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-118",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7582060982090393,
+        "score_prob": 0.4685061275959015
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8581944087087385,
+        "score_prob": 0.42392683029174805
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9925970247458351,
+        "score_prob": 0.3706129491329193
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-119",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5414416090809612,
+        "score_prob": 0.5819087624549866
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6401419750913732,
+        "score_prob": 0.5272175669670105
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7408464567287582,
+        "score_prob": 0.4767102301120758
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-120",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0266001051350298,
+        "score_prob": 0.3582228124141693
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2073890718248195,
+        "score_prob": 0.298976868391037
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.319258754065977,
+        "score_prob": 0.2673333883285522
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-121",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.49520876328951074,
+        "score_prob": 0.6094436645507812
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5824267188689434,
+        "score_prob": 0.5585412979125977
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6707177072339101,
+        "score_prob": 0.5113414525985718
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-122",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5449330669682668,
+        "score_prob": 0.5798805952072144
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6578528638231752,
+        "score_prob": 0.5179622769355774
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7313857578346914,
+        "score_prob": 0.4812416434288025
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-123",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4984350621791619,
+        "score_prob": 0.6074805855751038
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6106509302855169,
+        "score_prob": 0.5429973006248474
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7018028280221101,
+        "score_prob": 0.49569085240364075
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-124",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5016217011691793,
+        "score_prob": 0.6055478453636169
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5984096727325916,
+        "score_prob": 0.5496851205825806
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7114914449046265,
+        "score_prob": 0.49091148376464844
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-125",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4386694956300656,
+        "score_prob": 0.6448938846588135
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5395306669314422,
+        "score_prob": 0.5830218195915222
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6353322119639444,
+        "score_prob": 0.5297594666481018
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-126",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.49733782455500963,
+        "score_prob": 0.6081475019454956
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.602387456698162,
+        "score_prob": 0.5475029349327087
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6819626836231152,
+        "score_prob": 0.5056236386299133
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-127",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.44395697192735556,
+        "score_prob": 0.641493022441864
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5605791797858705,
+        "score_prob": 0.5708783268928528
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6307966642771008,
+        "score_prob": 0.5321676731109619
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-128",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5633286953502827,
+        "score_prob": 0.5693108439445496
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6930658831291974,
+        "score_prob": 0.5000406503677368
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8091398286237036,
+        "score_prob": 0.44524088501930237
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-129",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7893613573798756,
+        "score_prob": 0.4541347324848175
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9369170217158477,
+        "score_prob": 0.39183399081230164
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9974902435392822,
+        "score_prob": 0.36880388855934143
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-130",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.47205059131307747,
+        "score_prob": 0.6237219572067261
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5594955874924347,
+        "score_prob": 0.5714972615242004
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6544175606021503,
+        "score_prob": 0.5197446942329407
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-131",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4537141816968609,
+        "score_prob": 0.6352642774581909
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5606376503484126,
+        "score_prob": 0.5708449482917786
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6313718556639681,
+        "score_prob": 0.5318616628646851
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-132",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1666010451894775,
+        "score_prob": 0.311423659324646
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3863466953674162,
+        "score_prob": 0.24998691678047183
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4922940693006845,
+        "score_prob": 0.22485622763633728
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-133",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6448991000748919,
+        "score_prob": 0.5247154831886292
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7646823707500043,
+        "score_prob": 0.4654817581176758
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8701446481495332,
+        "score_prob": 0.41889095306396484
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-134",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4673650540228494,
+        "score_prob": 0.6266512870788574
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5822531088967006,
+        "score_prob": 0.5586382746696472
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6550250936867072,
+        "score_prob": 0.5194290280342102
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-135",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4602450525254136,
+        "score_prob": 0.6311289668083191
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.567768228969411,
+        "score_prob": 0.5667889714241028
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6363103126187807,
+        "score_prob": 0.5292415618896484
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-136",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.34181762063983545,
+        "score_prob": 0.7104777693748474
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4271350244071651,
+        "score_prob": 0.6523754596710205
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4920096079658825,
+        "score_prob": 0.6113964915275574
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-137",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5456561320552654,
+        "score_prob": 0.5794614553451538
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6643217542118457,
+        "score_prob": 0.5146224498748779
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.74731788084732,
+        "score_prob": 0.473635196685791
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-138",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.4126655804926557,
+        "score_prob": 0.6618835926055908
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5131813492669172,
+        "score_prob": 0.598588228225708
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5970502905636361,
+        "score_prob": 0.5504328608512878
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-139",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5159223296915731,
+        "score_prob": 0.5969497561454773
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6127538023087744,
+        "score_prob": 0.5418566465377808
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6829732192021054,
+        "score_prob": 0.5051129460334778
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-140",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6672699457776976,
+        "score_prob": 0.5131074786186218
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.78861646973933,
+        "score_prob": 0.4544731378555298
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8769316704366326,
+        "score_prob": 0.4160575568675995
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-141",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5123493449540917,
+        "score_prob": 0.5990864634513855
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6173415517222134,
+        "score_prob": 0.539376437664032
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7036287400077792,
+        "score_prob": 0.4947865903377533
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-142",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5474640244695186,
+        "score_prob": 0.578414797782898
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6651860445299838,
+        "score_prob": 0.5141778588294983
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7337513537624396,
+        "score_prob": 0.48010456562042236
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-143",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6044158418071737,
+        "score_prob": 0.5463935136795044
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7583840986978337,
+        "score_prob": 0.4684227406978607
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8899255093435415,
+        "score_prob": 0.41068634390830994
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-144",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5731594567558943,
+        "score_prob": 0.5637415051460266
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.6992565651338398,
+        "score_prob": 0.49695461988449097
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7962188105252221,
+        "score_prob": 0.4510311782360077
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-145",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5476334501786055,
+        "score_prob": 0.5783168077468872
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.643324901571888,
+        "score_prob": 0.525542140007019
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7185371035946958,
+        "score_prob": 0.4874648451805115
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-146",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.3319917584800284,
+        "score_prob": 0.7174932360649109
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.42291071918435197,
+        "score_prob": 0.6551371216773987
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -0.5146878639460953,
+        "score_prob": 0.5976871252059937
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-147",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5557312199414237,
+        "score_prob": 0.21103501319885254
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.798645885849941,
+        "score_prob": 0.16552287340164187
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.9220564325504816,
+        "score_prob": 0.14630578458309174
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-148",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3218558168702914,
+        "score_prob": 0.2666400074958801
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4834227099068027,
+        "score_prob": 0.22685988247394562
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.629928218847309,
+        "score_prob": 0.1959436386823654
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-149",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3070123879594826,
+        "score_prob": 0.27062737941741943
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5003947331080538,
+        "score_prob": 0.22304210066795352
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.676853432572585,
+        "score_prob": 0.1869613379240036
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-150",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4732011645189684,
+        "score_prob": 0.2291906327009201
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.7336467239707853,
+        "score_prob": 0.1766390800476074
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.8691568781799264,
+        "score_prob": 0.15425366163253784
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-151",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1071269581002194,
+        "score_prob": 0.33050715923309326
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.2728008144408722,
+        "score_prob": 0.28004616498947144
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4535664123121068,
+        "score_prob": 0.23373520374298098
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-152",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.411881471638112,
+        "score_prob": 0.2436843663454056
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5682757524642947,
+        "score_prob": 0.2084042131900787
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.704479199686622,
+        "score_prob": 0.1818670779466629
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-153",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5780795694050278,
+        "score_prob": 0.20637103915214539
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.7483381641938895,
+        "score_prob": 0.17406296730041507
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.8502501836798875,
+        "score_prob": 0.15719783306121826
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-154",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.7119355895616184,
+        "score_prob": 0.1805160492658615
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.9027213535089007,
+        "score_prob": 0.1491621434688568
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -2.028822495790775,
+        "score_prob": 0.13149026036262515
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-156",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4933979367810686,
+        "score_prob": 0.22460815310478213
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.7017535205911318,
+        "score_prob": 0.18236346542835236
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.8678139544854993,
+        "score_prob": 0.15446095168590546
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-157",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3032273616017174,
+        "score_prob": 0.2716536521911621
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4819474754386053,
+        "score_prob": 0.22719480097293854
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.633065713129279,
+        "score_prob": 0.19532983005046847
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-158",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1868688012678197,
+        "score_prob": 0.30517533421516424
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4086974806145474,
+        "score_prob": 0.2444614917039871
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5480086431870976,
+        "score_prob": 0.21267105638980863
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-159",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.3316264803656186,
+        "score_prob": 0.26404744386672974
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.5364622828205747,
+        "score_prob": 0.21514086425304413
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.6606641663918846,
+        "score_prob": 0.19001273810863495
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-160",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -1.4738868029257601,
+        "score_prob": 0.22903354465961456
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.6866593286323233,
+        "score_prob": 0.18513697385787964
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.8183736837431084,
+        "score_prob": 0.16228947043418884
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-161",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.8167542522143474,
+        "score_prob": 0.4418635070323944
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0360822188861487,
+        "score_prob": 0.3548421561717987
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1713410347469577,
+        "score_prob": 0.3099510073661804
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-162",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7493859530905581,
+        "score_prob": 0.4726566970348358
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9533640393149785,
+        "score_prob": 0.38544219732284546
+      },
+      {
+        "path_indices": [
+          0,
+          4
+        ],
+        "path_names": [
+          "Primary",
+          "LymphNodeMediastinum"
+        ],
+        "num_hops": 1,
+        "score_log": -1.0875931663751492,
+        "score_prob": 0.33702668547630316
+      }
+    ]
+  },
+  {
+    "patient_id": "R01-163",
+    "paths": [
+      {
+        "path_indices": [
+          0,
+          3
+        ],
+        "path_names": [
+          "Primary",
+          "Liver"
+        ],
+        "num_hops": 1,
+        "score_log": -0.7607133006799052,
+        "score_prob": 0.46733295917510986
+      },
+      {
+        "path_indices": [
+          0,
+          2
+        ],
+        "path_names": [
+          "Primary",
+          "Bone"
+        ],
+        "num_hops": 1,
+        "score_log": -0.9513535812935124,
+        "score_prob": 0.3862178921699524
+      },
+      {
+        "path_indices": [
+          0,
+          5
+        ],
+        "path_names": [
+          "Primary",
+          "Brain"
+        ],
+        "num_hops": 1,
+        "score_log": -1.1169272314117382,
+        "score_prob": 0.32728391885757446
+      }
+    ]
+  }
+]

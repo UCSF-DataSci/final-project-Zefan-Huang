@@ -1,0 +1,66 @@
+{
+  "stage_a_best": {
+    "run_root": "/Users/zefanhuang/Downloads/223/output/stage13/13.2_phase4_tune/stage_a/A01",
+    "stage": "A",
+    "run_id": "A01",
+    "freeze_prefixes": "pool,base_trunk",
+    "lr": 0.0001,
+    "loss_weight_expl_rec": 0.5,
+    "loss_weight_expl_loc": 0.5,
+    "loss_weight_edge_prior": 0.05,
+    "seed": 2024,
+    "val_c_index": 0.4854368932038835,
+    "val_rec_auc": 0.5614035087719298,
+    "val_loc_acc": 0.2222222222222222,
+    "val_expl_rec_auc": 0.5497076023391813,
+    "val_expl_loc_acc": 0.5555555555555556,
+    "top1_path": "Primary -> Bone",
+    "top1_path_fraction": 1.0
+  },
+  "stage_b_best": {
+    "run_root": "/Users/zefanhuang/Downloads/223/output/stage13/13.2_phase4_tune/stage_b/B02",
+    "stage": "B",
+    "run_id": "B02",
+    "freeze_prefixes": "pool,base_trunk",
+    "lr": 0.0001,
+    "loss_weight_expl_rec": 0.5,
+    "loss_weight_expl_loc": 0.25,
+    "loss_weight_edge_prior": 0.05,
+    "seed": 2024,
+    "val_c_index": 0.49029126213592233,
+    "val_rec_auc": 0.5672514619883041,
+    "val_loc_acc": 0.2222222222222222,
+    "val_expl_rec_auc": 0.5497076023391813,
+    "val_expl_loc_acc": 0.5555555555555556,
+    "top1_path": "Primary -> Bone",
+    "top1_path_fraction": 0.9923076923076923
+  },
+  "stage_c_best_seed": {
+    "run_root": "/Users/zefanhuang/Downloads/223/output/stage13/13.2_phase4_tune/stage_c/C_seed2025",
+    "stage": "C",
+    "run_id": "C_seed2025",
+    "freeze_prefixes": "pool,base_trunk",
+    "lr": 0.0001,
+    "loss_weight_expl_rec": 0.5,
+    "loss_weight_expl_loc": 0.25,
+    "loss_weight_edge_prior": 0.05,
+    "seed": 2025,
+    "val_c_index": 0.5108695652173914,
+    "val_rec_auc": 0.695906432748538,
+    "val_loc_acc": 0.3333333333333333,
+    "val_expl_rec_auc": 0.5029239766081871,
+    "val_expl_loc_acc": 0.5555555555555556,
+    "top1_path": "Primary -> Bone",
+    "top1_path_fraction": 0.9769230769230769
+  },
+  "stage_c_metric_mean": {
+    "val_rec_auc_mean": 0.5750487329434698,
+    "val_c_index_mean": 0.47579677851667834,
+    "val_loc_acc_mean": 0.3333333333333333
+  },
+  "best_artifacts": {
+    "model_dst": "/Users/zefanhuang/Downloads/223/output/stage13/13.2_phase4_tune/phase4_model_best",
+    "expl_dst": "/Users/zefanhuang/Downloads/223/output/stage13/13.2_phase4_tune/explanation_outputs_best"
+  },
+  "final_refit_root": "/Users/zefanhuang/Downloads/223/output/stage13/13.2_phase4_tune/final_refit"
+}

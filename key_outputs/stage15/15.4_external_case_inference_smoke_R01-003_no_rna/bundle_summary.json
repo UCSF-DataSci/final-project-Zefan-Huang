@@ -1,0 +1,10 @@
+{
+  "patient_id": "R01-003",
+  "output_root": "output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna",
+  "case_input_summary": "output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/case_inputs/R01-003/case_input_summary.json",
+  "system_output_report": "output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/system_outputs/cases/R01-003/report.html",
+  "system_output_manifest": "output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/system_outputs/system_output_manifest.csv",
+  "runtime_summary": "output/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/runtime/R01-003/external_inference_summary.json",
+  "model_strategy": "phase3",
+  "checkpoint_path": "/Users/zefanhuang/Downloads/223/output/stage13/13.1_phase3_baseline/phase3_model/model/explanation_guided_model.pt"
+}

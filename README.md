@@ -62,15 +62,17 @@ path.
 
 ## Key Output Locations
 
-- `output/stage12/12.1_primary_outputs_cv/`: cross-validation metrics
-- `output/stage12/12.2_explanation_outputs_joint/`: joint explanation CSV/JSON
-- `output/stage13/13.1_phase3_baseline/`: baseline phase summary
-- `output/stage13/13.2_phase4_tune/`: tuned final result summaries
-- `output/stage13/13.4_visualize_diffusion/`: cohort and patient SVG
-  visualizations
-- `output/stage13/13.5_result_heatmap/`: paired Organ x Patient heatmap
+- `key_outputs/stage12/12.1_primary_outputs_cv/`: cross-validation metrics
+- `key_outputs/stage12/12.2_explanation_outputs_joint/`: joint explanation
+  CSV/JSON
+- `key_outputs/stage13/13.1_phase3_baseline/`: baseline phase summary
+- `key_outputs/stage13/13.2_phase4_tune/`: tuned final result summaries
+- `key_outputs/` and `key_outputs/stage13/13.4_visualize_diffusion/`: curated
+  cohort diffusion SVG, selected patient SVGs, and visualization summaries
+- `key_outputs/stage13/13.5_result_heatmap/`: paired Organ x Patient heatmap
   exports
-- `output/stage15/`: case-level reports and inference bundles
+- `key_outputs/stage15/15.4_external_case_inference_smoke_R01-003_no_rna/`:
+  representative external-case inference bundle outputs
 
 ## Current Research Figure
 
@@ -80,9 +82,9 @@ order.
 
 - Script: `13.5_result_heatmap.py`
 - Main outputs:
-  - `output/stage13/13.5_result_heatmap/organ_patient_heatmap_compare.svg`
-  - `output/stage13/13.5_result_heatmap/organ_patient_heatmap_compare.png`
-  - `output/stage13/13.5_result_heatmap/organ_patient_heatmap_compare.pdf`
+  - `key_outputs/stage13/13.5_result_heatmap/organ_patient_heatmap_compare.svg`
+  - `key_outputs/stage13/13.5_result_heatmap/organ_patient_heatmap_compare.png`
+  - `key_outputs/stage13/13.5_result_heatmap/organ_patient_heatmap_compare.pdf`
 
 ## Documentation
 
@@ -94,5 +96,7 @@ order.
 ## Notes
 
 - `data/`, `output/`, and `.venv/` are ignored by Git in the default setup.
+- `key_outputs/` contains the curated tracked result artifacts referenced in
+  this README.
 - The root directory is intentionally script-heavy because the current workflow
   depends on path-based dynamic loading between numbered stage files.

@@ -1,0 +1,35 @@
+{
+  "phase": "phase3_baseline_211_no_rna",
+  "stage9_no_rna_path": "/Users/zefanhuang/Downloads/223/output/stage13/13.1_phase3_baseline/prepared/organ_tokenization_pack_no_rna.npz",
+  "stage10_dir": "/Users/zefanhuang/Downloads/223/output/stage13/13.1_phase3_baseline/stage10_no_rna",
+  "stage11_graph_dir": "/Users/zefanhuang/Downloads/223/output/stage13/13.1_phase3_baseline/stage11_graph_construction",
+  "stage11_reason_dir": "/Users/zefanhuang/Downloads/223/output/stage13/13.1_phase3_baseline/stage11_graph_reasoning",
+  "phase3_model_dir": "/Users/zefanhuang/Downloads/223/output/stage13/13.1_phase3_baseline/phase3_model",
+  "explanation_dir": "/Users/zefanhuang/Downloads/223/output/stage13/13.1_phase3_baseline/explanation_outputs",
+  "patient_count": 211,
+  "rna_disabled_for_all": true,
+  "immune_disabled_for_all": true,
+  "val_metrics": {
+    "val_patient_count": 44,
+    "val_os_known_count": 44,
+    "val_rec_known_count": 44,
+    "val_loc_known_count": 13,
+    "val_c_index": 0.6421319796954315,
+    "val_rec_auc": 0.674937965260546,
+    "val_loc_acc": 0.46153846153846156
+  },
+  "val_explanation_metrics": {
+    "expl_rec_auc": 0.6029776674937966,
+    "expl_loc_acc": 0.5384615384615384
+  },
+  "explanation_top1_path_frequency": [
+    {
+      "path_names": [
+        "Primary",
+        "Liver"
+      ],
+      "count": 211,
+      "fraction": 1.0
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "stage": "12.2_explanation_outputs",
+  "graph_pack_path": "output/stage12/12.2_explanation_training/pred/graph_reasoning_pack.npz",
+  "graph_summary_path": "output/stage12/12.2_explanation_training/pred/graph_reasoning_summary.json",
+  "primary_pack_path": "output/stage12/12.2_explanation_training/pred/primary_output_pack.npz",
+  "survival_mode": "discrete",
+  "graph_reasoning_random_init_only": false,
+  "graph_reasoning_explanation_semantics": "Latent diffusion explanation only; organ/path outputs are model-induced explanation layers constrained by OS/recurrence tasks and do not imply organ-level ground-truth supervision.",
+  "patient_count": 211,
+  "num_nodes": 6,
+  "top_k": 3,
+  "max_hops": 3,
+  "beam_width": 8,
+  "top_edge_k": 5,
+  "explanation_semantics": "Latent diffusion explanation only; organ/path outputs are model-induced explanation layers for OS/recurrence predictions and do not imply organ-level ground-truth supervision.",
+  "ranges": {
+    "organ_susceptibility_min": 0.2319246232509613,
+    "organ_susceptibility_max": 0.7314077615737915,
+    "edge_diffusion_prob_min": 0.040210992097854614,
+    "edge_diffusion_prob_max": 0.8544682860374451
+  },
+  "mean_organ_susceptibility_ranking": [
+    {
+      "organ_index": 0,
+      "organ_name": "Primary",
+      "susceptibility": 0.6345712542533875,
+      "rank": 1
+    },
+    {
+      "organ_index": 5,
+      "organ_name": "Brain",
+      "susceptibility": 0.36288508772850037,
+      "rank": 2
+    },
+    {
+      "organ_index": 1,
+      "organ_name": "Lung",
+      "susceptibility": 0.3130423128604889,
+      "rank": 3
+    },
+    {
+      "organ_index": 2,
+      "organ_name": "Bone",
+      "susceptibility": 0.30098646879196167,
+      "rank": 4
+    },
+    {
+      "organ_index": 4,
+      "organ_name": "LymphNodeMediastinum",
+      "susceptibility": 0.2893025279045105,
+      "rank": 5
+    },
+    {
+      "organ_index": 3,
+      "organ_name": "Liver",
+      "susceptibility": 0.2797171473503113,
+      "rank": 6
+    }
+  ],
+  "mean_edge_diffusion_ranking": [
+    {
+      "src_index": 4,
+      "src_name": "LymphNodeMediastinum",
+      "dst_index": 0,
+      "dst_name": "Primary",
+      "edge_type": "strong",
+      "is_prior_edge": 1,
+      "edge_diffusion_prob": 0.7038388848304749,
+      "rank": 1
+    },
+    {
+      "src_index": 4,
+      "src_name": "LymphNodeMediastinum",
+      "dst_index": 3,
+      "dst_name": "Liver",
+      "edge_type": "weak",
+      "is_prior_edge": 1,
+      "edge_diffusion_prob": 0.6711093187332153,
+      "rank": 2
+    },
+    {
+      "src_index": 4,
+      "src_name": "LymphNodeMediastinum",
+      "dst_index": 2,
+      "dst_name": "Bone",
+      "edge_type": "weak",
+      "is_prior_edge": 1,
+      "edge_diffusion_prob": 0.6208547949790955,
+      "rank": 3
+    },
+    {
+      "src_index": 4,
+      "src_name": "LymphNodeMediastinum",
+      "dst_index": 5,
+      "dst_name": "Brain",
+      "edge_type": "weak",
+      "is_prior_edge": 1,
+      "edge_diffusion_prob": 0.563940703868866,
+      "rank": 4
+    },
+    {
+      "src_index": 0,
+      "src_name": "Primary",
+      "dst_index": 3,
+      "dst_name": "Liver",
+      "edge_type": "weak",
+      "is_prior_edge": 1,
+      "edge_diffusion_prob": 0.5065880417823792,
+      "rank": 5
+    },
+    {
+      "src_index": 1,
+      "src_name": "Lung",
+      "dst_index": 0,
+      "dst_name": "Primary",
+      "edge_type": "strong",
+      "is_prior_edge": 1,
+      "edge_diffusion_prob": 0.495754212141037,
+      "rank": 6
+    },
+    {
+      "src_index": 4,
+      "src_name": "LymphNodeMediastinum",
+      "dst_index": 1,
+      "dst_name": "Lung",
+      "edge_type": "none",
+      "is_prior_edge": 0,
+      "edge_diffusion_prob": 0.44520941376686096,
+      "rank": 7
+    },
+    {
+      "src_index": 0,
+      "src_name": "Primary",
+      "dst_index": 2,
+      "dst_name": "Bone",
+      "edge_type": "weak",
+      "is_prior_edge": 1,
+      "edge_diffusion_prob": 0.44319525361061096,
+      "rank": 8
+    },
+    {
+      "src_index": 0,
+      "src_name": "Primary",
+      "dst_index": 4,
+      "dst_name": "LymphNodeMediastinum",
+      "edge_type": "strong",
+      "is_prior_edge": 1,
+      "edge_diffusion_prob": 0.39857912063598633,
+      "rank": 9
+    },
+    {
+      "src_index": 0,
+      "src_name": "Primary",
+      "dst_index": 5,
+      "dst_name": "Brain",
+      "edge_type": "weak",
+      "is_prior_edge": 1,
+      "edge_diffusion_prob": 0.39038917422294617,
+      "rank": 10
+    }
+  ],
+  "top1_path_frequency": [
+    {
+      "path_names": [
+        "Primary",
+        "Liver"
+      ],
+      "count": 211,
+      "fraction": 1.0
+    }
+  ]
+}
