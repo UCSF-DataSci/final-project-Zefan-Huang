@@ -2,6 +2,7 @@ import argparse
 import importlib.util
 from pathlib import Path
 
+## only rna
 
 def resolve_root():
     if "__file__" in globals():

@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
+##Directly inject the output of the explanation head into the prediction path
 
 DEFAULT_GRAPH_REASONING_PACK = Path("output/stage11/11.2_graph_reasoning/graph_reasoning_pack.npz")
 DEFAULT_PRIMARY_PACK = Path("output/stage12/12.1_primary_outputs_refit_all_seed2024/pred/primary_output_pack.npz")

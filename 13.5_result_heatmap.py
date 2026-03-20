@@ -9,6 +9,8 @@ from pathlib import Path
 import numpy as np
 from scipy.cluster.hierarchy import leaves_list, linkage
 
+# reuslt heatmap graph
+## not looking well, cuz i'm only using query
 
 DEFAULT_STAGE12_CSV = Path("output/stage12/12.2_explanation_outputs_joint/organ_susceptibility.csv")
 DEFAULT_STAGE13_CSV = Path("output/stage13/13.2_phase4_tune/explanation_outputs_best/organ_susceptibility.csv")

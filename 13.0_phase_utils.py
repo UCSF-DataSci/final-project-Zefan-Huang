@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
-##
+##running the pipeline
 
 def resolve_root():
     if "__file__" in globals():

@@ -11,6 +11,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+## real training start
 
 DEFAULT_STAGE11_PACK = Path("output/stage11/11.2_graph_reasoning/graph_reasoning_pack.npz")
 DEFAULT_LABELS_CSV = Path("output/labels_time_zero.csv")
