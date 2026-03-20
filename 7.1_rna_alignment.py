@@ -1,6 +1,7 @@
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 
+## RNA data alignment
 
 MODULE_PATH = Path(__file__).resolve().parent / "prepare_clean" / "rna_alignment.py"
 SPEC = spec_from_file_location("prepare_clean_rna_alignment", str(MODULE_PATH))
