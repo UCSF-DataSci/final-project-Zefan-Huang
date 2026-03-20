@@ -9,7 +9,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-##
+## using the GNN i made before to train the model, and generate holographic organ vectors
+## but train here it's not fitting, it has No Backward Pass
 
 DEFAULT_STAGE11_PACK = Path("output/stage11/11.1_graph_construction/graph_construction_pack.npz")
 DEFAULT_OUTPUT_ROOT = Path("output/stage11/11.2_graph_reasoning")
